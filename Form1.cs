@@ -14,7 +14,8 @@ namespace NiceUIDesign
     public partial class Form1 : Form
     {
 
-        Classes.Songs songs = new Classes.Songs();
+        private Classes.Songs songs = new Classes.Songs();
+        public string selectedPanel;
 
         public Form1()
         {
@@ -30,37 +31,56 @@ namespace NiceUIDesign
             right_displayer.Top = panel1.Top;
             right_displayer.BackColor = Color.White;
 
-            right_displayer.Controls.Add(songs);
 
 
         }
 
-        public void DisposeOfItem(object obj) {
+        public void DisposeOfItem(string obj) {
 
-            if(obj is Classes.Songs songs) {
-               // Console.WriteLine("deleting");
-                songs.Dispose();
-                while (songs.Disposing)
-                {
-                }
-            }
-            /*else if ()
+            switch (obj)
             {
-
+                case "songs":
+                    {
+                        right_displayer.Controls.Remove(songs);
+                        
+                    }
+                    break;
+                case "settings":
+                    {
+                        //right_displayer.Controls.Remove(settings);
+                    }
+                    break;
+                case "playlist":
+                    {
+                        //right_displayer.Controls.Remove(playlist);
+                    }
+                    break;
+                case "ytdownloader":
+                    {
+                        //right_displayer.Controls.Remove(ytDownloader);
+                    }
+                    break;
             }
-            else if ()
-            {
-
-            }*/
         }
         
 
         private void browseSongs_btn_Click(object sender, EventArgs e)
         {
-            nav_panel.Height = browseSongs_btn.Height;
-            nav_panel.Top = browseSongs_btn.Top;
-            nav_panel.Left = browseSongs_btn.Left;
-            browseSongs_btn.BackColor = Color.FromArgb(46,51,73);
+            if (selectedPanel != "songs")
+            {
+                //if(selectedPanel != null)
+                    //DisposeOfItem(selectedPanel);
+
+                selectedPanel = "songs";
+
+                right_displayer.Controls.Add(songs);
+
+                nav_panel.Height = browseSongs_btn.Height;
+                nav_panel.Top = browseSongs_btn.Top;
+                nav_panel.Left = browseSongs_btn.Left;
+                browseSongs_btn.BackColor = Color.FromArgb(46, 51, 73);
+            }
+            
         }
 
         private void browseSongs_btn_Leave(object sender, EventArgs e)
@@ -70,12 +90,19 @@ namespace NiceUIDesign
 
         private void settings_btn_Click(object sender, EventArgs e)
         {
-            DisposeOfItem(songs);
+            if (selectedPanel != "settings")
+            {
+                if (selectedPanel != null)
+                    DisposeOfItem(selectedPanel);
 
-            nav_panel.Height = settings_btn.Height;
-            nav_panel.Top = settings_btn.Top;
-            nav_panel.Left = settings_btn.Left;
-            settings_btn.BackColor = Color.FromArgb(46, 51, 73);
+                selectedPanel = "settings";
+
+                nav_panel.Height = settings_btn.Height;
+                nav_panel.Top = settings_btn.Top;
+                nav_panel.Left = settings_btn.Left;
+                settings_btn.BackColor = Color.FromArgb(46, 51, 73);
+            }
+                
         }
 
         private void settings_btn_Leave(object sender, EventArgs e)
@@ -110,19 +137,31 @@ namespace NiceUIDesign
 
         private void ResizeMainWindow(object sender, EventArgs e)
         {
-            panel3.Width = songsDisplayer.Width;
+
         }
 
         private void ResizeEndMainWindow(object sender, EventArgs e)
         {
-            panel3.Width = songsDisplayer.Width;
+ 
 
         }
 
         private void Form1SizeChanged(object sender, EventArgs e)
         {
-            panel3.Width = songsDisplayer.Width;
 
+
+        }
+
+        private void playlistItemClicked(object sender, EventArgs e)
+        {
+            Console.WriteLine("Hello there");
+            label1.Text = "Nope";
+
+        }
+
+        private void onImageClick(object sender, EventArgs e)
+        {
+            playlistItemClicked(sender, e);
         }
     }
 }
