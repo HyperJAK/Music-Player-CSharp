@@ -1,0 +1,25 @@
+D:\Data Saves\Projects\Visual Studio Projects (C#)\NiceUIDesign\bin\Debug\NiceUIDesign.exe.config
+D:\Data Saves\Projects\Visual Studio Projects (C#)\NiceUIDesign\bin\Debug\NiceUIDesign.exe
+D:\Data Saves\Projects\Visual Studio Projects (C#)\NiceUIDesign\bin\Debug\NiceUIDesign.pdb
+D:\Data Saves\Projects\Visual Studio Projects (C#)\NiceUIDesign\obj\Debug\NiceUIDesign.csproj.AssemblyReference.cache
+D:\Data Saves\Projects\Visual Studio Projects (C#)\NiceUIDesign\obj\Debug\NiceUIDesign.csproj.SuggestedBindingRedirects.cache
+D:\Data Saves\Projects\Visual Studio Projects (C#)\NiceUIDesign\obj\Debug\NiceUIDesign.Form1.resources
+D:\Data Saves\Projects\Visual Studio Projects (C#)\NiceUIDesign\obj\Debug\NiceUIDesign.Properties.Resources.resources
+D:\Data Saves\Projects\Visual Studio Projects (C#)\NiceUIDesign\obj\Debug\NiceUIDesign.csproj.GenerateResource.cache
+D:\Data Saves\Projects\Visual Studio Projects (C#)\NiceUIDesign\obj\Debug\NiceUIDesign.csproj.CoreCompileInputs.cache
+D:\Data Saves\Projects\Visual Studio Projects (C#)\NiceUIDesign\obj\Debug\NiceUIDesign.exe
+D:\Data Saves\Projects\Visual Studio Projects (C#)\NiceUIDesign\obj\Debug\NiceUIDesign.pdb
+C:\D_Drive\Data_Saves\1-Projects\Visual Studio Projects (C#)\NiceUIDesign\bin\Debug\NiceUIDesign.exe.config
+C:\D_Drive\Data_Saves\1-Projects\Visual Studio Projects (C#)\NiceUIDesign\bin\Debug\NiceUIDesign.exe
+C:\D_Drive\Data_Saves\1-Projects\Visual Studio Projects (C#)\NiceUIDesign\bin\Debug\NiceUIDesign.pdb
+C:\D_Drive\Data_Saves\1-Projects\Visual Studio Projects (C#)\NiceUIDesign\obj\Debug\NiceUIDesign.csproj.AssemblyReference.cache
+C:\D_Drive\Data_Saves\1-Projects\Visual Studio Projects (C#)\NiceUIDesign\obj\Debug\NiceUIDesign.csproj.SuggestedBindingRedirects.cache
+C:\D_Drive\Data_Saves\1-Projects\Visual Studio Projects (C#)\NiceUIDesign\obj\Debug\NiceUIDesign.Form1.resources
+C:\D_Drive\Data_Saves\1-Projects\Visual Studio Projects (C#)\NiceUIDesign\obj\Debug\NiceUIDesign.Properties.Resources.resources
+C:\D_Drive\Data_Saves\1-Projects\Visual Studio Projects (C#)\NiceUIDesign\obj\Debug\NiceUIDesign.csproj.GenerateResource.cache
+C:\D_Drive\Data_Saves\1-Projects\Visual Studio Projects (C#)\NiceUIDesign\obj\Debug\NiceUIDesign.csproj.CoreCompileInputs.cache
+C:\D_Drive\Data_Saves\1-Projects\Visual Studio Projects (C#)\NiceUIDesign\obj\Debug\NiceUIDesign.exe
+C:\D_Drive\Data_Saves\1-Projects\Visual Studio Projects (C#)\NiceUIDesign\obj\Debug\NiceUIDesign.pdb
+C:\D_Drive\Data_Saves\1-Projects\Visual Studio Projects (C#)\NiceUIDesign\bin\Debug\Newtonsoft.Json.dll
+C:\D_Drive\Data_Saves\1-Projects\Visual Studio Projects (C#)\NiceUIDesign\bin\Debug\Newtonsoft.Json.xml
+C:\D_Drive\Data_Saves\1-Projects\Visual Studio Projects (C#)\NiceUIDesign\obj\Debug\NiceUIDesign.csproj.CopyComplete
