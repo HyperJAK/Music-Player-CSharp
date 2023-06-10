@@ -1,5 +1,7 @@
 {
-  "Hello": 1,
-  "Hello2": 2,
-  "Hello3": 3
+  "song_ids": {
+    "hi": 1,
+    "hi2": 2,
+    "hi3": 3
+  }
 }
