@@ -1,5 +1,20 @@
-{
-  "Hello": 1,
-  "Hello2": 2,
-  "Hello3": 3
-}
+[
+  {
+    "id": 1,
+    "name": "hi",
+    "path": "path1",
+    "categories": null
+  },
+  {
+    "id": 2,
+    "name": "hi2",
+    "path": "path2",
+    "categories": null
+  },
+  {
+    "id": 3,
+    "name": "hi3",
+    "path": "path3",
+    "categories": null
+  }
+]
