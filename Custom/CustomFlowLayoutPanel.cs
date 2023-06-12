@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace NiceUIDesign.Custom
 {
-    public class CustomFlowLayoutPanel:FlowLayoutPanel
+    public class CustomFlowLayoutPanel : FlowLayoutPanel
     {
         public CustomFlowLayoutPanel(string name, int width, int height, FlowDirection direct, int tag)
         {

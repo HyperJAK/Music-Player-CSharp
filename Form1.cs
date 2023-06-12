@@ -1,29 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NiceUIDesign
 {
     public partial class Form1 : Form
     {
-       [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
 
         public static extern IntPtr CreateRoundRectRgn(
-            int nLeft,
-            int nTop,
-            int nRight,
-            int nBottom,
-            int nWidthEllipse,
-            int nHeightEllipse
+             int nLeft,
+             int nTop,
+             int nRight,
+             int nBottom,
+             int nWidthEllipse,
+             int nHeightEllipse
 
-            );
+             );
 
         private Classes.Songs songs = new Classes.Songs();
         public string selectedPanel;
@@ -36,26 +30,27 @@ namespace NiceUIDesign
                         nav_panel.Top = dashboard_btn.Top;
                         nav_panel.Left = dashboard_btn.Left;
                         dashboard_btn.BackColor = Color.FromArgb(46, 51, 73);*/
-            
+
             right_displayer.Left = panel1.Right;
             right_displayer.Height = panel1.Height;
             right_displayer.Top = panel1.Top;
             right_displayer.BackColor = Color.White;
 
-            pictureBox2.Region = Region.FromHrgn(CreateRoundRectRgn(0,0, pictureBox2.Width, pictureBox2.Height,30,30));
+            pictureBox2.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pictureBox2.Width, pictureBox2.Height, 30, 30));
 
 
 
         }
 
-        public void DisposeOfItem(string obj) {
+        public void DisposeOfItem(string obj)
+        {
 
             switch (obj)
             {
                 case "songs":
                     {
                         right_displayer.Controls.Remove(songs);
-                        
+
                     }
                     break;
                 case "settings":
@@ -75,14 +70,14 @@ namespace NiceUIDesign
                     break;
             }
         }
-        
+
 
         private void browseSongs_btn_Click(object sender, EventArgs e)
         {
             if (selectedPanel != "songs")
             {
                 //if(selectedPanel != null)
-                    //DisposeOfItem(selectedPanel);
+                //DisposeOfItem(selectedPanel);
 
                 selectedPanel = "songs";
 
@@ -93,7 +88,7 @@ namespace NiceUIDesign
                 nav_panel.Left = browseSongs_btn.Left;
                 browseSongs_btn.BackColor = Color.FromArgb(46, 51, 73);
             }
-            
+
         }
 
         private void browseSongs_btn_Leave(object sender, EventArgs e)
@@ -115,7 +110,7 @@ namespace NiceUIDesign
                 nav_panel.Left = settings_btn.Left;
                 settings_btn.BackColor = Color.FromArgb(46, 51, 73);
             }
-                
+
         }
 
         private void settings_btn_Leave(object sender, EventArgs e)
@@ -155,7 +150,7 @@ namespace NiceUIDesign
 
         private void ResizeEndMainWindow(object sender, EventArgs e)
         {
- 
+
 
         }
 

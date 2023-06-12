@@ -4,10 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NiceUIDesign.Classes
@@ -19,9 +15,11 @@ namespace NiceUIDesign.Classes
 
         public int songCounter = 0;
 
-        private Dictionary<Song,int> songs_dict = new Dictionary<Song,int>();
-            
-        public Songs() {
+        private static Dictionary<int, string> songNameById = new Dictionary<int, string>();
+        private static Dictionary<int, string> songPathById = new Dictionary<int, string>();
+
+        public Songs()
+        {
             this.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             this.Dock = DockStyle.Fill;
             this.BackColor = Color.AliceBlue;
@@ -31,11 +29,13 @@ namespace NiceUIDesign.Classes
             this.AllowDrop = true;
 
             GetSongs();
+            createSongsDicts();
             //Song song1 = new Song("hi", "path1", songCounter + 1);
             // Song song2 = new Song("hi2", "path2", songCounter + 2);
             //Song song3 = new Song("hi3", "path3", songCounter + 3);
 
-            foreach (Song s in allSongs) {
+            foreach (Song s in allSongs)
+            {
                 add_song(s);
             }
 
@@ -43,9 +43,35 @@ namespace NiceUIDesign.Classes
 
         }
 
+        public static string getSongName(int id)
+        {
+            string value;
+            songNameById.TryGetValue(id, out value);
+
+            return value;
+        }
+
+        public static string getSongPath(int id)
+        {
+            string value;
+            songPathById.TryGetValue(id, out value);
+
+            return value;
+
+        }
+
+        private void createSongsDicts()
+        {
+            foreach (Song s in allSongs)
+            {
+                songNameById.Add(s.id, s.name);
+                songPathById.Add(s.id, s.path);
+            }
+        }
+
         public void init_options()
         {
-            
+
         }
 
 
@@ -54,7 +80,7 @@ namespace NiceUIDesign.Classes
             songCounter++;
 
             int tagid = songCounter;
-            CustomFlowLayoutPanel panel = new CustomFlowLayoutPanel($"panel:{song.name}",160,180, FlowDirection.TopDown, tagid);
+            CustomFlowLayoutPanel panel = new CustomFlowLayoutPanel($"panel:{song.name}", 160, 180, FlowDirection.TopDown, tagid);
             CustomPictureBox pic = new CustomPictureBox($"pic:{song.name}", tagid);
             CustomLabel label = new CustomLabel($"label:{song.name}", song.name, tagid);
 

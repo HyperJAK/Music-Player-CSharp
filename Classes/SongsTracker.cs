@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NiceUIDesign.Classes
@@ -13,7 +10,8 @@ namespace NiceUIDesign.Classes
         private List<PictureBox> pics;
         private List<Label> labels;
 
-        public SongsTracker() {
+        public SongsTracker()
+        {
             panels = new List<FlowLayoutPanel>();
             pics = new List<PictureBox>();
             labels = new List<Label>();
@@ -21,7 +19,8 @@ namespace NiceUIDesign.Classes
 
 
 
-        public void addPanel(FlowLayoutPanel panel) {
+        public void addPanel(FlowLayoutPanel panel)
+        {
             panel.Click += Panel_Click;
             panels.Add(panel);
         }
@@ -41,49 +40,34 @@ namespace NiceUIDesign.Classes
 
         public void Panel_Click(object sender, EventArgs e)
         {
-            try
+            //Retrieves the type of the sender, meaning if user clicked on image or texet or box itself to access song
+            string typeOfSender = sender.GetType().ToString();
+            switch (typeOfSender)
+            //All use the same listener: Panel_Click()
             {
-                FlowLayoutPanel panelClicked = (FlowLayoutPanel)sender;
-                Console.WriteLine($"Song: {panelClicked.Tag} was clicked");
-            }
-            catch(Exception)
-            {
-                try
-                {
-                    PictureBox picClicked = (PictureBox)sender;
-                    Console.WriteLine($"Song: {picClicked.Tag} was clicked");
-                }
-                catch (Exception)
-                {
-                    try
+                case "NiceUIDesign.Custom.CustomFlowLayoutPanel":
+                    {
+                        FlowLayoutPanel panelClicked = (FlowLayoutPanel)sender;
+                        string songName = Songs.getSongName((int)panelClicked.Tag);
+                        Console.WriteLine($"Song: {songName} was clicked");
+                    }
+                    break;
+
+                case "NiceUIDesign.Custom.CustomLabel":
                     {
                         Label labelClicked = (Label)sender;
-
-                        Console.WriteLine($"Song: {labelClicked.Tag} was clicked");
+                        Console.WriteLine($"Song: {labelClicked.Text} was clicked");
                     }
-                    catch (Exception)
+                    break;
+
+                case "NiceUIDesign.Custom.CustomPictureBox":
                     {
-
+                        PictureBox picClicked = (PictureBox)sender;
+                        string songName = Songs.getSongName((int)picClicked.Tag);
+                        Console.WriteLine($"Song: {songName} was clicked");
                     }
-                }
+                    break;
             }
-
-
-            
-
-
-        }
-
-        public void Image_Click(object sender, EventArgs e)
-        {
-            Panel_Click(sender, e);
-
-        }
-
-        public void Label_Click(object sender, EventArgs e)
-        {
-
-            Panel_Click(sender, e);
 
         }
 

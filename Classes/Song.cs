@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace NiceUIDesign.Classes
 {
@@ -11,7 +7,8 @@ namespace NiceUIDesign.Classes
 
         public Song() { }
 
-        public Song(string name, string path, int id) {
+        public Song(string name, string path, int id)
+        {
             this.name = name;
             this.path = path;
             this.id = id;
