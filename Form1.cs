@@ -1,7 +1,11 @@
-﻿using System;
+﻿using AltoHttp;
+using System;
 using System.Drawing;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using VideoLibrary;
+using System.Linq;
 
 namespace NiceUIDesign
 {
@@ -38,7 +42,69 @@ namespace NiceUIDesign
 
             pictureBox2.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pictureBox2.Width, pictureBox2.Height, 30, 30));
 
+           // downloadSong(GetYouTubeAudioDownloadLink("https://www.youtube.com/watch?v=8eJX6CmzwyM","mp3"), "nothin");
 
+        }
+
+
+
+        public string GetYouTubeAudioDownloadLink(string videoUrl, string fileExtension)
+        {
+            var youTube = YouTube.Default;
+            //var video = youTube.GetVideo(videoUrl);
+
+            // Filter the available streams to get audio streams only
+            var videoInfos = youTube.GetAllVideosAsync(videoUrl).GetAwaiter().GetResult();
+            var audioStreams = videoInfos.Where(s => s.Format == VideoFormat.Unknown);
+
+            // Get the audio stream with the highest bitrate
+            var audioStream = audioStreams.OrderByDescending(s => s.AudioBitrate).FirstOrDefault();
+
+            if (audioStream == null)
+            {
+                // No audio streams found
+                return null;
+            }
+
+            // Construct the download link with the specified file extension
+            string downloadLink = $"{audioStream.Uri}.{fileExtension}";
+
+            return downloadLink;
+        }
+
+
+
+
+        private void downloadSong(string download_url, string download_path)
+        {
+            HttpDownloader downloader;
+            try
+            {
+                downloader = new HttpDownloader(download_url, $"C:\\Users\\james\\Desktop\\yup.mp3");
+                downloader.DownloadCompleted += DownloadCompleted_listener;
+                downloader.ProgressChanged += DownloadProgressChanged_listener;
+                downloader.DownloadPaused += DownloadPaused_listener;
+                downloader.Start();
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void DownloadPaused_listener(object sender , EventArgs e)
+        {
+
+        }
+
+        private void DownloadProgressChanged_listener(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void DownloadCompleted_listener(object sender, EventArgs e)
+        {
 
         }
 
