@@ -9,11 +9,11 @@ namespace NiceUIDesign.Custom
 {
     public class CustomLabel:Label
     {
-        public CustomLabel(string name, string text)
+        public CustomLabel(string name, string text, int tag)
         {
             this.Name = name;
             this.Text = text;
-            this.Tag = text;
+            this.Tag = tag;
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 
         }

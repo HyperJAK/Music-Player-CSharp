@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Song.cs" />
     <Compile Include="Classes\SongsTracker.cs" />
     <Compile Include="Classes\Playlists.cs">
       <SubType>Component</SubType>

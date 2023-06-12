@@ -15,7 +15,11 @@ namespace NiceUIDesign.Classes
     public class Songs : FlowLayoutPanel
     {
 
-        private Dictionary<string, int> songs_dict = new Dictionary<string, int>();
+        public List<Song> allSongs = new List<Song>();
+
+        public int songCounter = 0;
+
+        private Dictionary<Song,int> songs_dict = new Dictionary<Song,int>();
             
         public Songs() {
             this.Anchor = AnchorStyles.Top | AnchorStyles.Left;
@@ -26,9 +30,16 @@ namespace NiceUIDesign.Classes
             this.WrapContents = true;
             this.AllowDrop = true;
 
-            add_song("hi");
-            add_song("hi2");
-            add_song("hi3");
+            GetSongs();
+            //Song song1 = new Song("hi", "path1", songCounter + 1);
+            // Song song2 = new Song("hi2", "path2", songCounter + 2);
+            //Song song3 = new Song("hi3", "path3", songCounter + 3);
+
+            foreach (Song s in allSongs) {
+                add_song(s);
+            }
+
+            // saveSongs(allSongs);
 
         }
 
@@ -38,11 +49,14 @@ namespace NiceUIDesign.Classes
         }
 
 
-        public void add_song(string songName)
+        public void add_song(Song song)
         {
-            CustomFlowLayoutPanel panel = new CustomFlowLayoutPanel($"panel:{songName}",160,180, FlowDirection.TopDown, songName);
-            CustomPictureBox pic = new CustomPictureBox($"pic:{songName}", songName);
-            CustomLabel label = new CustomLabel($"label:{songName}", songName);
+            songCounter++;
+
+            int tagid = songCounter;
+            CustomFlowLayoutPanel panel = new CustomFlowLayoutPanel($"panel:{song.name}",160,180, FlowDirection.TopDown, tagid);
+            CustomPictureBox pic = new CustomPictureBox($"pic:{song.name}", tagid);
+            CustomLabel label = new CustomLabel($"label:{song.name}", song.name, tagid);
 
             pic.BackColor = Color.Black;
             pic.Width = panel.Width - 6;
@@ -67,37 +81,27 @@ namespace NiceUIDesign.Classes
             this.Controls.Add(panel);
 
 
+        }
 
-            var jsonData = new
-            {
-                song_ids = songs_dict
-            };
-
-
-            songs_dict.Add($"{songName}", songs_dict.Count() + 1);
-
-            string json = JsonConvert.SerializeObject(jsonData, Formatting.Indented);
+        public void saveSongs(List<Song> allSongs)
+        {
+            string json = JsonConvert.SerializeObject(allSongs, Formatting.Indented);
             File.WriteAllText("dictionary.json", json);
-
-            GetSongs();
-
         }
 
         public void GetSongs()
         {
             string json2 = File.ReadAllText("dictionary.json");
 
-            var jsonData2 = JsonConvert.DeserializeObject<dynamic>(json2);
+            var jsonData2 = JsonConvert.DeserializeObject<List<Song>>(json2);
 
-            // Access the group name "song_ids" and iterate over the songs_dict dictionary
-            var songIds = jsonData2.song_ids;
 
-            foreach (var song in songIds)
+            foreach (Song song in jsonData2)
             {
-                string songName2 = song.Name;
-                int songId = song.Value;
+                Console.WriteLine(song);
+                allSongs.Add((Song)song);
 
-                Console.WriteLine($"Song Name: {songName2}, Song ID: {songId}");
+                Console.WriteLine($"Song Name: {song.name}, Song ID: {allSongs.Count}, Song Path: {song.path}, Song id: {song.id}");
             }
         }
 
