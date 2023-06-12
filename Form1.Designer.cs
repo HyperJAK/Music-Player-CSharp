@@ -251,7 +251,7 @@
             this.songsDisplayer.Controls.Add(this.panel8);
             this.songsDisplayer.Controls.Add(this.panel10);
             this.songsDisplayer.Controls.Add(this.panel9);
-            this.songsDisplayer.Location = new System.Drawing.Point(178, 15);
+            this.songsDisplayer.Location = new System.Drawing.Point(3, 365);
             this.songsDisplayer.Name = "songsDisplayer";
             this.songsDisplayer.Size = new System.Drawing.Size(1026, 710);
             this.songsDisplayer.TabIndex = 0;

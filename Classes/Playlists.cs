@@ -36,10 +36,7 @@ namespace NiceUIDesign.Classes
 
         public void add_song(string songName)
         {
-            Button test = new Button { Name = $"button{songName}", Text = $"This is button {songName}" };
-            ButtonsTracker buttonTrack = new ButtonsTracker();
-            buttonTrack.addButton(test);
-            this.Controls.Add(test);
+            
 
         }
     }

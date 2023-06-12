@@ -13,6 +13,17 @@ namespace NiceUIDesign
 {
     public partial class Form1 : Form
     {
+       [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+
+        public static extern IntPtr CreateRoundRectRgn(
+            int nLeft,
+            int nTop,
+            int nRight,
+            int nBottom,
+            int nWidthEllipse,
+            int nHeightEllipse
+
+            );
 
         private Classes.Songs songs = new Classes.Songs();
         public string selectedPanel;
@@ -30,6 +41,8 @@ namespace NiceUIDesign
             right_displayer.Height = panel1.Height;
             right_displayer.Top = panel1.Top;
             right_displayer.BackColor = Color.White;
+
+            pictureBox2.Region = Region.FromHrgn(CreateRoundRectRgn(0,0, pictureBox2.Width, pictureBox2.Height,30,30));
 
 
 
