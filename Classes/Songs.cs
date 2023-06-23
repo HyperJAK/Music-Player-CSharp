@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace NiceUIDesign.Classes
@@ -21,6 +22,9 @@ namespace NiceUIDesign.Classes
         private static Dictionary<int, string> songNameById = new Dictionary<int, string>();
         private static Dictionary<int, string> songPathById = new Dictionary<int, string>();
 
+        //Used to halt other functions from running before all songs have been loaded
+        private ManualResetEvent songsLoadedEvent = new ManualResetEvent(false);
+
         public Songs()
         {
             this.Anchor = AnchorStyles.Top | AnchorStyles.Left;
@@ -33,7 +37,8 @@ namespace NiceUIDesign.Classes
             this.AutoScroll = true;
 
             GetSongs();
-            
+            songsLoadedEvent.WaitOne();
+
 
             this.SuspendLayout();
             foreach (Song s in allSongs)
@@ -186,7 +191,6 @@ namespace NiceUIDesign.Classes
             pic.Height = panel.Height - 60;
             label.Width = panel.Width - 6;
             label.Height = 50;
-            label.BackColor = Color.Yellow;
 
             //To add round edges to song containers
             pic.Region = Region.FromHrgn(Form1.CreateRoundRectRgn(0, 0, pic.Width, pic.Height, 10, 10));
@@ -219,9 +223,12 @@ namespace NiceUIDesign.Classes
 
         public void GetSongs()
         {
-            string json2 = File.ReadAllText("dictionary.json");
+            try
+            {
+                string json2 = File.ReadAllText("dictionary.json");
+                var jsonData2 = JsonConvert.DeserializeObject<List<Song>>(json2);
+            
 
-            var jsonData2 = JsonConvert.DeserializeObject<List<Song>>(json2);
 
             if(jsonData2 != null){
                 foreach (Song song in jsonData2)
@@ -234,6 +241,17 @@ namespace NiceUIDesign.Classes
                     Console.WriteLine($"Song Name: {song.name}, Song ID: {allSongs.Count}, Song Path: {song.path}, Song id: {song.id}");
                 }
             }
+            }
+            catch (Exception)
+            {
+                File.Create("dictionary.json");
+            }
+            finally
+            {
+                // Signal that songs have been loaded
+                songsLoadedEvent.Set();
+            }
+
         }
 
 
