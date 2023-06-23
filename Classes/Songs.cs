@@ -184,6 +184,9 @@ namespace NiceUIDesign.Classes
             pic.BackColor = Color.Black;
             pic.Width = panel.Width - 6;
             pic.Height = panel.Height - 60;
+            label.Width = panel.Width - 6;
+            label.Height = 50;
+            label.BackColor = Color.Yellow;
 
             //To add round edges to song containers
             pic.Region = Region.FromHrgn(Form1.CreateRoundRectRgn(0, 0, pic.Width, pic.Height, 10, 10));

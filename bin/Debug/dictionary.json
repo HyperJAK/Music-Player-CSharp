@@ -148,5 +148,45 @@
     "creationDate": "2023-03-23T21:44:49.7035917+02:00",
     "lastModifiedDate": "2022-06-23T23:49:54.2691904+03:00",
     "categories": null
+  },
+  {
+    "id": 31,
+    "name": "01. NieR Automata - A Beautiful Song 【Intense Symphonic Metal Cover】.mp3",
+    "path": "C:\\Users\\james\\Music\\youtube downloaded\\NieR Automata - A Beautiful Song 【Intense Symphonic Metal Cover】\\01. NieR Automata - A Beautiful Song 【Intense Symphonic Metal Cover】.mp3",
+    "songDir": "C:\\Users\\james\\Music\\youtube downloaded\\NieR Automata - A Beautiful Song 【Intense Symphonic Metal Cover】",
+    "size": 6542552,
+    "creationDate": "2023-03-23T21:47:32.6599253+02:00",
+    "lastModifiedDate": "2022-11-13T00:49:55.1416263+02:00",
+    "categories": null
+  },
+  {
+    "id": 32,
+    "name": "02. NieR Automata - Grandma - Destruction 【Intense Symphonic Metal Cover】.mp3",
+    "path": "C:\\Users\\james\\Music\\youtube downloaded\\NieR Automata - A Beautiful Song 【Intense Symphonic Metal Cover】\\02. NieR Automata - Grandma - Destruction 【Intense Symphonic Metal Cover】.mp3",
+    "songDir": "C:\\Users\\james\\Music\\youtube downloaded\\NieR Automata - A Beautiful Song 【Intense Symphonic Metal Cover】",
+    "size": 6444179,
+    "creationDate": "2023-03-23T21:47:32.963679+02:00",
+    "lastModifiedDate": "2022-11-13T00:52:05.0709025+02:00",
+    "categories": null
+  },
+  {
+    "id": 33,
+    "name": "03. NieR Automata   A Beautiful Song   Opera Boss Lyrics.mp3",
+    "path": "C:\\Users\\james\\Music\\youtube downloaded\\NieR Automata - A Beautiful Song 【Intense Symphonic Metal Cover】\\03. NieR Automata   A Beautiful Song   Opera Boss Lyrics.mp3",
+    "songDir": "C:\\Users\\james\\Music\\youtube downloaded\\NieR Automata - A Beautiful Song 【Intense Symphonic Metal Cover】",
+    "size": 2208935,
+    "creationDate": "2023-03-23T21:47:33.1671792+02:00",
+    "lastModifiedDate": "2022-11-13T00:49:43.3003345+02:00",
+    "categories": null
+  },
+  {
+    "id": 34,
+    "name": "04. Nier Automata - Bipolar Nightmare 【Intense Symphonic Metal Cover】.mp3",
+    "path": "C:\\Users\\james\\Music\\youtube downloaded\\NieR Automata - A Beautiful Song 【Intense Symphonic Metal Cover】\\04. Nier Automata - Bipolar Nightmare 【Intense Symphonic Metal Cover】.mp3",
+    "songDir": "C:\\Users\\james\\Music\\youtube downloaded\\NieR Automata - A Beautiful Song 【Intense Symphonic Metal Cover】",
+    "size": 7084582,
+    "creationDate": "2023-03-23T21:47:33.423696+02:00",
+    "lastModifiedDate": "2022-11-13T00:52:46.4974591+02:00",
+    "categories": null
   }
 ]
