@@ -48,6 +48,7 @@ namespace NiceUIDesign.Classes
                 case "NiceUIDesign.Custom.CustomFlowLayoutPanel":
                     {
                         FlowLayoutPanel panelClicked = (FlowLayoutPanel)sender;
+                        Console.WriteLine($"The tag that is LinkClickedEventArgs is:{(int)panelClicked.Tag}");
                         string songName = Songs.getSongName((int)panelClicked.Tag);
                         Console.WriteLine($"Song: {songName} was clicked");
                     }

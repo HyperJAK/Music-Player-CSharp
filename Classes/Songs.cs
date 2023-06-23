@@ -33,13 +33,18 @@ namespace NiceUIDesign.Classes
             //Song song1 = new Song("hi", "path1", songCounter + 1);
             // Song song2 = new Song("hi2", "path2", songCounter + 2);
             //Song song3 = new Song("hi3", "path3", songCounter + 3);
+            //Song song3 = new Song("hi3", "path3", songCounter + 1);
+            //Song song4 = new Song("hi3", "path3", songCounter + 2);
+
+            //allSongs.Add(song3);
+            //allSongs.Add(song4);
 
             foreach (Song s in allSongs)
             {
                 add_song(s);
             }
 
-            // saveSongs(allSongs);
+            //saveSongs(allSongs);
 
         }
 
@@ -79,7 +84,7 @@ namespace NiceUIDesign.Classes
         {
             songCounter++;
 
-            int tagid = songCounter;
+            int tagid = song.id;
             CustomFlowLayoutPanel panel = new CustomFlowLayoutPanel($"panel:{song.name}", 160, 180, FlowDirection.TopDown, tagid);
             CustomPictureBox pic = new CustomPictureBox($"pic:{song.name}", tagid);
             CustomLabel label = new CustomLabel($"label:{song.name}", song.name, tagid);
@@ -124,6 +129,8 @@ namespace NiceUIDesign.Classes
 
             foreach (Song song in jsonData2)
             {
+                songCounter++;
+
                 Console.WriteLine(song);
                 allSongs.Add((Song)song);
 
