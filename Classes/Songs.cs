@@ -111,23 +111,32 @@ namespace NiceUIDesign.Classes
         {
             // Start the process silently
             Process process = new Process();
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.FileName = "explorer.exe";
+            startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            startInfo.CreateNoWindow = true;
+
+            bool processStarted = false;
 
             foreach (Song song in songList)
             {
-                string songPath = song.path;
 
                 // Set the process start information
-                ProcessStartInfo startInfo = new ProcessStartInfo();
-                startInfo.FileName = "explorer.exe";
-                startInfo.Arguments = $"/select, \"{songPath}\"";
-                startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                startInfo.CreateNoWindow = true;
+                
+                startInfo.Arguments = $"/select, \"{song.path}\"";
 
                 process.StartInfo = startInfo;
-                process.Start();
+
+                if (!processStarted)
+                {
+                    process.Start();
+                    processStarted = true;
+
+                }
+                
 
                 // Get file information
-                var fileInfo = new FileInfo(songPath);
+                var fileInfo = new FileInfo(song.path);
 
                 song.name = fileInfo.Name;
                 song.songDir = fileInfo.DirectoryName;
@@ -137,11 +146,14 @@ namespace NiceUIDesign.Classes
 
             }
             // Wait for the process to exit
-            process.WaitForExit();
-
+            //process.WaitForExit();
 
             //Releases resources
-            process.Dispose();
+            //process.Dispose();
+            //process.Kill();
+            Process temp_process = Process.GetProcessById(process.Id);
+            temp_process.Kill();
+            
 
         }
 
