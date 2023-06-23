@@ -195,6 +195,7 @@
             this.right_displayer.BackColor = System.Drawing.Color.White;
             this.right_displayer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.right_displayer.Location = new System.Drawing.Point(248, 0);
+            this.right_displayer.Margin = new System.Windows.Forms.Padding(0);
             this.right_displayer.Name = "right_displayer";
             this.right_displayer.Size = new System.Drawing.Size(1026, 710);
             this.right_displayer.TabIndex = 1;

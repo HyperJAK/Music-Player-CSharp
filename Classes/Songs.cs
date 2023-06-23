@@ -31,21 +31,18 @@ namespace NiceUIDesign.Classes
 
             GetSongs();
             createSongsDicts();
-            //Song song1 = new Song("hi", "path1", songCounter + 1);
-            // Song song2 = new Song("hi2", "path2", songCounter + 2);
-            //Song song3 = new Song("hi3", "path3", songCounter + 3);
-            //Song song3 = new Song("hi6", "path3", songCounter + 1);
-            //Song song4 = new Song("hi7", "path3", songCounter + 2);
-            //Song song5 = new Song("hi8", "path3", songCounter + 3);
+            
+            //Song song5 = new Song("hi13", "path3", songCounter + 5);
 
-            //allSongs.Add(song3);
-            //allSongs.Add(song4);
-           // allSongs.Add(song5);
+            //allSongs.Add(song5);
 
+            this.SuspendLayout();
             foreach (Song s in allSongs)
             {
                 add_song(s);
             }
+            this.ResumeLayout();
+            this.PerformLayout();
 
             //saveSongs(allSongs);
 
@@ -100,7 +97,7 @@ namespace NiceUIDesign.Classes
             pic.Region = Region.FromHrgn(Form1.CreateRoundRectRgn(0, 0, pic.Width, pic.Height, 10, 10));
             panel.Region = Region.FromHrgn(Form1.CreateRoundRectRgn(0, 0, panel.Width, panel.Height, 10, 10));
 
-            panel.Margin = new Padding(15);
+            panel.Margin = new Padding(12);
 
             panel.Controls.Add(pic);
             panel.Controls.Add(label);

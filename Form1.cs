@@ -1,4 +1,5 @@
 ﻿using AltoHttp;
+using NiceUIDesign.Classes;
 using System;
 using System.Drawing;
 using System.Linq;
@@ -158,6 +159,8 @@ namespace NiceUIDesign
 
         }
 
+
+
         private void switchPanel(string target)
         {
             switch (target)
@@ -170,7 +173,17 @@ namespace NiceUIDesign
 
                         selectedPanel = "browse";
 
+                        //stops the panel from calculating, in order to update its elements faster
+                        right_displayer.SuspendLayout();
+
                         right_displayer.Controls.Add(songs);
+
+                        //Makes panel resume calculations
+                        right_displayer.ResumeLayout();
+                        //Forces panel to update calculations
+                        right_displayer.PerformLayout();
+                        songs.PerformLayout();
+
                         browseSongs_btn.BackColor = Color.FromArgb(46, 51, 73);
                     }
                     break;
@@ -183,7 +196,15 @@ namespace NiceUIDesign
 
                         selectedPanel = "add_song";
 
-                        //right_displayer.Controls.Add(songs);
+                        /*//stops the panel from calculating, in order to update its elements faster
+                        right_displayer.SuspendLayout();
+
+                        right_displayer.Controls.Add(songs);
+
+                        //Makes panel resume calculations
+                        right_displayer.ResumeLayout();
+                        //Forces panel to update calculations
+                        right_displayer.PerformLayout();*/
                         addSong_btn.BackColor = Color.FromArgb(46, 51, 73);
                     }
                     break;
@@ -196,7 +217,15 @@ namespace NiceUIDesign
 
                         selectedPanel = "playlist";
 
-                        //right_displayer.Controls.Add(songs);
+                        /*//stops the panel from calculating, in order to update its elements faster
+                        right_displayer.SuspendLayout();
+
+                        right_displayer.Controls.Add(songs);
+
+                        //Makes panel resume calculations
+                        right_displayer.ResumeLayout();
+                        //Forces panel to update calculations
+                        right_displayer.PerformLayout();*/
                         playlists_btn.BackColor = Color.FromArgb(46, 51, 73);
                     }
                     break;
@@ -209,7 +238,15 @@ namespace NiceUIDesign
 
                         selectedPanel = "contact_us";
 
-                        //right_displayer.Controls.Add(songs);
+                        /*//stops the panel from calculating, in order to update its elements faster
+                        right_displayer.SuspendLayout();
+
+                        right_displayer.Controls.Add(songs);
+
+                        //Makes panel resume calculations
+                        right_displayer.ResumeLayout();
+                        //Forces panel to update calculations
+                        right_displayer.PerformLayout();*/
                         contactUs_btn.BackColor = Color.FromArgb(46, 51, 73);
                     }
                     break;
@@ -222,7 +259,15 @@ namespace NiceUIDesign
 
                         selectedPanel = "settings";
 
-                        //right_displayer.Controls.Add(songs);
+                        /*//stops the panel from calculating, in order to update its elements faster
+                        right_displayer.SuspendLayout();
+
+                        right_displayer.Controls.Add(songs);
+
+                        //Makes panel resume calculations
+                        right_displayer.ResumeLayout();
+                        //Forces panel to update calculations
+                        right_displayer.PerformLayout();*/
                         settings_btn.BackColor = Color.FromArgb(46, 51, 73);
                     }
                     break;
