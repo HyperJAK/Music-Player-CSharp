@@ -1,4 +1,5 @@
 ﻿using AltoHttp;
+using NiceUIDesign.Classes;
 using System;
 using System.Drawing;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace NiceUIDesign
 
              );
 
-        private Classes.Songs songs = new Classes.Songs();
+        private Songs songs = new Songs();
         public string selectedPanel;
 
         public Form1()
@@ -39,9 +40,9 @@ namespace NiceUIDesign
             right_displayer.Top = panel1.Top;
             right_displayer.BackColor = Color.White;
 
-            pictureBox2.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pictureBox2.Width, pictureBox2.Height, 30, 30));
+            //pictureBox2.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pictureBox2.Width, pictureBox2.Height, 30, 30));
 
-            // downloadSong(GetYouTubeAudioDownloadLink("https://www.youtube.com/watch?v=8eJX6CmzwyM","mp3"), "nothin");
+            //downloadSong(GetYouTubeAudioDownloadLink("https://youtu.be/20EWCIEnSLI","mp3"), "nothin");
 
         }
 
@@ -79,13 +80,13 @@ namespace NiceUIDesign
             HttpDownloader downloader;
             try
             {
-                downloader = new HttpDownloader(download_url, $"C:\\Users\\james\\Desktop\\yup.mp3");
+                downloader = new HttpDownloader(download_url, $"C:\\Users\\james\\Desktop\\yup33.mp3");
                 downloader.DownloadCompleted += DownloadCompleted_listener;
                 downloader.ProgressChanged += DownloadProgressChanged_listener;
                 downloader.DownloadPaused += DownloadPaused_listener;
                 downloader.Start();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
             }
@@ -98,6 +99,7 @@ namespace NiceUIDesign
 
         private void DownloadProgressChanged_listener(object sender, EventArgs e)
         {
+           
 
         }
 
@@ -112,13 +114,13 @@ namespace NiceUIDesign
 
             switch (obj)
             {
-                case "songs":
+                case "browse":
                     {
                         right_displayer.Controls.Remove(songs);
 
                     }
                     break;
-                case "settings":
+                case "add_song":
                     {
                         //right_displayer.Controls.Remove(settings);
                     }
@@ -128,7 +130,14 @@ namespace NiceUIDesign
                         //right_displayer.Controls.Remove(playlist);
                     }
                     break;
-                case "ytdownloader":
+
+                case "contact_us":
+                    {
+                        //right_displayer.Controls.Remove(playlist);
+                    }
+                    break;
+
+                case "settings":
                     {
                         //right_displayer.Controls.Remove(ytDownloader);
                     }
@@ -139,21 +148,130 @@ namespace NiceUIDesign
 
         private void browseSongs_btn_Click(object sender, EventArgs e)
         {
-            if (selectedPanel != "songs")
+            if (selectedPanel != "browse")
             {
-                //if(selectedPanel != null)
-                //DisposeOfItem(selectedPanel);
+                if (selectedPanel != null)
+                    DisposeOfItem(selectedPanel);
+                switchPanel("browse");
 
-                selectedPanel = "songs";
-
-                right_displayer.Controls.Add(songs);
-
-                nav_panel.Height = browseSongs_btn.Height;
-                nav_panel.Top = browseSongs_btn.Top;
-                nav_panel.Left = browseSongs_btn.Left;
-                browseSongs_btn.BackColor = Color.FromArgb(46, 51, 73);
+                
             }
 
+        }
+
+
+
+        private void switchPanel(string target)
+        {
+            switch (target)
+            {
+                case "browse":
+                    {
+                        nav_panel.Height = browseSongs_btn.Height;
+                        nav_panel.Top = browseSongs_btn.Top;
+                        nav_panel.Left = browseSongs_btn.Left;
+
+                        selectedPanel = "browse";
+
+                        //stops the panel from calculating, in order to update its elements faster
+                        right_displayer.SuspendLayout();
+
+                        right_displayer.Controls.Add(songs);
+
+                        //Makes panel resume calculations
+                        right_displayer.ResumeLayout();
+                        //Forces panel to update calculations
+                        right_displayer.PerformLayout();
+                        songs.PerformLayout();
+
+                        browseSongs_btn.BackColor = Color.FromArgb(46, 51, 73);
+                    }
+                    break;
+
+                case "add_song":
+                    {
+                        nav_panel.Height = addSong_btn.Height;
+                        nav_panel.Top = addSong_btn.Top;
+                        nav_panel.Left = addSong_btn.Left;
+
+                        selectedPanel = "add_song";
+
+                        /*//stops the panel from calculating, in order to update its elements faster
+                        right_displayer.SuspendLayout();
+
+                        right_displayer.Controls.Add(songs);
+
+                        //Makes panel resume calculations
+                        right_displayer.ResumeLayout();
+                        //Forces panel to update calculations
+                        right_displayer.PerformLayout();*/
+                        addSong_btn.BackColor = Color.FromArgb(46, 51, 73);
+                    }
+                    break;
+
+                case "playlist":
+                    {
+                        nav_panel.Height = playlists_btn.Height;
+                        nav_panel.Top = playlists_btn.Top;
+                        nav_panel.Left = playlists_btn.Left;
+
+                        selectedPanel = "playlist";
+
+                        /*//stops the panel from calculating, in order to update its elements faster
+                        right_displayer.SuspendLayout();
+
+                        right_displayer.Controls.Add(songs);
+
+                        //Makes panel resume calculations
+                        right_displayer.ResumeLayout();
+                        //Forces panel to update calculations
+                        right_displayer.PerformLayout();*/
+                        playlists_btn.BackColor = Color.FromArgb(46, 51, 73);
+                    }
+                    break;
+
+                case "contact_us":
+                    {
+                        nav_panel.Height = contactUs_btn.Height;
+                        nav_panel.Top = contactUs_btn.Top;
+                        nav_panel.Left = contactUs_btn.Left;
+
+                        selectedPanel = "contact_us";
+
+                        /*//stops the panel from calculating, in order to update its elements faster
+                        right_displayer.SuspendLayout();
+
+                        right_displayer.Controls.Add(songs);
+
+                        //Makes panel resume calculations
+                        right_displayer.ResumeLayout();
+                        //Forces panel to update calculations
+                        right_displayer.PerformLayout();*/
+                        contactUs_btn.BackColor = Color.FromArgb(46, 51, 73);
+                    }
+                    break;
+
+                case "settings":
+                    {
+                        nav_panel.Height = settings_btn.Height;
+                        nav_panel.Top = settings_btn.Top;
+                        nav_panel.Left = settings_btn.Left;
+
+                        selectedPanel = "settings";
+
+                        /*//stops the panel from calculating, in order to update its elements faster
+                        right_displayer.SuspendLayout();
+
+                        right_displayer.Controls.Add(songs);
+
+                        //Makes panel resume calculations
+                        right_displayer.ResumeLayout();
+                        //Forces panel to update calculations
+                        right_displayer.PerformLayout();*/
+                        settings_btn.BackColor = Color.FromArgb(46, 51, 73);
+                    }
+                    break;
+            }
         }
 
         private void browseSongs_btn_Leave(object sender, EventArgs e)
@@ -167,13 +285,8 @@ namespace NiceUIDesign
             {
                 if (selectedPanel != null)
                     DisposeOfItem(selectedPanel);
+                switchPanel("settings");
 
-                selectedPanel = "settings";
-
-                nav_panel.Height = settings_btn.Height;
-                nav_panel.Top = settings_btn.Top;
-                nav_panel.Left = settings_btn.Left;
-                settings_btn.BackColor = Color.FromArgb(46, 51, 73);
             }
 
         }
@@ -205,7 +318,15 @@ namespace NiceUIDesign
 
         private void addSong_btn_Click(object sender, EventArgs e)
         {
+            if (selectedPanel != "add_song")
+            {
+                if (selectedPanel != null)
+                    DisposeOfItem(selectedPanel);
+                songs.add_new_songs();
+                songs.Refresh();
+                switchPanel("browse");
 
+            }
         }
 
         private void ResizeMainWindow(object sender, EventArgs e)
@@ -228,13 +349,54 @@ namespace NiceUIDesign
         private void playlistItemClicked(object sender, EventArgs e)
         {
             Console.WriteLine("Hello there");
-            label1.Text = "Nope";
 
         }
 
         private void onImageClick(object sender, EventArgs e)
         {
             playlistItemClicked(sender, e);
+        }
+
+        private void songsDisplayer_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void playlist_click(object sender, EventArgs e)
+        {
+            if (selectedPanel != "playlist")
+            {
+                if (selectedPanel != null)
+                    DisposeOfItem(selectedPanel);
+                switchPanel("playlist");
+
+            }
+        }
+
+        private void contactUs_click(object sender, EventArgs e)
+        {
+            if (selectedPanel != "contact_us")
+            {
+                if (selectedPanel != null)
+                    DisposeOfItem(selectedPanel);
+                switchPanel("contact_us");
+
+            }
+        }
+
+        private void addSong_btn_Leave(object sender, EventArgs e)
+        {
+            addSong_btn.BackColor = Color.FromArgb(24, 30, 54);
+        }
+
+        private void playlist_btn_Leave(object sender, EventArgs e)
+        {
+            playlists_btn.BackColor = Color.FromArgb(24, 30, 54);
+        }
+
+        private void contactUs_btn_Leave(object sender, EventArgs e)
+        {
+            contactUs_btn.BackColor = Color.FromArgb(24, 30, 54);
         }
     }
 }

@@ -1,20 +1,192 @@
 [
   {
     "id": 1,
-    "name": "hi",
-    "path": "path1",
+    "name": "47-Best Nightcore Mix 2023 ♫ Nightcore Music Mix ♫ Gaming Music, EDM, Trap, Dubstep, NCS, House.m4a",
+    "path": "C:\\Users\\james\\Music\\youtube downloaded\\Long nightcore\\47-Best Nightcore Mix 2023 ♫ Nightcore Music Mix ♫ Gaming Music, EDM, Trap, Dubstep, NCS, House.m4a",
+    "songDir": "C:\\Users\\james\\Music\\youtube downloaded\\Long nightcore",
+    "size": 574055078,
+    "creationDate": "2023-05-18T20:36:29.8834098+03:00",
+    "lastModifiedDate": "2023-05-09T22:55:24+03:00",
     "categories": null
   },
   {
     "id": 2,
-    "name": "hi2",
-    "path": "path2",
+    "name": "55-Nightcore Songs Mix 2023 ♫ 3 Hour Gaming Music ♫ Trap, Bass, Dubstep, House NCS, Monstercat.m4a",
+    "path": "C:\\Users\\james\\Music\\youtube downloaded\\Long nightcore\\55-Nightcore Songs Mix 2023 ♫ 3 Hour Gaming Music ♫ Trap, Bass, Dubstep, House NCS, Monstercat.m4a",
+    "songDir": "C:\\Users\\james\\Music\\youtube downloaded\\Long nightcore",
+    "size": 444049788,
+    "creationDate": "2023-06-08T02:48:50.4351879+03:00",
+    "lastModifiedDate": "2023-06-02T05:14:35+03:00",
     "categories": null
   },
   {
     "id": 3,
-    "name": "hi3",
-    "path": "path3",
+    "name": "17-JoJo - Giorno's Theme (Jay-D remix, BassBoosted).m4a",
+    "path": "C:\\Users\\james\\Music\\youtube downloaded\\MINI\\17-JoJo - Giorno's Theme (Jay-D remix, BassBoosted).m4a",
+    "songDir": "C:\\Users\\james\\Music\\youtube downloaded\\MINI",
+    "size": 2437256,
+    "creationDate": "2023-05-25T20:18:53.6105821+03:00",
+    "lastModifiedDate": "2021-09-27T16:34:33+03:00",
+    "categories": null
+  },
+  {
+    "id": 4,
+    "name": "8-Giorno's Theme but it's EPIC VERSION.m4a",
+    "path": "C:\\Users\\james\\Music\\youtube downloaded\\MINI\\8-Giorno's Theme but it's EPIC VERSION.m4a",
+    "songDir": "C:\\Users\\james\\Music\\youtube downloaded\\MINI",
+    "size": 5020085,
+    "creationDate": "2023-05-18T13:51:30.5169948+03:00",
+    "lastModifiedDate": "2020-11-26T07:52:41+02:00",
+    "categories": null
+  },
+  {
+    "id": 5,
+    "name": "Leo Motoko - Onii Chan.mp3",
+    "path": "C:\\Users\\james\\Music\\youtube downloaded\\MINI\\Leo Motoko - Onii Chan.mp3",
+    "songDir": "C:\\Users\\james\\Music\\youtube downloaded\\MINI",
+    "size": 2358470,
+    "creationDate": "2023-03-23T21:47:03.5527971+02:00",
+    "lastModifiedDate": "2022-12-10T00:16:51.2599178+02:00",
+    "categories": null
+  },
+  {
+    "id": 11,
+    "name": null,
+    "path": "C:\\Users\\james\\Music\\youtube downloaded\\MINI\\11-Nightcore - BATTLECRY (Heart of Courage).m4a",
+    "songDir": null,
+    "size": 0,
+    "creationDate": "0001-01-01T00:00:00",
+    "lastModifiedDate": "0001-01-01T00:00:00",
+    "categories": null
+  },
+  {
+    "id": 13,
+    "name": "Scaramouche Boss Theme (All Phases) - Genshin Impact 3.2 OST.mp3",
+    "path": "C:\\Users\\james\\Music\\youtube downloaded\\MINI\\Scaramouche Boss Theme (All Phases) - Genshin Impact 3.2 OST.mp3",
+    "songDir": "C:\\Users\\james\\Music\\youtube downloaded\\MINI",
+    "size": 8653404,
+    "creationDate": "2023-03-23T21:47:04.0787022+02:00",
+    "lastModifiedDate": "2022-11-13T22:14:49.1284512+02:00",
+    "categories": null
+  },
+  {
+    "id": 15,
+    "name": "heeee.mp3",
+    "path": "C:\\Users\\james\\Music\\youtube downloaded\\MINI\\heeee.mp3",
+    "songDir": "C:\\Users\\james\\Music\\youtube downloaded\\MINI",
+    "size": 20899,
+    "creationDate": "2023-03-23T21:47:03.2408282+02:00",
+    "lastModifiedDate": "2022-12-10T01:41:26.874527+02:00",
+    "categories": null
+  },
+  {
+    "id": 17,
+    "name": "Imanbek - Summertime Sadness   BassBoost   Extended Remix.mp3",
+    "path": "C:\\Users\\james\\Music\\youtube downloaded\\MINI\\Imanbek - Summertime Sadness   BassBoost   Extended Remix.mp3",
+    "songDir": "C:\\Users\\james\\Music\\youtube downloaded\\MINI",
+    "size": 9058488,
+    "creationDate": "2023-03-23T21:47:03.260654+02:00",
+    "lastModifiedDate": "2022-11-10T18:30:03.4897502+02:00",
+    "categories": null
+  },
+  {
+    "id": 19,
+    "name": "01-Nightcore ↬ 911 [lyrics].m4a",
+    "path": "C:\\Users\\james\\Music\\youtube downloaded\\Mix - Ellise\\01-Nightcore ↬ 911 [lyrics].m4a",
+    "songDir": "C:\\Users\\james\\Music\\youtube downloaded\\Mix - Ellise",
+    "size": 2834930,
+    "creationDate": "2023-05-25T15:39:13.8790341+03:00",
+    "lastModifiedDate": "2020-09-20T00:39:56+03:00",
+    "categories": null
+  },
+  {
+    "id": 21,
+    "name": "07-Nightcore - No Friends (Lyrics).m4a",
+    "path": "C:\\Users\\james\\Music\\youtube downloaded\\Mix - Ellise\\07-Nightcore - No Friends (Lyrics).m4a",
+    "songDir": "C:\\Users\\james\\Music\\youtube downloaded\\Mix - Ellise",
+    "size": 8729646,
+    "creationDate": "2023-05-25T15:41:08.7201603+03:00",
+    "lastModifiedDate": "2020-05-10T19:13:58+03:00",
+    "categories": null
+  },
+  {
+    "id": 23,
+    "name": "21-Nightcore - Infected (Lyrics).m4a",
+    "path": "C:\\Users\\james\\Music\\youtube downloaded\\Mix - Ellise\\21-Nightcore - Infected (Lyrics).m4a",
+    "songDir": "C:\\Users\\james\\Music\\youtube downloaded\\Mix - Ellise",
+    "size": 7232860,
+    "creationDate": "2023-05-25T16:06:20.7330844+03:00",
+    "lastModifiedDate": "2019-11-29T04:00:02+02:00",
+    "categories": null
+  },
+  {
+    "id": 25,
+    "name": "01. @omri  - Save Me.mp3",
+    "path": "C:\\Users\\james\\Music\\youtube downloaded\\@omri  - Save Me\\01. @omri  - Save Me.mp3",
+    "songDir": "C:\\Users\\james\\Music\\youtube downloaded\\@omri  - Save Me",
+    "size": 5370176,
+    "creationDate": "2023-03-23T21:44:49.2899414+02:00",
+    "lastModifiedDate": "2022-06-23T23:50:02.7563367+03:00",
+    "categories": null
+  },
+  {
+    "id": 26,
+    "name": "02. Egzod & Maestro Chives - Royalty (ft. Neoni) [NCS Release].mp3",
+    "path": "C:\\Users\\james\\Music\\youtube downloaded\\@omri  - Save Me\\02. Egzod & Maestro Chives - Royalty (ft. Neoni) [NCS Release].mp3",
+    "songDir": "C:\\Users\\james\\Music\\youtube downloaded\\@omri  - Save Me",
+    "size": 3591241,
+    "creationDate": "2023-03-23T21:44:49.5643558+02:00",
+    "lastModifiedDate": "2022-06-23T23:47:47.2052846+03:00",
+    "categories": null
+  },
+  {
+    "id": 27,
+    "name": "03. Omri - Sleepcloud.mp3",
+    "path": "C:\\Users\\james\\Music\\youtube downloaded\\@omri  - Save Me\\03. Omri - Sleepcloud.mp3",
+    "songDir": "C:\\Users\\james\\Music\\youtube downloaded\\@omri  - Save Me",
+    "size": 3841135,
+    "creationDate": "2023-03-23T21:44:49.7035917+02:00",
+    "lastModifiedDate": "2022-06-23T23:49:54.2691904+03:00",
+    "categories": null
+  },
+  {
+    "id": 31,
+    "name": "01. NieR Automata - A Beautiful Song 【Intense Symphonic Metal Cover】.mp3",
+    "path": "C:\\Users\\james\\Music\\youtube downloaded\\NieR Automata - A Beautiful Song 【Intense Symphonic Metal Cover】\\01. NieR Automata - A Beautiful Song 【Intense Symphonic Metal Cover】.mp3",
+    "songDir": "C:\\Users\\james\\Music\\youtube downloaded\\NieR Automata - A Beautiful Song 【Intense Symphonic Metal Cover】",
+    "size": 6542552,
+    "creationDate": "2023-03-23T21:47:32.6599253+02:00",
+    "lastModifiedDate": "2022-11-13T00:49:55.1416263+02:00",
+    "categories": null
+  },
+  {
+    "id": 32,
+    "name": "02. NieR Automata - Grandma - Destruction 【Intense Symphonic Metal Cover】.mp3",
+    "path": "C:\\Users\\james\\Music\\youtube downloaded\\NieR Automata - A Beautiful Song 【Intense Symphonic Metal Cover】\\02. NieR Automata - Grandma - Destruction 【Intense Symphonic Metal Cover】.mp3",
+    "songDir": "C:\\Users\\james\\Music\\youtube downloaded\\NieR Automata - A Beautiful Song 【Intense Symphonic Metal Cover】",
+    "size": 6444179,
+    "creationDate": "2023-03-23T21:47:32.963679+02:00",
+    "lastModifiedDate": "2022-11-13T00:52:05.0709025+02:00",
+    "categories": null
+  },
+  {
+    "id": 33,
+    "name": "03. NieR Automata   A Beautiful Song   Opera Boss Lyrics.mp3",
+    "path": "C:\\Users\\james\\Music\\youtube downloaded\\NieR Automata - A Beautiful Song 【Intense Symphonic Metal Cover】\\03. NieR Automata   A Beautiful Song   Opera Boss Lyrics.mp3",
+    "songDir": "C:\\Users\\james\\Music\\youtube downloaded\\NieR Automata - A Beautiful Song 【Intense Symphonic Metal Cover】",
+    "size": 2208935,
+    "creationDate": "2023-03-23T21:47:33.1671792+02:00",
+    "lastModifiedDate": "2022-11-13T00:49:43.3003345+02:00",
+    "categories": null
+  },
+  {
+    "id": 34,
+    "name": "04. Nier Automata - Bipolar Nightmare 【Intense Symphonic Metal Cover】.mp3",
+    "path": "C:\\Users\\james\\Music\\youtube downloaded\\NieR Automata - A Beautiful Song 【Intense Symphonic Metal Cover】\\04. Nier Automata - Bipolar Nightmare 【Intense Symphonic Metal Cover】.mp3",
+    "songDir": "C:\\Users\\james\\Music\\youtube downloaded\\NieR Automata - A Beautiful Song 【Intense Symphonic Metal Cover】",
+    "size": 7084582,
+    "creationDate": "2023-03-23T21:47:33.423696+02:00",
+    "lastModifiedDate": "2022-11-13T00:52:46.4974591+02:00",
     "categories": null
   }
 ]
