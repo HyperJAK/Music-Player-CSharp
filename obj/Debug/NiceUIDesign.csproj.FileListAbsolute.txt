@@ -43,3 +43,17 @@ C:\D_Drive\Data_Saves\1-Projects\Visual Studio Projects (C#)\NiceUIDesign\bin\De
 C:\D_Drive\Data_Saves\1-Projects\Visual Studio Projects (C#)\NiceUIDesign\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\D_Drive\Data_Saves\1-Projects\Visual Studio Projects (C#)\NiceUIDesign\bin\Debug\System.ValueTuple.xml
 C:\D_Drive\Data_Saves\1-Projects\Visual Studio Projects (C#)\NiceUIDesign\bin\Debug\libvideo.dll
+C:\D_Drive\Data_Saves\1-Projects\Visual Studio Projects (C#)\NiceUIDesign\bin\Debug\Microsoft.Win32.Registry.dll
+C:\D_Drive\Data_Saves\1-Projects\Visual Studio Projects (C#)\NiceUIDesign\bin\Debug\NAudio.Asio.dll
+C:\D_Drive\Data_Saves\1-Projects\Visual Studio Projects (C#)\NiceUIDesign\bin\Debug\NAudio.Core.dll
+C:\D_Drive\Data_Saves\1-Projects\Visual Studio Projects (C#)\NiceUIDesign\bin\Debug\NAudio.dll
+C:\D_Drive\Data_Saves\1-Projects\Visual Studio Projects (C#)\NiceUIDesign\bin\Debug\NAudio.Midi.dll
+C:\D_Drive\Data_Saves\1-Projects\Visual Studio Projects (C#)\NiceUIDesign\bin\Debug\NAudio.Wasapi.dll
+C:\D_Drive\Data_Saves\1-Projects\Visual Studio Projects (C#)\NiceUIDesign\bin\Debug\NAudio.WinForms.dll
+C:\D_Drive\Data_Saves\1-Projects\Visual Studio Projects (C#)\NiceUIDesign\bin\Debug\NAudio.WinMM.dll
+C:\D_Drive\Data_Saves\1-Projects\Visual Studio Projects (C#)\NiceUIDesign\bin\Debug\System.Security.AccessControl.dll
+C:\D_Drive\Data_Saves\1-Projects\Visual Studio Projects (C#)\NiceUIDesign\bin\Debug\System.Security.Principal.Windows.dll
+C:\D_Drive\Data_Saves\1-Projects\Visual Studio Projects (C#)\NiceUIDesign\bin\Debug\Microsoft.Win32.Registry.xml
+C:\D_Drive\Data_Saves\1-Projects\Visual Studio Projects (C#)\NiceUIDesign\bin\Debug\NAudio.xml
+C:\D_Drive\Data_Saves\1-Projects\Visual Studio Projects (C#)\NiceUIDesign\bin\Debug\System.Security.AccessControl.xml
+C:\D_Drive\Data_Saves\1-Projects\Visual Studio Projects (C#)\NiceUIDesign\bin\Debug\System.Security.Principal.Windows.xml

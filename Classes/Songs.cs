@@ -2,6 +2,7 @@
 using NiceUIDesign.Custom;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -30,11 +31,12 @@ namespace NiceUIDesign.Classes
             this.AutoScroll = true;
 
             GetSongs();
-            createSongsDicts();
-            
-            //Song song5 = new Song("hi13", "path3", songCounter + 5);
+            //string[] songs = GetSelectedMusicFilePaths();
 
-            //allSongs.Add(song5);
+
+            //Song song = new Song(songs[0], songCounter + 1);
+
+            //allSongs.Add(song);
 
             this.SuspendLayout();
             foreach (Song s in allSongs)
@@ -44,8 +46,56 @@ namespace NiceUIDesign.Classes
             this.ResumeLayout();
             this.PerformLayout();
 
-            //saveSongs(allSongs);
+            createSongsDicts();
+            saveSongs(allSongs);
 
+        }
+
+        public static string[] GetSelectedMusicFilePaths()
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Multiselect = true; // Allow multiple file selection
+                //Acceptable formats
+                openFileDialog.Filter = "Music Files (*.mp3;*.wav;*.flac;*.m4a)|*.mp3;*.wav;*.flac;*.m4a";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    return openFileDialog.FileNames;
+                }
+            }
+
+            return null;
+        }
+
+        public void getSongInfo(Song song)
+        {
+
+            string songPath = song.path;
+
+            // Set the process start information
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.FileName = "explorer.exe";
+            startInfo.Arguments = $"/select, \"{songPath}\"";
+            startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            startInfo.CreateNoWindow = true;
+
+            // Start the process silently
+            Process process = new Process();
+            process.StartInfo = startInfo;
+            process.Start();
+
+            // Wait for the process to exit
+            process.WaitForExit();
+
+            // Get file information
+            var fileInfo = new FileInfo(songPath);
+
+            song.name = fileInfo.Name;
+            song.songDir = fileInfo.DirectoryName;
+            song.size = fileInfo.Length;
+            song.creationDate = fileInfo.CreationTime;
+            song.lastModifiedDate = fileInfo.LastWriteTime;
         }
 
         public static string getSongName(int id)
@@ -84,6 +134,9 @@ namespace NiceUIDesign.Classes
         {
             songCounter++;
 
+            //Adding additional info on song
+            getSongInfo(song);
+
             int tagid = song.id;
             CustomFlowLayoutPanel panel = new CustomFlowLayoutPanel($"panel:{song.name}", 160, 180, FlowDirection.TopDown, tagid);
             CustomPictureBox pic = new CustomPictureBox($"pic:{song.name}", tagid);
@@ -109,6 +162,7 @@ namespace NiceUIDesign.Classes
             songTracker.addImage(pic);
             songTracker.addLabel(label);
 
+
             //Adds the new song to this class (flowpanel)
             this.Controls.Add(panel);
 
@@ -127,15 +181,16 @@ namespace NiceUIDesign.Classes
 
             var jsonData2 = JsonConvert.DeserializeObject<List<Song>>(json2);
 
+            if(jsonData2 != null){
+                foreach (Song song in jsonData2)
+                {
+                    songCounter++;
 
-            foreach (Song song in jsonData2)
-            {
-                songCounter++;
+                    Console.WriteLine(song);
+                    allSongs.Add((Song)song);
 
-                Console.WriteLine(song);
-                allSongs.Add((Song)song);
-
-                Console.WriteLine($"Song Name: {song.name}, Song ID: {allSongs.Count}, Song Path: {song.path}, Song id: {song.id}");
+                    Console.WriteLine($"Song Name: {song.name}, Song ID: {allSongs.Count}, Song Path: {song.path}, Song id: {song.id}");
+                }
             }
         }
 
