@@ -48,5 +48,105 @@
     "creationDate": "2023-03-23T21:47:03.5527971+02:00",
     "lastModifiedDate": "2022-12-10T00:16:51.2599178+02:00",
     "categories": null
+  },
+  {
+    "id": 11,
+    "name": null,
+    "path": "C:\\Users\\james\\Music\\youtube downloaded\\MINI\\11-Nightcore - BATTLECRY (Heart of Courage).m4a",
+    "songDir": null,
+    "size": 0,
+    "creationDate": "0001-01-01T00:00:00",
+    "lastModifiedDate": "0001-01-01T00:00:00",
+    "categories": null
+  },
+  {
+    "id": 13,
+    "name": "Scaramouche Boss Theme (All Phases) - Genshin Impact 3.2 OST.mp3",
+    "path": "C:\\Users\\james\\Music\\youtube downloaded\\MINI\\Scaramouche Boss Theme (All Phases) - Genshin Impact 3.2 OST.mp3",
+    "songDir": "C:\\Users\\james\\Music\\youtube downloaded\\MINI",
+    "size": 8653404,
+    "creationDate": "2023-03-23T21:47:04.0787022+02:00",
+    "lastModifiedDate": "2022-11-13T22:14:49.1284512+02:00",
+    "categories": null
+  },
+  {
+    "id": 15,
+    "name": "heeee.mp3",
+    "path": "C:\\Users\\james\\Music\\youtube downloaded\\MINI\\heeee.mp3",
+    "songDir": "C:\\Users\\james\\Music\\youtube downloaded\\MINI",
+    "size": 20899,
+    "creationDate": "2023-03-23T21:47:03.2408282+02:00",
+    "lastModifiedDate": "2022-12-10T01:41:26.874527+02:00",
+    "categories": null
+  },
+  {
+    "id": 17,
+    "name": "Imanbek - Summertime Sadness   BassBoost   Extended Remix.mp3",
+    "path": "C:\\Users\\james\\Music\\youtube downloaded\\MINI\\Imanbek - Summertime Sadness   BassBoost   Extended Remix.mp3",
+    "songDir": "C:\\Users\\james\\Music\\youtube downloaded\\MINI",
+    "size": 9058488,
+    "creationDate": "2023-03-23T21:47:03.260654+02:00",
+    "lastModifiedDate": "2022-11-10T18:30:03.4897502+02:00",
+    "categories": null
+  },
+  {
+    "id": 19,
+    "name": "01-Nightcore ↬ 911 [lyrics].m4a",
+    "path": "C:\\Users\\james\\Music\\youtube downloaded\\Mix - Ellise\\01-Nightcore ↬ 911 [lyrics].m4a",
+    "songDir": "C:\\Users\\james\\Music\\youtube downloaded\\Mix - Ellise",
+    "size": 2834930,
+    "creationDate": "2023-05-25T15:39:13.8790341+03:00",
+    "lastModifiedDate": "2020-09-20T00:39:56+03:00",
+    "categories": null
+  },
+  {
+    "id": 21,
+    "name": "07-Nightcore - No Friends (Lyrics).m4a",
+    "path": "C:\\Users\\james\\Music\\youtube downloaded\\Mix - Ellise\\07-Nightcore - No Friends (Lyrics).m4a",
+    "songDir": "C:\\Users\\james\\Music\\youtube downloaded\\Mix - Ellise",
+    "size": 8729646,
+    "creationDate": "2023-05-25T15:41:08.7201603+03:00",
+    "lastModifiedDate": "2020-05-10T19:13:58+03:00",
+    "categories": null
+  },
+  {
+    "id": 23,
+    "name": "21-Nightcore - Infected (Lyrics).m4a",
+    "path": "C:\\Users\\james\\Music\\youtube downloaded\\Mix - Ellise\\21-Nightcore - Infected (Lyrics).m4a",
+    "songDir": "C:\\Users\\james\\Music\\youtube downloaded\\Mix - Ellise",
+    "size": 7232860,
+    "creationDate": "2023-05-25T16:06:20.7330844+03:00",
+    "lastModifiedDate": "2019-11-29T04:00:02+02:00",
+    "categories": null
+  },
+  {
+    "id": 25,
+    "name": "01. @omri  - Save Me.mp3",
+    "path": "C:\\Users\\james\\Music\\youtube downloaded\\@omri  - Save Me\\01. @omri  - Save Me.mp3",
+    "songDir": "C:\\Users\\james\\Music\\youtube downloaded\\@omri  - Save Me",
+    "size": 5370176,
+    "creationDate": "2023-03-23T21:44:49.2899414+02:00",
+    "lastModifiedDate": "2022-06-23T23:50:02.7563367+03:00",
+    "categories": null
+  },
+  {
+    "id": 26,
+    "name": "02. Egzod & Maestro Chives - Royalty (ft. Neoni) [NCS Release].mp3",
+    "path": "C:\\Users\\james\\Music\\youtube downloaded\\@omri  - Save Me\\02. Egzod & Maestro Chives - Royalty (ft. Neoni) [NCS Release].mp3",
+    "songDir": "C:\\Users\\james\\Music\\youtube downloaded\\@omri  - Save Me",
+    "size": 3591241,
+    "creationDate": "2023-03-23T21:44:49.5643558+02:00",
+    "lastModifiedDate": "2022-06-23T23:47:47.2052846+03:00",
+    "categories": null
+  },
+  {
+    "id": 27,
+    "name": "03. Omri - Sleepcloud.mp3",
+    "path": "C:\\Users\\james\\Music\\youtube downloaded\\@omri  - Save Me\\03. Omri - Sleepcloud.mp3",
+    "songDir": "C:\\Users\\james\\Music\\youtube downloaded\\@omri  - Save Me",
+    "size": 3841135,
+    "creationDate": "2023-03-23T21:44:49.7035917+02:00",
+    "lastModifiedDate": "2022-06-23T23:49:54.2691904+03:00",
+    "categories": null
   }
 ]

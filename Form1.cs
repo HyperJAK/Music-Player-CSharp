@@ -23,7 +23,7 @@ namespace NiceUIDesign
 
              );
 
-        private Classes.Songs songs = new Classes.Songs();
+        private Songs songs = new Songs();
         public string selectedPanel;
 
         public Form1()
@@ -322,7 +322,9 @@ namespace NiceUIDesign
             {
                 if (selectedPanel != null)
                     DisposeOfItem(selectedPanel);
-                switchPanel("add_song");
+                songs.add_new_songs();
+                songs.Refresh();
+                switchPanel("browse");
 
             }
         }

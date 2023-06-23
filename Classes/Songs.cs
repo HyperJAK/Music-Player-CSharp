@@ -1,10 +1,12 @@
 ﻿using Newtonsoft.Json;
 using NiceUIDesign.Custom;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace NiceUIDesign.Classes
@@ -31,12 +33,7 @@ namespace NiceUIDesign.Classes
             this.AutoScroll = true;
 
             GetSongs();
-            //string[] songs = GetSelectedMusicFilePaths();
-
-
-            //Song song = new Song(songs[0], songCounter + 1);
-
-            //allSongs.Add(song);
+            
 
             this.SuspendLayout();
             foreach (Song s in allSongs)
@@ -49,6 +46,43 @@ namespace NiceUIDesign.Classes
             createSongsDicts();
             saveSongs(allSongs);
 
+        }
+
+        public void add_new_songs()
+        {
+            string[] songs = GetSelectedMusicFilePaths();
+            List<Song> tempSongs = new List<Song>();
+
+            if (songs != null)
+            {
+                this.SuspendLayout();
+                int tempCounter = 1;
+                foreach (string s in songs)
+                {
+                    Song song = new Song(s, songCounter + tempCounter);
+                    tempCounter++;
+                    tempSongs.Add(song);
+
+                }
+
+                //Adding additional info on song
+                getSongInfo(tempSongs);
+
+                foreach (Song s in tempSongs)
+                {
+
+                    allSongs.Add(s);
+                    add_song(s);
+
+                    //Adding the new song to dictionaries
+                    songNameById.Add(s.id, s.name);
+                    songPathById.Add(s.id, s.path);
+                }
+                this.ResumeLayout();
+                this.PerformLayout();
+
+                saveSongs(allSongs);
+            }
         }
 
         public static string[] GetSelectedMusicFilePaths()
@@ -68,34 +102,42 @@ namespace NiceUIDesign.Classes
             return null;
         }
 
-        public void getSongInfo(Song song)
+        public void getSongInfo(List<Song> songList)
         {
-
-            string songPath = song.path;
-
-            // Set the process start information
-            ProcessStartInfo startInfo = new ProcessStartInfo();
-            startInfo.FileName = "explorer.exe";
-            startInfo.Arguments = $"/select, \"{songPath}\"";
-            startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-            startInfo.CreateNoWindow = true;
-
             // Start the process silently
             Process process = new Process();
-            process.StartInfo = startInfo;
-            process.Start();
 
+            foreach (Song song in songList)
+            {
+                string songPath = song.path;
+
+                // Set the process start information
+                ProcessStartInfo startInfo = new ProcessStartInfo();
+                startInfo.FileName = "explorer.exe";
+                startInfo.Arguments = $"/select, \"{songPath}\"";
+                startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                startInfo.CreateNoWindow = true;
+
+                process.StartInfo = startInfo;
+                process.Start();
+
+                // Get file information
+                var fileInfo = new FileInfo(songPath);
+
+                song.name = fileInfo.Name;
+                song.songDir = fileInfo.DirectoryName;
+                song.size = fileInfo.Length;
+                song.creationDate = fileInfo.CreationTime;
+                song.lastModifiedDate = fileInfo.LastWriteTime;
+
+            }
             // Wait for the process to exit
             process.WaitForExit();
 
-            // Get file information
-            var fileInfo = new FileInfo(songPath);
 
-            song.name = fileInfo.Name;
-            song.songDir = fileInfo.DirectoryName;
-            song.size = fileInfo.Length;
-            song.creationDate = fileInfo.CreationTime;
-            song.lastModifiedDate = fileInfo.LastWriteTime;
+            //Releases resources
+            process.Dispose();
+
         }
 
         public static string getSongName(int id)
@@ -133,9 +175,6 @@ namespace NiceUIDesign.Classes
         public void add_song(Song song)
         {
             songCounter++;
-
-            //Adding additional info on song
-            getSongInfo(song);
 
             int tagid = song.id;
             CustomFlowLayoutPanel panel = new CustomFlowLayoutPanel($"panel:{song.name}", 160, 180, FlowDirection.TopDown, tagid);
