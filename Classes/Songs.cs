@@ -22,22 +22,25 @@ namespace NiceUIDesign.Classes
         {
             this.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             this.Dock = DockStyle.Fill;
-            this.BackColor = Color.AliceBlue;
+            this.BackColor = Color.Black;
             this.TabIndex = 1;
             this.FlowDirection = FlowDirection.LeftToRight;
             this.WrapContents = true;
             this.AllowDrop = true;
+            this.AutoScroll = true;
 
             GetSongs();
             createSongsDicts();
             //Song song1 = new Song("hi", "path1", songCounter + 1);
             // Song song2 = new Song("hi2", "path2", songCounter + 2);
             //Song song3 = new Song("hi3", "path3", songCounter + 3);
-            //Song song3 = new Song("hi3", "path3", songCounter + 1);
-            //Song song4 = new Song("hi3", "path3", songCounter + 2);
+            //Song song3 = new Song("hi6", "path3", songCounter + 1);
+            //Song song4 = new Song("hi7", "path3", songCounter + 2);
+            //Song song5 = new Song("hi8", "path3", songCounter + 3);
 
             //allSongs.Add(song3);
             //allSongs.Add(song4);
+           // allSongs.Add(song5);
 
             foreach (Song s in allSongs)
             {
@@ -93,6 +96,7 @@ namespace NiceUIDesign.Classes
             pic.Width = panel.Width - 6;
             pic.Height = panel.Height - 60;
 
+            //To add round edges to song containers
             pic.Region = Region.FromHrgn(Form1.CreateRoundRectRgn(0, 0, pic.Width, pic.Height, 10, 10));
             panel.Region = Region.FromHrgn(Form1.CreateRoundRectRgn(0, 0, panel.Width, panel.Height, 10, 10));
 
@@ -102,13 +106,13 @@ namespace NiceUIDesign.Classes
             panel.Controls.Add(label);
 
 
-
+            //Adding listeners for each of these
             SongsTracker songTracker = new SongsTracker();
             songTracker.addPanel(panel);
             songTracker.addImage(pic);
             songTracker.addLabel(label);
 
-
+            //Adds the new song to this class (flowpanel)
             this.Controls.Add(panel);
 
 
