@@ -1,7 +1,7 @@
-﻿using System;
+﻿using NAudio.Wave;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using NAudio.Wave;
 
 namespace NiceUIDesign.Classes
 {
@@ -63,7 +63,7 @@ namespace NiceUIDesign.Classes
         {
             PlaybackState info = outputDevice.PlaybackState;
 
-            switch(info)
+            switch (info)
             {
                 case PlaybackState.Stopped:
                     {
