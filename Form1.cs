@@ -99,7 +99,7 @@ namespace NiceUIDesign
 
         private void DownloadProgressChanged_listener(object sender, EventArgs e)
         {
-           
+
 
         }
 
@@ -154,7 +154,7 @@ namespace NiceUIDesign
                     DisposeOfItem(selectedPanel);
                 switchPanel("browse");
 
-                
+
             }
 
         }

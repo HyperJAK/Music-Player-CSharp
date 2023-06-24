@@ -1,12 +1,10 @@
 ﻿using Newtonsoft.Json;
 using NiceUIDesign.Custom;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -122,7 +120,7 @@ namespace NiceUIDesign.Classes
             {
 
                 // Set the process start information
-                
+
                 startInfo.Arguments = $"/select, \"{song.path}\"";
 
                 process.StartInfo = startInfo;
@@ -133,7 +131,7 @@ namespace NiceUIDesign.Classes
                     processStarted = true;
 
                 }
-                
+
 
                 // Get file information
                 var fileInfo = new FileInfo(song.path);
@@ -153,7 +151,7 @@ namespace NiceUIDesign.Classes
             //process.Kill();
             Process temp_process = Process.GetProcessById(process.Id);
             temp_process.Kill();
-            
+
 
         }
 
@@ -239,20 +237,21 @@ namespace NiceUIDesign.Classes
             {
                 string json2 = File.ReadAllText("dictionary.json");
                 var jsonData2 = JsonConvert.DeserializeObject<List<Song>>(json2);
-            
 
 
-            if(jsonData2 != null){
-                foreach (Song song in jsonData2)
+
+                if (jsonData2 != null)
                 {
-                    songCounter++;
+                    foreach (Song song in jsonData2)
+                    {
+                        songCounter++;
 
-                    Console.WriteLine(song);
-                    allSongs.Add((Song)song);
+                        Console.WriteLine(song);
+                        allSongs.Add((Song)song);
 
-                    Console.WriteLine($"Song Name: {song.name}, Song ID: {allSongs.Count}, Song Path: {song.path}, Song id: {song.id}");
+                        Console.WriteLine($"Song Name: {song.name}, Song ID: {allSongs.Count}, Song Path: {song.path}, Song id: {song.id}");
+                    }
                 }
-            }
             }
             catch (Exception)
             {

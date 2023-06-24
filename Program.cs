@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace NiceUIDesign
@@ -19,6 +20,8 @@ namespace NiceUIDesign
 
             string json = JsonConvert.SerializeObject(new_dict, Newtonsoft.Json.Formatting.Indented);
             File.WriteAllText("dictionary.json", json);*/
+            Process currentProcess = Process.GetCurrentProcess();
+            currentProcess.PriorityClass = ProcessPriorityClass.High;
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
