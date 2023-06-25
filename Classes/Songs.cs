@@ -19,6 +19,7 @@ namespace NiceUIDesign.Classes
 
         private static Dictionary<int, string> songNameById = new Dictionary<int, string>();
         private static Dictionary<int, string> songPathById = new Dictionary<int, string>();
+        public static bool latestAddedFirst = true;                                         //From config file
 
         //Used to halt other functions from running before all songs have been loaded
         private ManualResetEvent songsLoadedEvent = new ManualResetEvent(false);
@@ -31,7 +32,7 @@ namespace NiceUIDesign.Classes
             this.TabIndex = 1;
             this.FlowDirection = FlowDirection.LeftToRight;
             this.WrapContents = true;
-            this.AllowDrop = true;
+            this.AllowDrop = false;
             this.AutoScroll = true;
 
             GetSongs();
@@ -39,15 +40,56 @@ namespace NiceUIDesign.Classes
 
 
             this.SuspendLayout();
-            foreach (Song s in allSongs)
+            if (!latestAddedFirst)
             {
-                add_song(s);
+                foreach (Song s in allSongs)
+                {
+                    add_song(s);
+                }
             }
+            else
+            {
+                //Reverses list to get last element as first
+                allSongs.Reverse();
+                foreach (Song s in allSongs)
+                {
+                    add_song(s);
+                }
+                //Reverses list back to original
+                allSongs.Reverse();
+            }
+            
+
+            
             this.ResumeLayout();
             this.PerformLayout();
 
             createSongsDicts();
             saveSongs(allSongs);
+
+        }
+
+        public void reloadSongs()
+        {
+            if (latestAddedFirst)
+            {
+                this.Controls.Clear();
+
+                allSongs.Reverse();
+                foreach(Song s in allSongs)
+                {
+                    add_song(s);
+                }
+                allSongs.Reverse();
+
+            }
+            else
+            {
+                foreach (Song s in allSongs)
+                {
+                    add_song(s);
+                }
+            }
 
         }
 
@@ -64,23 +106,25 @@ namespace NiceUIDesign.Classes
                 {
                     Song song = new Song(s, songCounter + tempCounter);
                     tempCounter++;
+                    //creating temp list to add only new songs to dicts
                     tempSongs.Add(song);
 
                 }
 
                 //Adding additional info on song
                 getSongInfo(tempSongs);
-
+                
                 foreach (Song s in tempSongs)
                 {
-
-                    allSongs.Add(s);
                     add_song(s);
+                    allSongs.Add(s);
 
                     //Adding the new song to dictionaries
                     songNameById.Add(s.id, s.name);
                     songPathById.Add(s.id, s.path);
                 }
+                
+                
                 this.ResumeLayout();
                 this.PerformLayout();
 
@@ -203,7 +247,7 @@ namespace NiceUIDesign.Classes
             label.Height = 50;
 
             //To add round edges to song containers
-            pic.Region = Region.FromHrgn(Form1.CreateRoundRectRgn(0, 0, pic.Width, pic.Height, 10, 10));
+            //pic.Region = Region.FromHrgn(Form1.CreateRoundRectRgn(0, 0, pic.Width, pic.Height, 10, 10));
             panel.Region = Region.FromHrgn(Form1.CreateRoundRectRgn(0, 0, panel.Width, panel.Height, 10, 10));
 
             panel.Margin = new Padding(12);

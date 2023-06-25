@@ -24,7 +24,14 @@ namespace NiceUIDesign
              );
 
         private Songs songs = new Songs();
+        private static SongControl songControl = new SongControl();
         public string selectedPanel;
+
+        public static void updateControlInfo(string songName, Image image)
+        {
+            songControl.control_label.Text = songName;
+            songControl.control_image.Image = image;
+        }
 
         public Form1()
         {
@@ -35,10 +42,29 @@ namespace NiceUIDesign
                         nav_panel.Left = dashboard_btn.Left;
                         dashboard_btn.BackColor = Color.FromArgb(46, 51, 73);*/
 
-            right_displayer.Left = panel1.Right;
-            right_displayer.Height = panel1.Height;
-            right_displayer.Top = panel1.Top;
+
+            right_displayer.Left = navBar.Right;
+            right_displayer.Height = navBar.Height;
+            right_displayer.Top = navBar.Top;
             right_displayer.BackColor = Color.White;
+
+            updateControlsPosition();
+            songControl.control_label.Height = browseSongs_btn.Height * 2;
+
+            songControl.Height = browseSongs_btn.Height * 3;
+            songControl.Dock = DockStyle.Bottom;
+
+            songControl.pause_btn.Click += pauseButton_Click;
+            songControl.next_btn.Click += nextButton_Click;
+            songControl.prev_btn.Click += prevButton_Click;
+            songControl.repeat_btn.Click += repeatButton_Click;
+
+            songControl.control_image.Click += label_Image_Click;
+            songControl.control_label.Click += label_Image_Click;
+
+            songControl.Visible = false;
+
+            this.KeyUp += keyboard_KeyDown;
 
             //pictureBox2.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pictureBox2.Width, pictureBox2.Height, 30, 30));
 
@@ -46,6 +72,20 @@ namespace NiceUIDesign
 
         }
 
+        private void updateControlsPosition()
+        {
+            //Initializing SongControl class stuff
+  
+            songControl.pause_btn.Location = new Point((right_displayer.Width / 2) - (songControl.pause_btn.Width / 2), ((browseSongs_btn.Height * 3) / 2) + (songControl.pause_btn.Height / 2));
+            songControl.control_image.Location = new Point(10, 10);
+            songControl.control_label.Location = new Point(15 + songControl.control_image.Width, 20);
+            songControl.control_label.Width = right_displayer.Width - 10;
+        }
+
+        public static void changeSongControl_visibility(bool value)
+        {
+            songControl.Visible = value;
+        }
 
 
         public string GetYouTubeAudioDownloadLink(string videoUrl, string fileExtension)
@@ -174,15 +214,16 @@ namespace NiceUIDesign
                         selectedPanel = "browse";
 
                         //stops the panel from calculating, in order to update its elements faster
-                        right_displayer.SuspendLayout();
+                        //right_displayer.SuspendLayout();
 
                         right_displayer.Controls.Add(songs);
+                        right_displayer.Controls.Add(songControl);
 
                         //Makes panel resume calculations
-                        right_displayer.ResumeLayout();
+                        //right_displayer.ResumeLayout();
                         //Forces panel to update calculations
-                        right_displayer.PerformLayout();
-                        songs.PerformLayout();
+                        //right_displayer.PerformLayout();
+                        //songs.PerformLayout();
 
                         browseSongs_btn.BackColor = Color.FromArgb(46, 51, 73);
                     }
@@ -308,7 +349,7 @@ namespace NiceUIDesign
 
         private void mouseDoubleClick(object sender, MouseEventArgs e)
         {
-            Console.WriteLine("Hello there");
+
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -320,10 +361,11 @@ namespace NiceUIDesign
         {
             if (selectedPanel != "add_song")
             {
+                //put these in switchpanel method (later)
                 if (selectedPanel != null)
                     DisposeOfItem(selectedPanel);
                 songs.add_new_songs();
-                songs.Refresh();
+                songs.reloadSongs();
                 switchPanel("browse");
 
             }
@@ -331,18 +373,17 @@ namespace NiceUIDesign
 
         private void ResizeMainWindow(object sender, EventArgs e)
         {
-
+            
         }
 
         private void ResizeEndMainWindow(object sender, EventArgs e)
         {
 
-
         }
 
         private void Form1SizeChanged(object sender, EventArgs e)
         {
-
+            updateControlsPosition();
 
         }
 
@@ -398,5 +439,74 @@ namespace NiceUIDesign
         {
             contactUs_btn.BackColor = Color.FromArgb(24, 30, 54);
         }
+
+        //This part is for SongControl class
+        private void keyboard_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (SongsTracker.songIsQueued)
+            {
+                if (e.KeyCode == Keys.MediaPlayPause)
+                {
+                    // Perform your play/pause logic here
+                    if (SongsTracker.songIsPaused)
+                    {
+                        // Resume playback
+                        SongsTracker.outputDevice.Play();
+                        SongsTracker.songIsPaused = false;
+                    }
+                    else
+                    {
+                        // Pause playback
+                        SongsTracker.outputDevice.Pause();
+                        SongsTracker.songIsPaused = true;
+                    }
+
+                    // Consume the key press event
+                    e.Handled = true;
+                }
+            }
+            // Consume the key press event
+            e.Handled = true;
+        }
+        private void pauseButton_Click(object sender, EventArgs e)
+        {
+                if (SongsTracker.songIsPaused)
+                {
+                    SongsTracker.outputDevice.Play();
+                    SongsTracker.songIsPaused = false;
+                }
+                else if(!SongsTracker.songIsPaused)
+                {
+                    SongsTracker.outputDevice.Pause();
+                    SongsTracker.songIsPaused = true;
+                }
+            if (SongsTracker.songIsStopped && SongsTracker.songIsQueued)
+            {
+                SongsTracker.playSong(SongsTracker.lastSong);
+            }
+        
+        }
+
+        private void nextButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void prevButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void repeatButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label_Image_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }

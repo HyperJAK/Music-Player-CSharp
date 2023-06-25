@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.navBar = new System.Windows.Forms.Panel();
             this.nav_panel = new System.Windows.Forms.Panel();
             this.browseSongs_btn = new System.Windows.Forms.Button();
             this.settings_btn = new System.Windows.Forms.Button();
@@ -39,27 +39,27 @@
             this.user_name = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.right_displayer = new System.Windows.Forms.Panel();
-            this.panel1.SuspendLayout();
+            this.navBar.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel1
+            // navBar
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
-            this.panel1.Controls.Add(this.nav_panel);
-            this.panel1.Controls.Add(this.browseSongs_btn);
-            this.panel1.Controls.Add(this.settings_btn);
-            this.panel1.Controls.Add(this.contactUs_btn);
-            this.panel1.Controls.Add(this.playlists_btn);
-            this.panel1.Controls.Add(this.addSong_btn);
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(248, 710);
-            this.panel1.TabIndex = 0;
+            this.navBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
+            this.navBar.Controls.Add(this.nav_panel);
+            this.navBar.Controls.Add(this.browseSongs_btn);
+            this.navBar.Controls.Add(this.settings_btn);
+            this.navBar.Controls.Add(this.contactUs_btn);
+            this.navBar.Controls.Add(this.playlists_btn);
+            this.navBar.Controls.Add(this.addSong_btn);
+            this.navBar.Controls.Add(this.panel2);
+            this.navBar.Dock = System.Windows.Forms.DockStyle.Left;
+            this.navBar.Location = new System.Drawing.Point(0, 0);
+            this.navBar.Margin = new System.Windows.Forms.Padding(4);
+            this.navBar.Name = "navBar";
+            this.navBar.Size = new System.Drawing.Size(248, 710);
+            this.navBar.TabIndex = 0;
             // 
             // nav_panel
             // 
@@ -209,7 +209,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
             this.ClientSize = new System.Drawing.Size(1274, 710);
             this.Controls.Add(this.right_displayer);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.navBar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
@@ -219,7 +219,7 @@
             this.ResizeBegin += new System.EventHandler(this.ResizeMainWindow);
             this.ResizeEnd += new System.EventHandler(this.ResizeEndMainWindow);
             this.SizeChanged += new System.EventHandler(this.Form1SizeChanged);
-            this.panel1.ResumeLayout(false);
+            this.navBar.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -229,7 +229,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel navBar;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button browseSongs_btn;

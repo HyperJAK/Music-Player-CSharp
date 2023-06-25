@@ -11,9 +11,11 @@ namespace NiceUIDesign.Classes
         private List<FlowLayoutPanel> panels;
         private List<PictureBox> pics;
         private List<Label> labels;
+        public static string lastSong;
 
-        public bool songIsStopped = true;
-        public bool songIsPaused = false;
+        public static bool songIsStopped = true;
+        public static bool songIsPaused = false;
+        public static bool songIsQueued = false;
 
 
         //Output device for playing audio
@@ -24,6 +26,8 @@ namespace NiceUIDesign.Classes
             panels = new List<FlowLayoutPanel>();
             pics = new List<PictureBox>();
             labels = new List<Label>();
+
+            outputDevice.PlaybackStopped += outputDevice_finishedSong;
         }
 
 
@@ -46,8 +50,9 @@ namespace NiceUIDesign.Classes
             labels.Add(label);
         }
 
-        private static void playSong(string songPath)
+        public static void playSong(string songPath)
         {
+
             // Create an audio file reader
             AudioFileReader audioFileReader = new AudioFileReader(songPath);
 
@@ -57,6 +62,12 @@ namespace NiceUIDesign.Classes
             // Start playing the audio file
             outputDevice.Play();
 
+        }
+
+        private static void outputDevice_finishedSong(object sender, StoppedEventArgs e)
+        {
+            outputDevice.Dispose();
+            songIsStopped = true;
         }
 
         private void getOutputInfo()
@@ -91,11 +102,16 @@ namespace NiceUIDesign.Classes
 
         public void Panel_Click(object sender, EventArgs e)
         {
+            songIsQueued = true;
             //Gets the state of the song
             getOutputInfo();
 
             //Retrieves the type of the sender, meaning if user clicked on image or texet or box itself to access song
             string typeOfSender = sender.GetType().ToString();
+
+            //Making the songControl visible
+            Form1.changeSongControl_visibility(true);
+
             switch (typeOfSender)
             //All use the same listener: Panel_Click()
             {
@@ -106,14 +122,19 @@ namespace NiceUIDesign.Classes
                         string songName = Songs.getSongName((int)panelClicked.Tag);
                         string songPath = Songs.getSongPath((int)panelClicked.Tag);
 
+                        lastSong = songPath;
+
+                        //updating image and text of song in the control
+                        Form1.updateControlInfo(songName, null);
+
                         if (!songIsStopped)
                         {
                             outputDevice.Dispose();
-                            playSong(songPath);
+                            playSong(lastSong);
                         }
                         else
                         {
-                            playSong(songPath);
+                            playSong(lastSong);
                             songIsStopped = false;
                         }
                         Console.WriteLine($"Song: {songName} was clicked");
@@ -125,6 +146,11 @@ namespace NiceUIDesign.Classes
                         Label labelClicked = (Label)sender;
 
                         string songPath = Songs.getSongPath((int)labelClicked.Tag);
+
+                        lastSong = songPath;
+
+                        //updating image and text of song in the control
+                        Form1.updateControlInfo(labelClicked.Text, null);
 
                         if (!songIsStopped)
                         {
@@ -145,6 +171,11 @@ namespace NiceUIDesign.Classes
                         PictureBox picClicked = (PictureBox)sender;
                         string songName = Songs.getSongName((int)picClicked.Tag);
                         string songPath = Songs.getSongPath((int)picClicked.Tag);
+
+                        lastSong = songPath;
+
+                        //updating image and text of song in the control
+                        Form1.updateControlInfo(songName, null);
 
                         if (!songIsStopped)
                         {
