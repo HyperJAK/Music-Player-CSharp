@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using NiceUIDesign.Classes.Abstract;
 using NiceUIDesign.Custom;
 using System;
 using System.Collections.Generic;
@@ -10,15 +11,19 @@ using System.Windows.Forms;
 
 namespace NiceUIDesign.Classes
 {
-    public class Songs : FlowLayoutPanel
+    public class Songs : FlowLayoutPanel, Music
     {
 
         public List<Song> allSongs = new List<Song>();
+        public SongsTracker songTracker = new SongsTracker();
 
         public int songCounter = 0;
 
         private static Dictionary<int, string> songNameById = new Dictionary<int, string>();
         private static Dictionary<int, string> songPathById = new Dictionary<int, string>();
+        private static Dictionary<string, int> songIdByPath = new Dictionary<string, int>();
+
+        public static bool latestAddedFirst = true;                                         //From config file
 
         //Used to halt other functions from running before all songs have been loaded
         private ManualResetEvent songsLoadedEvent = new ManualResetEvent(false);
@@ -31,32 +36,93 @@ namespace NiceUIDesign.Classes
             this.TabIndex = 1;
             this.FlowDirection = FlowDirection.LeftToRight;
             this.WrapContents = true;
-            this.AllowDrop = true;
+            this.AllowDrop = false;
             this.AutoScroll = true;
 
-            GetSongs();
+            GetInfo();
             songsLoadedEvent.WaitOne();
 
 
             this.SuspendLayout();
-            foreach (Song s in allSongs)
+            if (!latestAddedFirst)
             {
-                add_song(s);
+                foreach (Song s in allSongs)
+                {
+                    AddElement(s);
+                }
             }
+            else
+            {
+                //Reverses list to get last element as first
+                allSongs.Reverse();
+                foreach (Song s in allSongs)
+                {
+                    AddElement(s);
+                }
+                //Reverses list back to original
+                allSongs.Reverse();
+            }
+
+
+
             this.ResumeLayout();
             this.PerformLayout();
 
-            createSongsDicts();
-            saveSongs(allSongs);
+            CreateDicts();
+            SaveInfo(allSongs);
 
         }
 
-        public void add_new_songs()
+
+        public void ReloadSongs()
+        {
+            if (latestAddedFirst)
+            {
+                this.Controls.Clear();
+
+                allSongs.Reverse();
+                foreach (Song s in allSongs)
+                {
+                    AddElement(s);
+                }
+                allSongs.Reverse();
+
+            }
+            else
+            {
+                foreach (Song s in allSongs)
+                {
+                    AddElement(s);
+                }
+            }
+
+        }
+
+        private string[] CreateNoDuplicateList(string[] songs)
+        {
+            List<string> tempList = new List<string>();
+
+            foreach (string s in songs)
+            {
+                Console.WriteLine(s);
+                if (!songIdByPath.ContainsKey(s))
+                {
+                    Console.WriteLine("No duplicate found");
+                    tempList.Add(s);
+                }
+            }
+
+            return tempList.ToArray();
+        }
+
+        public bool Add_new_songs()
         {
             string[] songs = GetSelectedMusicFilePaths();
             List<Song> tempSongs = new List<Song>();
 
-            if (songs != null)
+            songs = CreateNoDuplicateList(songs);
+
+            if (songs.Length > 0)
             {
                 this.SuspendLayout();
                 int tempCounter = 1;
@@ -64,27 +130,37 @@ namespace NiceUIDesign.Classes
                 {
                     Song song = new Song(s, songCounter + tempCounter);
                     tempCounter++;
+                    //creating temp list to add only new songs to dicts
                     tempSongs.Add(song);
 
                 }
 
                 //Adding additional info on song
-                getSongInfo(tempSongs);
+                GetSongInfo(tempSongs);
 
                 foreach (Song s in tempSongs)
                 {
-
+                    AddElement(s);
                     allSongs.Add(s);
-                    add_song(s);
 
                     //Adding the new song to dictionaries
                     songNameById.Add(s.id, s.name);
                     songPathById.Add(s.id, s.path);
+                    songIdByPath.Add(s.path, s.id);
                 }
+
+
                 this.ResumeLayout();
                 this.PerformLayout();
 
-                saveSongs(allSongs);
+                SaveInfo(allSongs);
+                return true;
+            }
+            else
+            {
+                //If duplicates found then count them and create popup saying how many found
+                Console.WriteLine("Create a popup that says song duplicate found");
+                return false;
             }
         }
 
@@ -105,7 +181,7 @@ namespace NiceUIDesign.Classes
             return null;
         }
 
-        public void getSongInfo(List<Song> songList)
+        public void GetSongInfo(List<Song> songList)
         {
             // Start the process silently
             Process process = new Process();
@@ -155,7 +231,8 @@ namespace NiceUIDesign.Classes
 
         }
 
-        public static string getSongName(int id)
+
+        public static string GetName(int id)
         {
             string value;
             songNameById.TryGetValue(id, out value);
@@ -163,7 +240,8 @@ namespace NiceUIDesign.Classes
             return value;
         }
 
-        public static string getSongPath(int id)
+
+        public static string GetPath(int id)
         {
             string value;
             songPathById.TryGetValue(id, out value);
@@ -172,22 +250,21 @@ namespace NiceUIDesign.Classes
 
         }
 
-        private void createSongsDicts()
+
+        public void CreateDicts()
         {
             foreach (Song s in allSongs)
             {
                 songNameById.Add(s.id, s.name);
                 songPathById.Add(s.id, s.path);
+                songIdByPath.Add(s.path, s.id);
             }
         }
 
-        public void init_options()
-        {
-
-        }
 
 
-        public void add_song(Song song)
+
+        public void AddElement(Song song)
         {
             songCounter++;
 
@@ -197,13 +274,13 @@ namespace NiceUIDesign.Classes
             CustomLabel label = new CustomLabel($"label:{song.name}", song.name, tagid);
 
             pic.BackColor = Color.Black;
-            pic.Width = panel.Width - 6;
+            pic.Width = panel.Width - 7;
             pic.Height = panel.Height - 60;
             label.Width = panel.Width - 6;
             label.Height = 50;
 
             //To add round edges to song containers
-            pic.Region = Region.FromHrgn(Form1.CreateRoundRectRgn(0, 0, pic.Width, pic.Height, 10, 10));
+            //pic.Region = Region.FromHrgn(Form1.CreateRoundRectRgn(0, 0, pic.Width, pic.Height, 10, 10));
             panel.Region = Region.FromHrgn(Form1.CreateRoundRectRgn(0, 0, panel.Width, panel.Height, 10, 10));
 
             panel.Margin = new Padding(12);
@@ -213,10 +290,9 @@ namespace NiceUIDesign.Classes
 
 
             //Adding listeners for each of these
-            SongsTracker songTracker = new SongsTracker();
-            songTracker.addPanel(panel);
-            songTracker.addImage(pic);
-            songTracker.addLabel(label);
+            songTracker.AddPanel(panel);
+            songTracker.AddImage(pic);
+            songTracker.AddLabel(label);
 
 
             //Adds the new song to this class (flowpanel)
@@ -225,13 +301,15 @@ namespace NiceUIDesign.Classes
 
         }
 
-        public void saveSongs(List<Song> allSongs)
+
+        public void SaveInfo(List<Song> allSongs)
         {
             string json = JsonConvert.SerializeObject(allSongs, Formatting.Indented);
             File.WriteAllText("dictionary.json", json);
         }
 
-        public void GetSongs()
+
+        public void GetInfo()
         {
             try
             {

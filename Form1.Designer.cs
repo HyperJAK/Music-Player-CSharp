@@ -28,38 +28,39 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.navBar = new System.Windows.Forms.Panel();
             this.nav_panel = new System.Windows.Forms.Panel();
             this.browseSongs_btn = new System.Windows.Forms.Button();
             this.settings_btn = new System.Windows.Forms.Button();
-            this.contactUs_btn = new System.Windows.Forms.Button();
+            this.downloadYt_btn = new System.Windows.Forms.Button();
             this.playlists_btn = new System.Windows.Forms.Button();
             this.addSong_btn = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.user_name = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.right_displayer = new System.Windows.Forms.Panel();
-            this.panel1.SuspendLayout();
+            this.keyboardListener = new System.ComponentModel.BackgroundWorker();
+            this.navBar.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel1
+            // navBar
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
-            this.panel1.Controls.Add(this.nav_panel);
-            this.panel1.Controls.Add(this.browseSongs_btn);
-            this.panel1.Controls.Add(this.settings_btn);
-            this.panel1.Controls.Add(this.contactUs_btn);
-            this.panel1.Controls.Add(this.playlists_btn);
-            this.panel1.Controls.Add(this.addSong_btn);
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(248, 710);
-            this.panel1.TabIndex = 0;
+            this.navBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
+            this.navBar.Controls.Add(this.nav_panel);
+            this.navBar.Controls.Add(this.browseSongs_btn);
+            this.navBar.Controls.Add(this.settings_btn);
+            this.navBar.Controls.Add(this.downloadYt_btn);
+            this.navBar.Controls.Add(this.playlists_btn);
+            this.navBar.Controls.Add(this.addSong_btn);
+            this.navBar.Controls.Add(this.panel2);
+            this.navBar.Dock = System.Windows.Forms.DockStyle.Left;
+            this.navBar.Location = new System.Drawing.Point(0, 0);
+            this.navBar.Margin = new System.Windows.Forms.Padding(4);
+            this.navBar.Name = "navBar";
+            this.navBar.Size = new System.Drawing.Size(248, 710);
+            this.navBar.TabIndex = 0;
             // 
             // nav_panel
             // 
@@ -85,6 +86,7 @@
             this.browseSongs_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.browseSongs_btn.UseVisualStyleBackColor = true;
             this.browseSongs_btn.Click += new System.EventHandler(this.browseSongs_btn_Click);
+            this.browseSongs_btn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.keyboardSongControls);
             this.browseSongs_btn.Leave += new System.EventHandler(this.browseSongs_btn_Leave);
             // 
             // settings_btn
@@ -103,24 +105,26 @@
             this.settings_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.settings_btn.UseVisualStyleBackColor = true;
             this.settings_btn.Click += new System.EventHandler(this.settings_btn_Click);
+            this.settings_btn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.settings_keyUpListener);
             this.settings_btn.Leave += new System.EventHandler(this.settings_btn_Leave);
             // 
-            // contactUs_btn
+            // downloadYt_btn
             // 
-            this.contactUs_btn.FlatAppearance.BorderSize = 0;
-            this.contactUs_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.contactUs_btn.Font = new System.Drawing.Font("Nirmala UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.contactUs_btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.contactUs_btn.Location = new System.Drawing.Point(0, 440);
-            this.contactUs_btn.Margin = new System.Windows.Forms.Padding(4);
-            this.contactUs_btn.Name = "contactUs_btn";
-            this.contactUs_btn.Size = new System.Drawing.Size(248, 52);
-            this.contactUs_btn.TabIndex = 2;
-            this.contactUs_btn.Text = "Contact Us";
-            this.contactUs_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.contactUs_btn.UseVisualStyleBackColor = true;
-            this.contactUs_btn.Click += new System.EventHandler(this.contactUs_click);
-            this.contactUs_btn.Leave += new System.EventHandler(this.contactUs_btn_Leave);
+            this.downloadYt_btn.FlatAppearance.BorderSize = 0;
+            this.downloadYt_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.downloadYt_btn.Font = new System.Drawing.Font("Nirmala UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.downloadYt_btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.downloadYt_btn.Location = new System.Drawing.Point(0, 440);
+            this.downloadYt_btn.Margin = new System.Windows.Forms.Padding(4);
+            this.downloadYt_btn.Name = "downloadYt_btn";
+            this.downloadYt_btn.Size = new System.Drawing.Size(248, 52);
+            this.downloadYt_btn.TabIndex = 2;
+            this.downloadYt_btn.Text = "Download";
+            this.downloadYt_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.downloadYt_btn.UseVisualStyleBackColor = true;
+            this.downloadYt_btn.Click += new System.EventHandler(this.downloadYt_click);
+            this.downloadYt_btn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.downloadYt_keyUpListener);
+            this.downloadYt_btn.Leave += new System.EventHandler(this.downloadYt_btn_Leave);
             // 
             // playlists_btn
             // 
@@ -137,6 +141,7 @@
             this.playlists_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.playlists_btn.UseVisualStyleBackColor = true;
             this.playlists_btn.Click += new System.EventHandler(this.playlist_click);
+            this.playlists_btn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.playlist_keyUpListener);
             this.playlists_btn.Leave += new System.EventHandler(this.playlist_btn_Leave);
             // 
             // addSong_btn
@@ -154,6 +159,7 @@
             this.addSong_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.addSong_btn.UseVisualStyleBackColor = true;
             this.addSong_btn.Click += new System.EventHandler(this.addSong_btn_Click);
+            this.addSong_btn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.addSong_keyUpListener);
             this.addSong_btn.Leave += new System.EventHandler(this.addSong_btn_Leave);
             // 
             // panel2
@@ -201,6 +207,10 @@
             this.right_displayer.TabIndex = 1;
             this.right_displayer.Paint += new System.Windows.Forms.PaintEventHandler(this.right_displayer_Paint);
             // 
+            // keyboardListener
+            // 
+            this.keyboardListener.DoWork += new System.ComponentModel.DoWorkEventHandler(this.keyboardListener_DoWork);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -209,7 +219,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
             this.ClientSize = new System.Drawing.Size(1274, 710);
             this.Controls.Add(this.right_displayer);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.navBar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
@@ -219,7 +229,7 @@
             this.ResizeBegin += new System.EventHandler(this.ResizeMainWindow);
             this.ResizeEnd += new System.EventHandler(this.ResizeEndMainWindow);
             this.SizeChanged += new System.EventHandler(this.Form1SizeChanged);
-            this.panel1.ResumeLayout(false);
+            this.navBar.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -229,7 +239,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel navBar;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button browseSongs_btn;
@@ -237,9 +247,10 @@
         private System.Windows.Forms.Button settings_btn;
         private System.Windows.Forms.Button playlists_btn;
         private System.Windows.Forms.Button addSong_btn;
-        private System.Windows.Forms.Button contactUs_btn;
+        private System.Windows.Forms.Button downloadYt_btn;
         private System.Windows.Forms.Panel nav_panel;
         private System.Windows.Forms.Panel right_displayer;
+        private System.ComponentModel.BackgroundWorker keyboardListener;
     }
 }
 

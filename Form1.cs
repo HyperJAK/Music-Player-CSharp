@@ -23,8 +23,17 @@ namespace NiceUIDesign
 
              );
 
-        private Songs songs = new Songs();
+        public Songs songs = new Songs();
+        private static SongControl songControl = new SongControl();
+        private AddSongs addSongs = new AddSongs();
+
         public string selectedPanel;
+
+        public static void updateControlInfo(string songName, Image image)
+        {
+            songControl.control_label.Text = songName;
+            songControl.control_image.Image = image;
+        }
 
         public Form1()
         {
@@ -35,10 +44,30 @@ namespace NiceUIDesign
                         nav_panel.Left = dashboard_btn.Left;
                         dashboard_btn.BackColor = Color.FromArgb(46, 51, 73);*/
 
-            right_displayer.Left = panel1.Right;
-            right_displayer.Height = panel1.Height;
-            right_displayer.Top = panel1.Top;
+
+            right_displayer.Left = navBar.Right;
+            right_displayer.Height = navBar.Height;
+            right_displayer.Top = navBar.Top;
             right_displayer.BackColor = Color.White;
+
+            updateControlsPosition();
+            songControl.control_label.Height = browseSongs_btn.Height;
+
+            songControl.Height = browseSongs_btn.Height * 3;
+            songControl.Dock = DockStyle.Bottom;
+
+            songControl.pause_btn.Click += pauseButton_Click;
+            songControl.next_btn.Click += nextButton_Click;
+            songControl.prev_btn.Click += prevButton_Click;
+            songControl.repeat_btn.Click += repeatButton_Click;
+
+            songControl.control_image.Click += label_Image_Click;
+            songControl.control_label.Click += label_Image_Click;
+
+            songControl.Visible = false;
+
+            addSongs.browse_btn.Click += browseSongsListener_Click;
+
 
             //pictureBox2.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pictureBox2.Width, pictureBox2.Height, 30, 30));
 
@@ -46,6 +75,23 @@ namespace NiceUIDesign
 
         }
 
+        private void updateControlsPosition()
+        {
+            //Initializing SongControl class stuff
+
+            songControl.pause_btn.Location = new Point((right_displayer.Width / 2) - (songControl.pause_btn.Width / 2), ((browseSongs_btn.Height * 3) / 2) + (songControl.pause_btn.Height / 10));
+            songControl.prev_btn.Location = new Point((right_displayer.Width / 2) - (songControl.prev_btn.Width * 2), ((browseSongs_btn.Height * 3) / 2) + (songControl.prev_btn.Height / 10));
+            songControl.next_btn.Location = new Point((right_displayer.Width / 2) + (songControl.next_btn.Width), ((browseSongs_btn.Height * 3) / 2) + (songControl.next_btn.Height / 10));
+            songControl.control_image.Location = new Point(10, 10);
+            songControl.control_label.Location = new Point(15 + songControl.control_image.Width, 11);
+            songControl.control_label.Width = right_displayer.Width - 10;
+            songControl.repeat_btn.Location = new Point(((right_displayer.Width / 2) - (songControl.repeat_btn.Width * 6)), ((browseSongs_btn.Height * 3) / 2) + (songControl.repeat_btn.Height / 2));
+        }
+
+        public static void changeSongControl_visibility(bool value)
+        {
+            songControl.Visible = value;
+        }
 
 
         public string GetYouTubeAudioDownloadLink(string videoUrl, string fileExtension)
@@ -117,12 +163,11 @@ namespace NiceUIDesign
                 case "browse":
                     {
                         right_displayer.Controls.Remove(songs);
-
                     }
                     break;
-                case "add_song":
+                case "AddElement":
                     {
-                        //right_displayer.Controls.Remove(settings);
+                        right_displayer.Controls.Remove(addSongs);
                     }
                     break;
                 case "playlist":
@@ -131,7 +176,7 @@ namespace NiceUIDesign
                     }
                     break;
 
-                case "contact_us":
+                case "download":
                     {
                         //right_displayer.Controls.Remove(playlist);
                     }
@@ -174,27 +219,33 @@ namespace NiceUIDesign
                         selectedPanel = "browse";
 
                         //stops the panel from calculating, in order to update its elements faster
-                        right_displayer.SuspendLayout();
-
+                        //right_displayer.SuspendLayout();
+                        right_displayer.Visible = false;
                         right_displayer.Controls.Add(songs);
+                        right_displayer.Controls.Add(songControl);
+                        right_displayer.Visible = true;
 
                         //Makes panel resume calculations
-                        right_displayer.ResumeLayout();
+                        //right_displayer.ResumeLayout();
                         //Forces panel to update calculations
-                        right_displayer.PerformLayout();
-                        songs.PerformLayout();
+                        //right_displayer.PerformLayout();
+                        //songs.PerformLayout();
 
                         browseSongs_btn.BackColor = Color.FromArgb(46, 51, 73);
                     }
                     break;
 
-                case "add_song":
+                case "AddElement":
                     {
                         nav_panel.Height = addSong_btn.Height;
                         nav_panel.Top = addSong_btn.Top;
                         nav_panel.Left = addSong_btn.Left;
 
-                        selectedPanel = "add_song";
+                        selectedPanel = "AddElement";
+
+                        right_displayer.Visible = false;
+                        right_displayer.Controls.Add(addSongs);
+                        right_displayer.Visible = true;
 
                         /*//stops the panel from calculating, in order to update its elements faster
                         right_displayer.SuspendLayout();
@@ -230,13 +281,13 @@ namespace NiceUIDesign
                     }
                     break;
 
-                case "contact_us":
+                case "download":
                     {
-                        nav_panel.Height = contactUs_btn.Height;
-                        nav_panel.Top = contactUs_btn.Top;
-                        nav_panel.Left = contactUs_btn.Left;
+                        nav_panel.Height = downloadYt_btn.Height;
+                        nav_panel.Top = downloadYt_btn.Top;
+                        nav_panel.Left = downloadYt_btn.Left;
 
-                        selectedPanel = "contact_us";
+                        selectedPanel = "download";
 
                         /*//stops the panel from calculating, in order to update its elements faster
                         right_displayer.SuspendLayout();
@@ -247,7 +298,7 @@ namespace NiceUIDesign
                         right_displayer.ResumeLayout();
                         //Forces panel to update calculations
                         right_displayer.PerformLayout();*/
-                        contactUs_btn.BackColor = Color.FromArgb(46, 51, 73);
+                        downloadYt_btn.BackColor = Color.FromArgb(46, 51, 73);
                     }
                     break;
 
@@ -308,7 +359,7 @@ namespace NiceUIDesign
 
         private void mouseDoubleClick(object sender, MouseEventArgs e)
         {
-            Console.WriteLine("Hello there");
+
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -318,13 +369,13 @@ namespace NiceUIDesign
 
         private void addSong_btn_Click(object sender, EventArgs e)
         {
-            if (selectedPanel != "add_song")
+            if (selectedPanel != "AddElement")
             {
+                //put these in switchpanel method (later)
                 if (selectedPanel != null)
                     DisposeOfItem(selectedPanel);
-                songs.add_new_songs();
-                songs.Refresh();
-                switchPanel("browse");
+
+                switchPanel("AddElement");
 
             }
         }
@@ -337,12 +388,11 @@ namespace NiceUIDesign
         private void ResizeEndMainWindow(object sender, EventArgs e)
         {
 
-
         }
 
         private void Form1SizeChanged(object sender, EventArgs e)
         {
-
+            updateControlsPosition();
 
         }
 
@@ -373,16 +423,6 @@ namespace NiceUIDesign
             }
         }
 
-        private void contactUs_click(object sender, EventArgs e)
-        {
-            if (selectedPanel != "contact_us")
-            {
-                if (selectedPanel != null)
-                    DisposeOfItem(selectedPanel);
-                switchPanel("contact_us");
-
-            }
-        }
 
         private void addSong_btn_Leave(object sender, EventArgs e)
         {
@@ -394,9 +434,166 @@ namespace NiceUIDesign
             playlists_btn.BackColor = Color.FromArgb(24, 30, 54);
         }
 
-        private void contactUs_btn_Leave(object sender, EventArgs e)
+
+
+        //This part is for SongControl class
+        private void keyboard_KeyDown(object sender, KeyEventArgs e)
         {
-            contactUs_btn.BackColor = Color.FromArgb(24, 30, 54);
+            if (songs.songTracker.songWasQueued)
+            {
+                if (e.KeyCode == Keys.MediaPlayPause || e.KeyCode == Keys.Space)
+                {
+                    // Perform your play/pause logic here
+                    if (songs.songTracker.songIsPaused)
+                    {
+                        // Resume playback
+                        songs.songTracker.outputDevice.Play();
+                        songs.songTracker.songIsPaused = false;
+                        Console.WriteLine("Handled inside");
+                    }
+                    else
+                    {
+                        // Pause playback
+                        songs.songTracker.outputDevice.Pause();
+                        songs.songTracker.songIsPaused = true;
+                    }
+                    Console.WriteLine("Handled");
+                    // Consume the key press event
+                    e.Handled = true;
+                }
+            }
+            // Consume the key press event
+            e.Handled = true;
+        }
+        private void pauseButton_Click(object sender, EventArgs e)
+        {
+            songs.songTracker.GetOutputInfo();
+            songs.songTracker.PauseOrPlaySong();
+
+        }
+
+        private void nextButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void prevButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void repeatButton_Click(object sender, EventArgs e)
+        {
+            if (!songs.songTracker.songIsStopped && !songs.songTracker.songIsPaused && songs.songTracker.songWasQueued)
+            {
+                if (!songs.songTracker.repeatSong)
+                {
+                    songs.songTracker.repeatSong = true;
+                }
+                else
+                {
+                    songs.songTracker.repeatSong = false;
+                }
+            }
+            else
+            {
+                if (!songs.songTracker.repeatSong)
+                {
+                    songs.songTracker.repeatSong = true;
+                    songs.songTracker.GetOutputInfo();
+
+                    songs.songTracker.PauseOrPlaySong();
+
+                }
+                else
+                {
+                    songs.songTracker.repeatSong = false;
+                }
+
+            }
+
+        }
+
+        private void label_Image_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void keyboardListener_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+        }
+
+        private void keyboardSongControls(object sender, KeyEventArgs e)
+        {
+            songs.songTracker.PauseOrPlaySong();
+        }
+
+        private void addSong_keyUpListener(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyCode == Keys.MediaPlayPause || e.KeyCode == Keys.Space) && (songs.songTracker.songWasQueued))
+            {
+                songs.songTracker.GetOutputInfo();
+                songs.songTracker.PauseOrPlaySong();
+            }
+            e.Handled = true;
+
+        }
+
+        private void playlist_keyUpListener(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyCode == Keys.MediaPlayPause || e.KeyCode == Keys.Space) && (songs.songTracker.songWasQueued))
+            {
+                songs.songTracker.GetOutputInfo();
+                songs.songTracker.PauseOrPlaySong();
+            }
+            e.Handled = true;
+        }
+
+
+        private void settings_keyUpListener(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyCode == Keys.MediaPlayPause || e.KeyCode == Keys.Space) && (songs.songTracker.songWasQueued))
+            {
+                songs.songTracker.GetOutputInfo();
+                songs.songTracker.PauseOrPlaySong();
+            }
+            e.Handled = true;
+        }
+
+        private void downloadYt_click(object sender, EventArgs e)
+        {
+            if (selectedPanel != "download")
+            {
+                if (selectedPanel != null)
+                    DisposeOfItem(selectedPanel);
+                switchPanel("download");
+
+            }
+        }
+
+        private void downloadYt_btn_Leave(object sender, EventArgs e)
+        {
+            downloadYt_btn.BackColor = Color.FromArgb(24, 30, 54);
+        }
+
+        private void downloadYt_keyUpListener(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyCode == Keys.MediaPlayPause || e.KeyCode == Keys.Space) && (songs.songTracker.songWasQueued))
+            {
+                songs.songTracker.GetOutputInfo();
+                songs.songTracker.PauseOrPlaySong();
+            }
+            e.Handled = true;
+        }
+
+        private void browseSongsListener_Click(object sender, EventArgs e)
+        {
+            if (songs.Add_new_songs())
+            {
+                songs.ReloadSongs();
+                switchPanel("browse");
+            }
+
         }
     }
 }

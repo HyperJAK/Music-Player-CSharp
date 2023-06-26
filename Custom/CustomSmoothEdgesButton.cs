@@ -4,15 +4,14 @@ using System.Windows.Forms;
 
 namespace NiceUIDesign.Custom
 {
-    public class CustomPictureBox : PictureBox
+    public class CustomSmoothEdgesButton : Button
     {
-
         protected override void OnPaint(PaintEventArgs pevent)
         {
             GraphicsPath graphicsPath = new GraphicsPath();
 
             // Adjust the radius value to control the curvature of the corners
-            int cornerRadius = 20;
+            int cornerRadius = 15;
 
             // Add rounded rectangle shape to the GraphicsPath
             graphicsPath.AddArc(0, 0, cornerRadius * 2, cornerRadius * 2, 180, 90);
@@ -28,14 +27,14 @@ namespace NiceUIDesign.Custom
             base.OnPaint(pevent);
         }
 
-
-        public CustomPictureBox(string name, int tag)
+        public CustomSmoothEdgesButton(string text)
         {
-            this.Name = name;
-            this.Tag = tag;
+            this.Text = text;
+            this.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+
         }
 
-        public CustomPictureBox()
+        public CustomSmoothEdgesButton()
         {
 
         }
