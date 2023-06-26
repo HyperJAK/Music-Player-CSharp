@@ -423,16 +423,6 @@ namespace NiceUIDesign
             }
         }
 
-        private void contactUs_click(object sender, EventArgs e)
-        {
-            if (selectedPanel != "download")
-            {
-                if (selectedPanel != null)
-                    DisposeOfItem(selectedPanel);
-                switchPanel("download");
-
-            }
-        }
 
         private void addSong_btn_Leave(object sender, EventArgs e)
         {
@@ -444,10 +434,7 @@ namespace NiceUIDesign
             playlists_btn.BackColor = Color.FromArgb(24, 30, 54);
         }
 
-        private void contactUs_btn_Leave(object sender, EventArgs e)
-        {
-            downloadYt_btn.BackColor = Color.FromArgb(24, 30, 54);
-        }
+
 
         //This part is for SongControl class
         private void keyboard_KeyDown(object sender, KeyEventArgs e)
@@ -562,10 +549,6 @@ namespace NiceUIDesign
             e.Handled = true;
         }
 
-        private void contactUs_keyUpListener(object sender, KeyEventArgs e)
-        {
-
-        }
 
         private void settings_keyUpListener(object sender, KeyEventArgs e)
         {
@@ -579,17 +562,28 @@ namespace NiceUIDesign
 
         private void downloadYt_click(object sender, EventArgs e)
         {
+            if (selectedPanel != "download")
+            {
+                if (selectedPanel != null)
+                    DisposeOfItem(selectedPanel);
+                switchPanel("download");
 
+            }
         }
 
         private void downloadYt_btn_Leave(object sender, EventArgs e)
         {
-
+            downloadYt_btn.BackColor = Color.FromArgb(24, 30, 54);
         }
 
         private void downloadYt_keyUpListener(object sender, KeyEventArgs e)
         {
-
+            if ((e.KeyCode == Keys.MediaPlayPause || e.KeyCode == Keys.Space) && (songs.songTracker.songWasQueued))
+            {
+                songs.songTracker.getOutputInfo();
+                songs.songTracker.pauseOrPlaySong();
+            }
+            e.Handled = true;
         }
 
         private void browseSongsListener_Click(object sender, EventArgs e)
