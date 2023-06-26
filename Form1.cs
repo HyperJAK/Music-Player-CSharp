@@ -23,7 +23,7 @@ namespace NiceUIDesign
 
              );
 
-        private Songs songs = new Songs();
+        public Songs songs = new Songs();
         private static SongControl songControl = new SongControl();
         private AddSongs addSongs = new AddSongs();
 
@@ -165,7 +165,7 @@ namespace NiceUIDesign
                         right_displayer.Controls.Remove(songs);
                     }
                     break;
-                case "add_song":
+                case "AddElement":
                     {
                         right_displayer.Controls.Remove(addSongs);
                     }
@@ -235,13 +235,13 @@ namespace NiceUIDesign
                     }
                     break;
 
-                case "add_song":
+                case "AddElement":
                     {
                         nav_panel.Height = addSong_btn.Height;
                         nav_panel.Top = addSong_btn.Top;
                         nav_panel.Left = addSong_btn.Left;
 
-                        selectedPanel = "add_song";
+                        selectedPanel = "AddElement";
 
                         right_displayer.Visible = false;
                         right_displayer.Controls.Add(addSongs);
@@ -369,13 +369,13 @@ namespace NiceUIDesign
 
         private void addSong_btn_Click(object sender, EventArgs e)
         {
-            if (selectedPanel != "add_song")
+            if (selectedPanel != "AddElement")
             {
                 //put these in switchpanel method (later)
                 if (selectedPanel != null)
                     DisposeOfItem(selectedPanel);
 
-                switchPanel("add_song");
+                switchPanel("AddElement");
 
             }
         }
@@ -467,8 +467,8 @@ namespace NiceUIDesign
         }
         private void pauseButton_Click(object sender, EventArgs e)
         {
-            songs.songTracker.getOutputInfo();
-            songs.songTracker.pauseOrPlaySong();
+            songs.songTracker.GetOutputInfo();
+            songs.songTracker.PauseOrPlaySong();
 
         }
 
@@ -500,9 +500,9 @@ namespace NiceUIDesign
                 if (!songs.songTracker.repeatSong)
                 {
                     songs.songTracker.repeatSong = true;
-                    songs.songTracker.getOutputInfo();
+                    songs.songTracker.GetOutputInfo();
 
-                    songs.songTracker.pauseOrPlaySong();
+                    songs.songTracker.PauseOrPlaySong();
 
                 }
                 else
@@ -525,15 +525,15 @@ namespace NiceUIDesign
 
         private void keyboardSongControls(object sender, KeyEventArgs e)
         {
-            songs.songTracker.pauseOrPlaySong();
+            songs.songTracker.PauseOrPlaySong();
         }
 
         private void addSong_keyUpListener(object sender, KeyEventArgs e)
         {
             if ((e.KeyCode == Keys.MediaPlayPause || e.KeyCode == Keys.Space) && (songs.songTracker.songWasQueued))
             {
-                songs.songTracker.getOutputInfo();
-                songs.songTracker.pauseOrPlaySong();
+                songs.songTracker.GetOutputInfo();
+                songs.songTracker.PauseOrPlaySong();
             }
             e.Handled = true;
                 
@@ -543,8 +543,8 @@ namespace NiceUIDesign
         {
             if ((e.KeyCode == Keys.MediaPlayPause || e.KeyCode == Keys.Space) && (songs.songTracker.songWasQueued))
             {
-                songs.songTracker.getOutputInfo();
-                songs.songTracker.pauseOrPlaySong();
+                songs.songTracker.GetOutputInfo();
+                songs.songTracker.PauseOrPlaySong();
             }
             e.Handled = true;
         }
@@ -554,8 +554,8 @@ namespace NiceUIDesign
         {
             if ((e.KeyCode == Keys.MediaPlayPause || e.KeyCode == Keys.Space) && (songs.songTracker.songWasQueued))
             {
-                songs.songTracker.getOutputInfo();
-                songs.songTracker.pauseOrPlaySong();
+                songs.songTracker.GetOutputInfo();
+                songs.songTracker.PauseOrPlaySong();
             }
             e.Handled = true;
         }
@@ -580,17 +580,17 @@ namespace NiceUIDesign
         {
             if ((e.KeyCode == Keys.MediaPlayPause || e.KeyCode == Keys.Space) && (songs.songTracker.songWasQueued))
             {
-                songs.songTracker.getOutputInfo();
-                songs.songTracker.pauseOrPlaySong();
+                songs.songTracker.GetOutputInfo();
+                songs.songTracker.PauseOrPlaySong();
             }
             e.Handled = true;
         }
 
         private void browseSongsListener_Click(object sender, EventArgs e)
         {
-            if (songs.add_new_songs())
+            if (songs.Add_new_songs())
             {
-                songs.reloadSongs();
+                songs.ReloadSongs();
                 switchPanel("browse");
             }
             

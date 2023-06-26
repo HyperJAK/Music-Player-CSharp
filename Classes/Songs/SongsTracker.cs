@@ -1,13 +1,13 @@
 ﻿using NAudio.Wave;
+using NiceUIDesign.Classes.Abstract;
 using System;
 using System.Collections.Generic;
-using System.Numerics;
 using System.Windows.Forms;
 
 namespace NiceUIDesign.Classes
 {
 
-    public class SongsTracker
+    public class SongsTracker : MusicTracker
     {
         private List<FlowLayoutPanel> panels;
         private List<PictureBox> pics;
@@ -33,26 +33,29 @@ namespace NiceUIDesign.Classes
         }
 
 
-
-        public void addPanel(FlowLayoutPanel panel)
+        override
+        public void AddPanel(FlowLayoutPanel panel)
         {
             panel.Click += Panel_Click;
             panels.Add(panel);
         }
 
-        public void addImage(PictureBox pic)
+        override
+        public void AddImage(PictureBox pic)
         {
             pic.Click += Panel_Click;
             pics.Add(pic);
         }
 
-        public void addLabel(Label label)
+        override
+        public void AddLabel(Label label)
         {
             label.Click += Panel_Click;
             labels.Add(label);
         }
 
-        public void playSong(string songPath)
+        override
+        public void PlaySong(string songPath)
         {
             //To remember what was the last song played (global var)
             lastSong = songPath;
@@ -63,7 +66,7 @@ namespace NiceUIDesign.Classes
                 
                 playbackListenerAdded = true;
             }
-            outputDevice.PlaybackStopped += outputDevice_finishedSong;
+            outputDevice.PlaybackStopped += OutputDevice_finishedSong;
 
             //Create an audio file reader
             audioFileReader = new AudioFileReader(songPath);
@@ -76,17 +79,19 @@ namespace NiceUIDesign.Classes
 
         }
 
-        private void outputDevice_finishedSong(object sender, StoppedEventArgs e)
+        override
+        public void OutputDevice_finishedSong(object sender, StoppedEventArgs e)
         {
             Console.WriteLine("Here");
             if (repeatSong)
             {
-                stopSong();
-                playSong(lastSong);
+                StopSong();
+                PlaySong(lastSong);
             }
         }
 
-        public void stopSong()
+        override
+        public void StopSong()
         {
             if (outputDevice != null)
             {
@@ -111,27 +116,29 @@ namespace NiceUIDesign.Classes
             
         }
 
-        public void pauseOrPlaySong()
+        override
+        public void PauseOrPlaySong()
         {
             if (songIsPaused && !songIsStopped)
             {
                 outputDevice.Play();
-                getOutputInfo();
+                GetOutputInfo();
             }
             else if (!songIsPaused && !songIsStopped)
             {
                 outputDevice.Pause();
-                getOutputInfo();
+                GetOutputInfo();
             }
             else if (songIsStopped && !songIsPaused)
             {
-                playSong(lastSong);
-                getOutputInfo();
+                PlaySong(lastSong);
+                GetOutputInfo();
             }
 
         }
 
-        public void getOutputInfo()
+        override
+        public void GetOutputInfo()
         {   if(outputDevice != null)
             {
                 PlaybackState info = outputDevice.PlaybackState;
@@ -172,7 +179,7 @@ namespace NiceUIDesign.Classes
             
         }
 
-
+        override
         public void Panel_Click(object sender, EventArgs e)
         {
 
@@ -189,8 +196,8 @@ namespace NiceUIDesign.Classes
                     {
                         FlowLayoutPanel panelClicked = (FlowLayoutPanel)sender;
                         Console.WriteLine($"The tag that is LinkClickedEventArgs is:{(int)panelClicked.Tag}");
-                        string songName = Songs.getSongName((int)panelClicked.Tag);
-                        string songPath = Songs.getSongPath((int)panelClicked.Tag);
+                        string songName = Songs.GetName((int)panelClicked.Tag);
+                        string songPath = Songs.GetPath((int)panelClicked.Tag);
 
 
                         //updating image and text of song in the control
@@ -198,14 +205,14 @@ namespace NiceUIDesign.Classes
 
                         if (songWasQueued)
                         {
-                            stopSong();
-                            playSong(songPath);
-                            getOutputInfo();
+                            StopSong();
+                            PlaySong(songPath);
+                            GetOutputInfo();
                         }
                         else
                         {
-                            playSong(songPath);
-                            getOutputInfo();
+                            PlaySong(songPath);
+                            GetOutputInfo();
 
                         }
                         Console.WriteLine($"Song: {songName} was clicked");
@@ -216,7 +223,7 @@ namespace NiceUIDesign.Classes
                     {
                         Label labelClicked = (Label)sender;
 
-                        string songPath = Songs.getSongPath((int)labelClicked.Tag);
+                        string songPath = Songs.GetPath((int)labelClicked.Tag);
 
 
                         //updating image and text of song in the control
@@ -224,14 +231,14 @@ namespace NiceUIDesign.Classes
 
                         if (songWasQueued)
                         {
-                            stopSong();
-                            playSong(songPath);
-                            getOutputInfo();
+                            StopSong();
+                            PlaySong(songPath);
+                            GetOutputInfo();
                         }
                         else
                         {
-                            playSong(songPath);
-                            getOutputInfo();
+                            PlaySong(songPath);
+                            GetOutputInfo();
 
                         }
                         Console.WriteLine($"Song: {labelClicked.Text} was clicked");
@@ -241,8 +248,8 @@ namespace NiceUIDesign.Classes
                 case "NiceUIDesign.Custom.CustomPictureBox":
                     {
                         PictureBox picClicked = (PictureBox)sender;
-                        string songName = Songs.getSongName((int)picClicked.Tag);
-                        string songPath = Songs.getSongPath((int)picClicked.Tag);
+                        string songName = Songs.GetName((int)picClicked.Tag);
+                        string songPath = Songs.GetPath((int)picClicked.Tag);
 
 
                         //updating image and text of song in the control
@@ -251,15 +258,15 @@ namespace NiceUIDesign.Classes
                         if (songWasQueued)
                         {
                             Console.WriteLine("Danger");
-                            stopSong();
-                            playSong(songPath);
-                            getOutputInfo();
+                            StopSong();
+                            PlaySong(songPath);
+                            GetOutputInfo();
                         }
                         else
                         {
                             Console.WriteLine("not danger");
-                            playSong(songPath);
-                            getOutputInfo();
+                            PlaySong(songPath);
+                            GetOutputInfo();
 
                         }
                         Console.WriteLine($"Song: {songName} was clicked");

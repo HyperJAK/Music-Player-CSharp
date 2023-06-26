@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using NiceUIDesign.Classes.Abstract;
 using NiceUIDesign.Custom;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using System.Windows.Forms;
 
 namespace NiceUIDesign.Classes
 {
-    public class Songs : FlowLayoutPanel
+    public class Songs : FlowLayoutPanel, Music
     {
 
         public List<Song> allSongs = new List<Song>();
@@ -27,7 +28,7 @@ namespace NiceUIDesign.Classes
 
         //Used to halt other functions from running before all songs have been loaded
         private ManualResetEvent songsLoadedEvent = new ManualResetEvent(false);
-
+ 
         public Songs()
         {
             this.Anchor = AnchorStyles.Top | AnchorStyles.Left;
@@ -39,7 +40,7 @@ namespace NiceUIDesign.Classes
             this.AllowDrop = false;
             this.AutoScroll = true;
 
-            GetSongs();
+            GetInfo();
             songsLoadedEvent.WaitOne();
 
 
@@ -48,7 +49,7 @@ namespace NiceUIDesign.Classes
             {
                 foreach (Song s in allSongs)
                 {
-                    add_song(s);
+                    AddElement(s);
                 }
             }
             else
@@ -57,7 +58,7 @@ namespace NiceUIDesign.Classes
                 allSongs.Reverse();
                 foreach (Song s in allSongs)
                 {
-                    add_song(s);
+                    AddElement(s);
                 }
                 //Reverses list back to original
                 allSongs.Reverse();
@@ -68,12 +69,13 @@ namespace NiceUIDesign.Classes
             this.ResumeLayout();
             this.PerformLayout();
 
-            createSongsDicts();
-            saveSongs(allSongs);
+            CreateDicts();
+            SaveInfo(allSongs);
 
         }
 
-        public void reloadSongs()
+        
+        public void ReloadSongs()
         {
             if (latestAddedFirst)
             {
@@ -82,7 +84,7 @@ namespace NiceUIDesign.Classes
                 allSongs.Reverse();
                 foreach(Song s in allSongs)
                 {
-                    add_song(s);
+                    AddElement(s);
                 }
                 allSongs.Reverse();
 
@@ -91,13 +93,13 @@ namespace NiceUIDesign.Classes
             {
                 foreach (Song s in allSongs)
                 {
-                    add_song(s);
+                    AddElement(s);
                 }
             }
 
         }
 
-        private string[] createNoDuplicateList(string[] songs)
+        private string[] CreateNoDuplicateList(string[] songs)
         {
             List<string> tempList = new List<string>();
 
@@ -114,12 +116,12 @@ namespace NiceUIDesign.Classes
             return tempList.ToArray();
         }
 
-        public bool add_new_songs()
+        public bool Add_new_songs()
         {
             string[] songs = GetSelectedMusicFilePaths();
             List<Song> tempSongs = new List<Song>();
 
-            songs = createNoDuplicateList(songs);
+            songs = CreateNoDuplicateList(songs);
 
             if (songs.Length > 0)
             {
@@ -135,11 +137,11 @@ namespace NiceUIDesign.Classes
                 }
 
                 //Adding additional info on song
-                getSongInfo(tempSongs);
+                GetSongInfo(tempSongs);
                 
                 foreach (Song s in tempSongs)
                 {
-                    add_song(s);
+                    AddElement(s);
                     allSongs.Add(s);
 
                     //Adding the new song to dictionaries
@@ -152,7 +154,7 @@ namespace NiceUIDesign.Classes
                 this.ResumeLayout();
                 this.PerformLayout();
 
-                saveSongs(allSongs);
+                SaveInfo(allSongs);
                 return true;
             }
             else
@@ -180,7 +182,7 @@ namespace NiceUIDesign.Classes
             return null;
         }
 
-        public void getSongInfo(List<Song> songList)
+        public void GetSongInfo(List<Song> songList)
         {
             // Start the process silently
             Process process = new Process();
@@ -230,7 +232,8 @@ namespace NiceUIDesign.Classes
 
         }
 
-        public static string getSongName(int id)
+        
+        public static string GetName(int id)
         {
             string value;
             songNameById.TryGetValue(id, out value);
@@ -238,7 +241,8 @@ namespace NiceUIDesign.Classes
             return value;
         }
 
-        public static string getSongPath(int id)
+        
+        public static string GetPath(int id)
         {
             string value;
             songPathById.TryGetValue(id, out value);
@@ -247,7 +251,8 @@ namespace NiceUIDesign.Classes
 
         }
 
-        private void createSongsDicts()
+        
+        public void CreateDicts()
         {
             foreach (Song s in allSongs)
             {
@@ -257,13 +262,10 @@ namespace NiceUIDesign.Classes
             }
         }
 
-        public void init_options()
-        {
-
-        }
 
 
-        public void add_song(Song song)
+        
+        public void AddElement(Song song)
         {
             songCounter++;
 
@@ -289,9 +291,9 @@ namespace NiceUIDesign.Classes
 
 
             //Adding listeners for each of these
-            songTracker.addPanel(panel);
-            songTracker.addImage(pic);
-            songTracker.addLabel(label);
+            songTracker.AddPanel(panel);
+            songTracker.AddImage(pic);
+            songTracker.AddLabel(label);
 
 
             //Adds the new song to this class (flowpanel)
@@ -300,13 +302,15 @@ namespace NiceUIDesign.Classes
 
         }
 
-        public void saveSongs(List<Song> allSongs)
+        
+        public void SaveInfo(List<Song> allSongs)
         {
             string json = JsonConvert.SerializeObject(allSongs, Formatting.Indented);
             File.WriteAllText("dictionary.json", json);
         }
 
-        public void GetSongs()
+        
+        public void GetInfo()
         {
             try
             {
