@@ -1,6 +1,7 @@
 ﻿using NAudio.Wave;
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Windows.Forms;
 
 namespace NiceUIDesign.Classes
@@ -15,19 +16,19 @@ namespace NiceUIDesign.Classes
 
         public static bool songIsStopped = true;
         public static bool songIsPaused = false;
-        public static bool songIsQueued = false;
+        public static bool songWasQueued = false;
+        public static bool repeatSong = false;
 
 
         //Output device for playing audio
-        public static WaveOutEvent outputDevice = new WaveOutEvent();
+        public static WaveOutEvent outputDevice;
+        public static AudioFileReader audioFileReader;
 
         public SongsTracker()
         {
             panels = new List<FlowLayoutPanel>();
             pics = new List<PictureBox>();
             labels = new List<Label>();
-
-            outputDevice.PlaybackStopped += outputDevice_finishedSong;
         }
 
 
@@ -52,9 +53,14 @@ namespace NiceUIDesign.Classes
 
         public static void playSong(string songPath)
         {
+            //to remember what was the last song played (global var)
+            lastSong = songPath;
+
+            outputDevice = new WaveOutEvent();
+            outputDevice.PlaybackStopped += outputDevice_finishedSong;
 
             // Create an audio file reader
-            AudioFileReader audioFileReader = new AudioFileReader(songPath);
+            audioFileReader = new AudioFileReader(songPath);
 
             // Set the audio file reader as the output device's audio source
             outputDevice.Init(audioFileReader);
@@ -66,45 +72,101 @@ namespace NiceUIDesign.Classes
 
         private static void outputDevice_finishedSong(object sender, StoppedEventArgs e)
         {
-            outputDevice.Dispose();
-            songIsStopped = true;
+            if (repeatSong)
+            {
+                Console.WriteLine("Entered");
+                stopSong();
+                playSong(lastSong);
+            }
+            else
+            {
+                stopSong();
+            }
+            
         }
 
-        private void getOutputInfo()
+        public static void stopSong()
         {
-            PlaybackState info = outputDevice.PlaybackState;
-
-            switch (info)
+            if (outputDevice != null)
             {
-                case PlaybackState.Stopped:
-                    {
-                        songIsStopped = true;
-                        songIsPaused = false;
-                    }
-                    break;
-
-                case PlaybackState.Paused:
-                    {
-                        songIsStopped = false;
-                        songIsPaused = true;
-                    }
-                    break;
-
-                case PlaybackState.Playing:
-                    {
-                        songIsStopped = false;
-                        songIsPaused = false;
-                    }
-                    break;
+                outputDevice.Stop();
+                outputDevice.Dispose();
+                outputDevice = null;
             }
+            if (audioFileReader != null)
+            {
+                audioFileReader.Dispose();
+                audioFileReader = null;
+            }
+        }
+
+        public static void pauseOrPlaySong()
+        {
+            if (songIsPaused && !songIsStopped)
+            {
+                outputDevice.Play();
+                getOutputInfo();
+            }
+            else if (!songIsPaused && !songIsStopped)
+            {
+                Console.WriteLine(songIsPaused);
+                Console.WriteLine(songIsStopped);
+                Console.WriteLine(songWasQueued);
+
+                outputDevice.Pause();
+                getOutputInfo();
+            }
+            else if (songIsStopped && songWasQueued && !songIsPaused)
+            {
+                playSong(lastSong);
+                getOutputInfo();
+            }
+        }
+
+        public static void getOutputInfo()
+        {   if(outputDevice != null)
+            {
+                PlaybackState info = outputDevice.PlaybackState;
+
+                switch (info)
+                {
+                    case PlaybackState.Stopped:
+                        {
+                            songIsStopped = true;
+                            songWasQueued = true;
+                            songIsPaused = false;
+                        }
+                        break;
+
+                    case PlaybackState.Paused:
+                        {
+                            songIsStopped = false;
+                            songWasQueued = true;
+                            songIsPaused = true;
+                        }
+                        break;
+
+                    case PlaybackState.Playing:
+                        {
+                            songIsStopped = false;
+                            songWasQueued = true;
+                            songIsPaused = false;
+                        }
+                        break;
+                }
+            }
+            else
+            {
+                songIsStopped = true;
+                songWasQueued = true;
+                songIsPaused = false;
+            }
+            
         }
 
 
         public void Panel_Click(object sender, EventArgs e)
         {
-            songIsQueued = true;
-            //Gets the state of the song
-            getOutputInfo();
 
             //Retrieves the type of the sender, meaning if user clicked on image or texet or box itself to access song
             string typeOfSender = sender.GetType().ToString();
@@ -122,20 +184,20 @@ namespace NiceUIDesign.Classes
                         string songName = Songs.getSongName((int)panelClicked.Tag);
                         string songPath = Songs.getSongPath((int)panelClicked.Tag);
 
-                        lastSong = songPath;
 
                         //updating image and text of song in the control
                         Form1.updateControlInfo(songName, null);
 
-                        if (!songIsStopped)
+                        if (songWasQueued)
                         {
                             outputDevice.Dispose();
-                            playSong(lastSong);
+                            playSong(songPath);
                         }
                         else
                         {
-                            playSong(lastSong);
-                            songIsStopped = false;
+                            playSong(songPath);
+                            getOutputInfo();
+
                         }
                         Console.WriteLine($"Song: {songName} was clicked");
                     }
@@ -147,12 +209,11 @@ namespace NiceUIDesign.Classes
 
                         string songPath = Songs.getSongPath((int)labelClicked.Tag);
 
-                        lastSong = songPath;
 
                         //updating image and text of song in the control
                         Form1.updateControlInfo(labelClicked.Text, null);
 
-                        if (!songIsStopped)
+                        if (songWasQueued)
                         {
                             outputDevice.Dispose();
                             playSong(songPath);
@@ -160,7 +221,8 @@ namespace NiceUIDesign.Classes
                         else
                         {
                             playSong(songPath);
-                            songIsStopped = false;
+                            getOutputInfo();
+
                         }
                         Console.WriteLine($"Song: {labelClicked.Text} was clicked");
                     }
@@ -172,20 +234,21 @@ namespace NiceUIDesign.Classes
                         string songName = Songs.getSongName((int)picClicked.Tag);
                         string songPath = Songs.getSongPath((int)picClicked.Tag);
 
-                        lastSong = songPath;
 
                         //updating image and text of song in the control
                         Form1.updateControlInfo(songName, null);
 
-                        if (!songIsStopped)
+                        if (songWasQueued)
                         {
                             outputDevice.Dispose();
                             playSong(songPath);
                         }
                         else
                         {
+
                             playSong(songPath);
-                            songIsStopped = false;
+                            getOutputInfo();
+
                         }
                         Console.WriteLine($"Song: {songName} was clicked");
                     }

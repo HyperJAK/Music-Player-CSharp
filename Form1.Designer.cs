@@ -39,6 +39,7 @@
             this.user_name = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.right_displayer = new System.Windows.Forms.Panel();
+            this.keyboardListener = new System.ComponentModel.BackgroundWorker();
             this.navBar.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -85,6 +86,7 @@
             this.browseSongs_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.browseSongs_btn.UseVisualStyleBackColor = true;
             this.browseSongs_btn.Click += new System.EventHandler(this.browseSongs_btn_Click);
+            this.browseSongs_btn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.keyboardSongControls);
             this.browseSongs_btn.Leave += new System.EventHandler(this.browseSongs_btn_Leave);
             // 
             // settings_btn
@@ -201,6 +203,10 @@
             this.right_displayer.TabIndex = 1;
             this.right_displayer.Paint += new System.Windows.Forms.PaintEventHandler(this.right_displayer_Paint);
             // 
+            // keyboardListener
+            // 
+            this.keyboardListener.DoWork += new System.ComponentModel.DoWorkEventHandler(this.keyboardListener_DoWork);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -240,6 +246,7 @@
         private System.Windows.Forms.Button contactUs_btn;
         private System.Windows.Forms.Panel nav_panel;
         private System.Windows.Forms.Panel right_displayer;
+        private System.ComponentModel.BackgroundWorker keyboardListener;
     }
 }
 

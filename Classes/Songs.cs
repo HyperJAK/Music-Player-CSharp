@@ -241,7 +241,7 @@ namespace NiceUIDesign.Classes
             CustomLabel label = new CustomLabel($"label:{song.name}", song.name, tagid);
 
             pic.BackColor = Color.Black;
-            pic.Width = panel.Width - 6;
+            pic.Width = panel.Width - 7;
             pic.Height = panel.Height - 60;
             label.Width = panel.Width - 6;
             label.Height = 50;

@@ -49,7 +49,7 @@ namespace NiceUIDesign
             right_displayer.BackColor = Color.White;
 
             updateControlsPosition();
-            songControl.control_label.Height = browseSongs_btn.Height * 2;
+            songControl.control_label.Height = browseSongs_btn.Height;
 
             songControl.Height = browseSongs_btn.Height * 3;
             songControl.Dock = DockStyle.Bottom;
@@ -64,7 +64,6 @@ namespace NiceUIDesign
 
             songControl.Visible = false;
 
-            this.KeyUp += keyboard_KeyDown;
 
             //pictureBox2.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pictureBox2.Width, pictureBox2.Height, 30, 30));
 
@@ -76,10 +75,13 @@ namespace NiceUIDesign
         {
             //Initializing SongControl class stuff
   
-            songControl.pause_btn.Location = new Point((right_displayer.Width / 2) - (songControl.pause_btn.Width / 2), ((browseSongs_btn.Height * 3) / 2) + (songControl.pause_btn.Height / 2));
+            songControl.pause_btn.Location = new Point((right_displayer.Width / 2) - (songControl.pause_btn.Width / 2), ((browseSongs_btn.Height * 3) / 2) + (songControl.pause_btn.Height / 10));
+            songControl.prev_btn.Location = new Point((right_displayer.Width / 2) - (songControl.prev_btn.Width * 2), ((browseSongs_btn.Height * 3) / 2) + (songControl.prev_btn.Height / 10));
+            songControl.next_btn.Location = new Point((right_displayer.Width / 2) + (songControl.next_btn.Width), ((browseSongs_btn.Height * 3) / 2) + (songControl.next_btn.Height / 10));
             songControl.control_image.Location = new Point(10, 10);
-            songControl.control_label.Location = new Point(15 + songControl.control_image.Width, 20);
+            songControl.control_label.Location = new Point(15 + songControl.control_image.Width, 11);
             songControl.control_label.Width = right_displayer.Width - 10;
+            songControl.repeat_btn.Location = new Point(((right_displayer.Width / 2) - (songControl.repeat_btn.Width * 6)), ((browseSongs_btn.Height * 3) / 2) + (songControl.repeat_btn.Height / 2));
         }
 
         public static void changeSongControl_visibility(bool value)
@@ -157,7 +159,6 @@ namespace NiceUIDesign
                 case "browse":
                     {
                         right_displayer.Controls.Remove(songs);
-
                     }
                     break;
                 case "add_song":
@@ -322,6 +323,7 @@ namespace NiceUIDesign
 
         private void settings_btn_Click(object sender, EventArgs e)
         {
+            browseSongs_btn.Focus();
             if (selectedPanel != "settings")
             {
                 if (selectedPanel != null)
@@ -443,9 +445,9 @@ namespace NiceUIDesign
         //This part is for SongControl class
         private void keyboard_KeyDown(object sender, KeyEventArgs e)
         {
-            if (SongsTracker.songIsQueued)
+            if (SongsTracker.songWasQueued)
             {
-                if (e.KeyCode == Keys.MediaPlayPause)
+                if (e.KeyCode == Keys.MediaPlayPause || e.KeyCode == Keys.Space)
                 {
                     // Perform your play/pause logic here
                     if (SongsTracker.songIsPaused)
@@ -453,6 +455,7 @@ namespace NiceUIDesign
                         // Resume playback
                         SongsTracker.outputDevice.Play();
                         SongsTracker.songIsPaused = false;
+                        Console.WriteLine("Handled inside");
                     }
                     else
                     {
@@ -460,7 +463,7 @@ namespace NiceUIDesign
                         SongsTracker.outputDevice.Pause();
                         SongsTracker.songIsPaused = true;
                     }
-
+                    Console.WriteLine("Handled");
                     // Consume the key press event
                     e.Handled = true;
                 }
@@ -470,21 +473,9 @@ namespace NiceUIDesign
         }
         private void pauseButton_Click(object sender, EventArgs e)
         {
-                if (SongsTracker.songIsPaused)
-                {
-                    SongsTracker.outputDevice.Play();
-                    SongsTracker.songIsPaused = false;
-                }
-                else if(!SongsTracker.songIsPaused)
-                {
-                    SongsTracker.outputDevice.Pause();
-                    SongsTracker.songIsPaused = true;
-                }
-            if (SongsTracker.songIsStopped && SongsTracker.songIsQueued)
-            {
-                SongsTracker.playSong(SongsTracker.lastSong);
-            }
-        
+            SongsTracker.getOutputInfo();
+            SongsTracker.pauseOrPlaySong();
+
         }
 
         private void nextButton_Click(object sender, EventArgs e)
@@ -499,7 +490,34 @@ namespace NiceUIDesign
 
         private void repeatButton_Click(object sender, EventArgs e)
         {
+            if (!SongsTracker.songIsStopped && !SongsTracker.songIsPaused && SongsTracker.songWasQueued)
+            {
+                if (!SongsTracker.repeatSong)
+                {
+                    SongsTracker.repeatSong = true;
+                }
+                else
+                {
+                    SongsTracker.repeatSong = false;
+                }
+            }
+            else
+            {
+                if (!SongsTracker.repeatSong)
+                {
+                    SongsTracker.repeatSong = true;
+                    SongsTracker.getOutputInfo();
 
+                    SongsTracker.pauseOrPlaySong();
+
+                }
+                else
+                {
+                    SongsTracker.repeatSong = false;
+                }
+                
+            }
+            
         }
 
         private void label_Image_Click(object sender, EventArgs e)
@@ -507,6 +525,13 @@ namespace NiceUIDesign
 
         }
 
+        private void keyboardListener_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+        }
 
+        private void keyboardSongControls(object sender, KeyEventArgs e)
+        {
+            SongsTracker.pauseOrPlaySong();
+        }
     }
 }

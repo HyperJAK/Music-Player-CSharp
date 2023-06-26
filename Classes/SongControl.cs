@@ -18,11 +18,20 @@ namespace NiceUIDesign.Classes
 
         public SongControl()
         {
-            pause_btn.Size = new Size(30, 30);
+            pause_btn.Size = new Size(50, 50);
             pause_btn.BackColor = Color.Blue;
-            pause_btn.ForeColor = Color.Blue;
+
+            prev_btn.Size = new Size(40, 40);
+            prev_btn.BackColor = Color.Blue;
+
+            next_btn.Size = new Size(40, 40);
+            next_btn.BackColor = Color.Blue;
+
+            repeat_btn.Size = new Size(25, 25);
+            repeat_btn.BackColor = Color.Blue;
 
             control_label.Text = "Just testing here";
+            control_label.BackColor = Color.Blue;
 
             control_image.Size = new Size (100, 100);
             control_image.BackColor = Color.Blue;
