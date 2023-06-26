@@ -12,17 +12,18 @@ namespace NiceUIDesign.Classes
         private List<FlowLayoutPanel> panels;
         private List<PictureBox> pics;
         private List<Label> labels;
-        public static string lastSong;
+        public string lastSong;
+        private bool playbackListenerAdded = false;
 
-        public static bool songIsStopped = true;
-        public static bool songIsPaused = false;
-        public static bool songWasQueued = false;
-        public static bool repeatSong = false;
+        public bool songIsStopped = true;
+        public bool songIsPaused = false;
+        public bool songWasQueued = false;
+        public bool repeatSong = false;
 
 
         //Output device for playing audio
-        public static WaveOutEvent outputDevice;
-        public static AudioFileReader audioFileReader;
+        public WaveOutEvent outputDevice;
+        public AudioFileReader audioFileReader;
 
         public SongsTracker()
         {
@@ -51,56 +52,66 @@ namespace NiceUIDesign.Classes
             labels.Add(label);
         }
 
-        public static void playSong(string songPath)
+        public void playSong(string songPath)
         {
-            //to remember what was the last song played (global var)
+            //To remember what was the last song played (global var)
             lastSong = songPath;
 
             outputDevice = new WaveOutEvent();
+            if (!playbackListenerAdded)
+            {
+                
+                playbackListenerAdded = true;
+            }
             outputDevice.PlaybackStopped += outputDevice_finishedSong;
 
-            // Create an audio file reader
+            //Create an audio file reader
             audioFileReader = new AudioFileReader(songPath);
 
-            // Set the audio file reader as the output device's audio source
+            //Set the audio file reader as the output device's audio source
             outputDevice.Init(audioFileReader);
 
-            // Start playing the audio file
+            //Start playing the audio file
             outputDevice.Play();
 
         }
 
-        private static void outputDevice_finishedSong(object sender, StoppedEventArgs e)
+        private void outputDevice_finishedSong(object sender, StoppedEventArgs e)
         {
+            Console.WriteLine("Here");
             if (repeatSong)
             {
-                Console.WriteLine("Entered");
                 stopSong();
                 playSong(lastSong);
             }
-            else
-            {
-                stopSong();
-            }
-            
         }
 
-        public static void stopSong()
+        public void stopSong()
         {
             if (outputDevice != null)
             {
-                outputDevice.Stop();
+                if (outputDevice.PlaybackState == PlaybackState.Playing)
+                {
+                    repeatSong = false;
+                    outputDevice.Stop();
+
+                }
+
+                if (audioFileReader != null)
+                {
+                    audioFileReader.Dispose();
+                    audioFileReader = null;
+                    Console.WriteLine("Stopped code 1");
+                }
+                Console.WriteLine("Stopped code 2");
                 outputDevice.Dispose();
                 outputDevice = null;
             }
-            if (audioFileReader != null)
-            {
-                audioFileReader.Dispose();
-                audioFileReader = null;
-            }
+
+            
         }
 
-        public static void pauseOrPlaySong()
+        public void pauseOrPlaySong()
         {
             if (songIsPaused && !songIsStopped)
             {
@@ -112,14 +123,15 @@ namespace NiceUIDesign.Classes
                 outputDevice.Pause();
                 getOutputInfo();
             }
-            else if (songIsStopped && songWasQueued && !songIsPaused)
+            else if (songIsStopped && !songIsPaused)
             {
                 playSong(lastSong);
                 getOutputInfo();
             }
+
         }
 
-        public static void getOutputInfo()
+        public void getOutputInfo()
         {   if(outputDevice != null)
             {
                 PlaybackState info = outputDevice.PlaybackState;
@@ -186,8 +198,9 @@ namespace NiceUIDesign.Classes
 
                         if (songWasQueued)
                         {
-                            outputDevice.Dispose();
+                            stopSong();
                             playSong(songPath);
+                            getOutputInfo();
                         }
                         else
                         {
@@ -211,8 +224,9 @@ namespace NiceUIDesign.Classes
 
                         if (songWasQueued)
                         {
-                            outputDevice.Dispose();
+                            stopSong();
                             playSong(songPath);
+                            getOutputInfo();
                         }
                         else
                         {
@@ -236,12 +250,14 @@ namespace NiceUIDesign.Classes
 
                         if (songWasQueued)
                         {
-                            outputDevice.Dispose();
+                            Console.WriteLine("Danger");
+                            stopSong();
                             playSong(songPath);
+                            getOutputInfo();
                         }
                         else
                         {
-
+                            Console.WriteLine("not danger");
                             playSong(songPath);
                             getOutputInfo();
 

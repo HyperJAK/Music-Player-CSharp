@@ -446,23 +446,23 @@ namespace NiceUIDesign
         //This part is for SongControl class
         private void keyboard_KeyDown(object sender, KeyEventArgs e)
         {
-            if (SongsTracker.songWasQueued)
+            if (songs.songTracker.songWasQueued)
             {
                 if (e.KeyCode == Keys.MediaPlayPause || e.KeyCode == Keys.Space)
                 {
                     // Perform your play/pause logic here
-                    if (SongsTracker.songIsPaused)
+                    if (songs.songTracker.songIsPaused)
                     {
                         // Resume playback
-                        SongsTracker.outputDevice.Play();
-                        SongsTracker.songIsPaused = false;
+                        songs.songTracker.outputDevice.Play();
+                        songs.songTracker.songIsPaused = false;
                         Console.WriteLine("Handled inside");
                     }
                     else
                     {
                         // Pause playback
-                        SongsTracker.outputDevice.Pause();
-                        SongsTracker.songIsPaused = true;
+                        songs.songTracker.outputDevice.Pause();
+                        songs.songTracker.songIsPaused = true;
                     }
                     Console.WriteLine("Handled");
                     // Consume the key press event
@@ -474,8 +474,8 @@ namespace NiceUIDesign
         }
         private void pauseButton_Click(object sender, EventArgs e)
         {
-            SongsTracker.getOutputInfo();
-            SongsTracker.pauseOrPlaySong();
+            songs.songTracker.getOutputInfo();
+            songs.songTracker.pauseOrPlaySong();
 
         }
 
@@ -491,30 +491,30 @@ namespace NiceUIDesign
 
         private void repeatButton_Click(object sender, EventArgs e)
         {
-            if (!SongsTracker.songIsStopped && !SongsTracker.songIsPaused && SongsTracker.songWasQueued)
+            if (!songs.songTracker.songIsStopped && !songs.songTracker.songIsPaused && songs.songTracker.songWasQueued)
             {
-                if (!SongsTracker.repeatSong)
+                if (!songs.songTracker.repeatSong)
                 {
-                    SongsTracker.repeatSong = true;
+                    songs.songTracker.repeatSong = true;
                 }
                 else
                 {
-                    SongsTracker.repeatSong = false;
+                    songs.songTracker.repeatSong = false;
                 }
             }
             else
             {
-                if (!SongsTracker.repeatSong)
+                if (!songs.songTracker.repeatSong)
                 {
-                    SongsTracker.repeatSong = true;
-                    SongsTracker.getOutputInfo();
+                    songs.songTracker.repeatSong = true;
+                    songs.songTracker.getOutputInfo();
 
-                    SongsTracker.pauseOrPlaySong();
+                    songs.songTracker.pauseOrPlaySong();
 
                 }
                 else
                 {
-                    SongsTracker.repeatSong = false;
+                    songs.songTracker.repeatSong = false;
                 }
                 
             }
@@ -532,15 +532,15 @@ namespace NiceUIDesign
 
         private void keyboardSongControls(object sender, KeyEventArgs e)
         {
-            SongsTracker.pauseOrPlaySong();
+            songs.songTracker.pauseOrPlaySong();
         }
 
         private void addSong_keyUpListener(object sender, KeyEventArgs e)
         {
-            if ((e.KeyCode == Keys.MediaPlayPause || e.KeyCode == Keys.Space) && (SongsTracker.songWasQueued))
+            if ((e.KeyCode == Keys.MediaPlayPause || e.KeyCode == Keys.Space) && (songs.songTracker.songWasQueued))
             {
-                SongsTracker.getOutputInfo();
-                SongsTracker.pauseOrPlaySong();
+                songs.songTracker.getOutputInfo();
+                songs.songTracker.pauseOrPlaySong();
             }
             e.Handled = true;
                 
@@ -548,30 +548,30 @@ namespace NiceUIDesign
 
         private void playlist_keyUpListener(object sender, KeyEventArgs e)
         {
-            if ((e.KeyCode == Keys.MediaPlayPause || e.KeyCode == Keys.Space) && (SongsTracker.songWasQueued))
+            if ((e.KeyCode == Keys.MediaPlayPause || e.KeyCode == Keys.Space) && (songs.songTracker.songWasQueued))
             {
-                SongsTracker.getOutputInfo();
-                SongsTracker.pauseOrPlaySong();
+                songs.songTracker.getOutputInfo();
+                songs.songTracker.pauseOrPlaySong();
             }
             e.Handled = true;
         }
 
         private void contactUs_keyUpListener(object sender, KeyEventArgs e)
         {
-            if ((e.KeyCode == Keys.MediaPlayPause || e.KeyCode == Keys.Space) && (SongsTracker.songWasQueued))
+            if ((e.KeyCode == Keys.MediaPlayPause || e.KeyCode == Keys.Space) && (songs.songTracker.songWasQueued))
             {
-                SongsTracker.getOutputInfo();
-                SongsTracker.pauseOrPlaySong();
+                songs.songTracker.getOutputInfo();
+                songs.songTracker.pauseOrPlaySong();
             }
             e.Handled = true;
         }
 
         private void settings_keyUpListener(object sender, KeyEventArgs e)
         {
-            if ((e.KeyCode == Keys.MediaPlayPause || e.KeyCode == Keys.Space) && (SongsTracker.songWasQueued))
+            if ((e.KeyCode == Keys.MediaPlayPause || e.KeyCode == Keys.Space) && (songs.songTracker.songWasQueued))
             {
-                SongsTracker.getOutputInfo();
-                SongsTracker.pauseOrPlaySong();
+                songs.songTracker.getOutputInfo();
+                songs.songTracker.pauseOrPlaySong();
             }
             e.Handled = true;
         }

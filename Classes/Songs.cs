@@ -14,6 +14,7 @@ namespace NiceUIDesign.Classes
     {
 
         public List<Song> allSongs = new List<Song>();
+        public SongsTracker songTracker = new SongsTracker();
 
         public int songCounter = 0;
 
@@ -257,7 +258,6 @@ namespace NiceUIDesign.Classes
 
 
             //Adding listeners for each of these
-            SongsTracker songTracker = new SongsTracker();
             songTracker.addPanel(panel);
             songTracker.addImage(pic);
             songTracker.addLabel(label);
