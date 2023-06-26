@@ -32,7 +32,7 @@
             this.nav_panel = new System.Windows.Forms.Panel();
             this.browseSongs_btn = new System.Windows.Forms.Button();
             this.settings_btn = new System.Windows.Forms.Button();
-            this.contactUs_btn = new System.Windows.Forms.Button();
+            this.downloadYt_btn = new System.Windows.Forms.Button();
             this.playlists_btn = new System.Windows.Forms.Button();
             this.addSong_btn = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -51,7 +51,7 @@
             this.navBar.Controls.Add(this.nav_panel);
             this.navBar.Controls.Add(this.browseSongs_btn);
             this.navBar.Controls.Add(this.settings_btn);
-            this.navBar.Controls.Add(this.contactUs_btn);
+            this.navBar.Controls.Add(this.downloadYt_btn);
             this.navBar.Controls.Add(this.playlists_btn);
             this.navBar.Controls.Add(this.addSong_btn);
             this.navBar.Controls.Add(this.panel2);
@@ -108,23 +108,23 @@
             this.settings_btn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.settings_keyUpListener);
             this.settings_btn.Leave += new System.EventHandler(this.settings_btn_Leave);
             // 
-            // contactUs_btn
+            // downloadYt_btn
             // 
-            this.contactUs_btn.FlatAppearance.BorderSize = 0;
-            this.contactUs_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.contactUs_btn.Font = new System.Drawing.Font("Nirmala UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.contactUs_btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.contactUs_btn.Location = new System.Drawing.Point(0, 440);
-            this.contactUs_btn.Margin = new System.Windows.Forms.Padding(4);
-            this.contactUs_btn.Name = "contactUs_btn";
-            this.contactUs_btn.Size = new System.Drawing.Size(248, 52);
-            this.contactUs_btn.TabIndex = 2;
-            this.contactUs_btn.Text = "Contact Us";
-            this.contactUs_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.contactUs_btn.UseVisualStyleBackColor = true;
-            this.contactUs_btn.Click += new System.EventHandler(this.contactUs_click);
-            this.contactUs_btn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.contactUs_keyUpListener);
-            this.contactUs_btn.Leave += new System.EventHandler(this.contactUs_btn_Leave);
+            this.downloadYt_btn.FlatAppearance.BorderSize = 0;
+            this.downloadYt_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.downloadYt_btn.Font = new System.Drawing.Font("Nirmala UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.downloadYt_btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.downloadYt_btn.Location = new System.Drawing.Point(0, 440);
+            this.downloadYt_btn.Margin = new System.Windows.Forms.Padding(4);
+            this.downloadYt_btn.Name = "downloadYt_btn";
+            this.downloadYt_btn.Size = new System.Drawing.Size(248, 52);
+            this.downloadYt_btn.TabIndex = 2;
+            this.downloadYt_btn.Text = "Download";
+            this.downloadYt_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.downloadYt_btn.UseVisualStyleBackColor = true;
+            this.downloadYt_btn.Click += new System.EventHandler(this.downloadYt_click);
+            this.downloadYt_btn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.downloadYt_keyUpListener);
+            this.downloadYt_btn.Leave += new System.EventHandler(this.downloadYt_btn_Leave);
             // 
             // playlists_btn
             // 
@@ -247,7 +247,7 @@
         private System.Windows.Forms.Button settings_btn;
         private System.Windows.Forms.Button playlists_btn;
         private System.Windows.Forms.Button addSong_btn;
-        private System.Windows.Forms.Button contactUs_btn;
+        private System.Windows.Forms.Button downloadYt_btn;
         private System.Windows.Forms.Panel nav_panel;
         private System.Windows.Forms.Panel right_displayer;
         private System.ComponentModel.BackgroundWorker keyboardListener;

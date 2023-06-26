@@ -25,6 +25,8 @@ namespace NiceUIDesign
 
         private Songs songs = new Songs();
         private static SongControl songControl = new SongControl();
+        private AddSongs addSongs = new AddSongs();
+
         public string selectedPanel;
 
         public static void updateControlInfo(string songName, Image image)
@@ -63,6 +65,8 @@ namespace NiceUIDesign
             songControl.control_label.Click += label_Image_Click;
 
             songControl.Visible = false;
+
+            addSongs.browse_btn.Click += browseSongsListener_Click;
 
 
             //pictureBox2.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pictureBox2.Width, pictureBox2.Height, 30, 30));
@@ -163,7 +167,7 @@ namespace NiceUIDesign
                     break;
                 case "add_song":
                     {
-                        //right_displayer.Controls.Remove(settings);
+                        right_displayer.Controls.Remove(addSongs);
                     }
                     break;
                 case "playlist":
@@ -172,7 +176,7 @@ namespace NiceUIDesign
                     }
                     break;
 
-                case "contact_us":
+                case "download":
                     {
                         //right_displayer.Controls.Remove(playlist);
                     }
@@ -217,7 +221,7 @@ namespace NiceUIDesign
                         //stops the panel from calculating, in order to update its elements faster
                         //right_displayer.SuspendLayout();
                         right_displayer.Visible = false;
-                        right_displayer.Controls.Add(songs);
+                        right_displayer.Controls.Add(addSongs);
                         right_displayer.Controls.Add(songControl);
                         right_displayer.Visible = true;
 
@@ -238,6 +242,10 @@ namespace NiceUIDesign
                         nav_panel.Left = addSong_btn.Left;
 
                         selectedPanel = "add_song";
+
+                        right_displayer.Visible = false;
+                        right_displayer.Controls.Add(addSongs);
+                        right_displayer.Visible = true;
 
                         /*//stops the panel from calculating, in order to update its elements faster
                         right_displayer.SuspendLayout();
@@ -273,13 +281,13 @@ namespace NiceUIDesign
                     }
                     break;
 
-                case "contact_us":
+                case "download":
                     {
-                        nav_panel.Height = contactUs_btn.Height;
-                        nav_panel.Top = contactUs_btn.Top;
-                        nav_panel.Left = contactUs_btn.Left;
+                        nav_panel.Height = downloadYt_btn.Height;
+                        nav_panel.Top = downloadYt_btn.Top;
+                        nav_panel.Left = downloadYt_btn.Left;
 
-                        selectedPanel = "contact_us";
+                        selectedPanel = "download";
 
                         /*//stops the panel from calculating, in order to update its elements faster
                         right_displayer.SuspendLayout();
@@ -290,7 +298,7 @@ namespace NiceUIDesign
                         right_displayer.ResumeLayout();
                         //Forces panel to update calculations
                         right_displayer.PerformLayout();*/
-                        contactUs_btn.BackColor = Color.FromArgb(46, 51, 73);
+                        downloadYt_btn.BackColor = Color.FromArgb(46, 51, 73);
                     }
                     break;
 
@@ -367,8 +375,6 @@ namespace NiceUIDesign
                 if (selectedPanel != null)
                     DisposeOfItem(selectedPanel);
 
-                songs.add_new_songs();
-                songs.reloadSongs();
                 switchPanel("browse");
 
             }
@@ -419,11 +425,11 @@ namespace NiceUIDesign
 
         private void contactUs_click(object sender, EventArgs e)
         {
-            if (selectedPanel != "contact_us")
+            if (selectedPanel != "download")
             {
                 if (selectedPanel != null)
                     DisposeOfItem(selectedPanel);
-                switchPanel("contact_us");
+                switchPanel("download");
 
             }
         }
@@ -440,7 +446,7 @@ namespace NiceUIDesign
 
         private void contactUs_btn_Leave(object sender, EventArgs e)
         {
-            contactUs_btn.BackColor = Color.FromArgb(24, 30, 54);
+            downloadYt_btn.BackColor = Color.FromArgb(24, 30, 54);
         }
 
         //This part is for SongControl class
@@ -558,12 +564,7 @@ namespace NiceUIDesign
 
         private void contactUs_keyUpListener(object sender, KeyEventArgs e)
         {
-            if ((e.KeyCode == Keys.MediaPlayPause || e.KeyCode == Keys.Space) && (songs.songTracker.songWasQueued))
-            {
-                songs.songTracker.getOutputInfo();
-                songs.songTracker.pauseOrPlaySong();
-            }
-            e.Handled = true;
+
         }
 
         private void settings_keyUpListener(object sender, KeyEventArgs e)
@@ -574,6 +575,28 @@ namespace NiceUIDesign
                 songs.songTracker.pauseOrPlaySong();
             }
             e.Handled = true;
+        }
+
+        private void downloadYt_click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void downloadYt_btn_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void downloadYt_keyUpListener(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void browseSongsListener_Click(object sender, EventArgs e)
+        {
+            songs.add_new_songs();
+            songs.reloadSongs();
+            switchPanel("browse");
         }
     }
 }

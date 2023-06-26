@@ -141,6 +141,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\AddSongs.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Classes\Song.cs" />
     <Compile Include="Classes\SongControl.cs">
       <SubType>Component</SubType>
@@ -152,7 +155,10 @@
     <Compile Include="Classes\Songs.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Custom\CustomButton.cs">
+    <Compile Include="Custom\CustomSmoothEdgesButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Custom\CustomRoundButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Custom\CustomFlowLayoutPanel.cs">

@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace NiceUIDesign.Custom
 {
-    public class CustomButton : Button
+    public class CustomRoundButton : Button
     {
 
         protected override void OnPaint(PaintEventArgs pevent)
@@ -20,14 +20,14 @@ namespace NiceUIDesign.Custom
             base.OnPaint(pevent);
         }
 
-        public CustomButton(string name,string tag)
+        public CustomRoundButton(string name,string tag)
         {
             this.Name = name;
             this.Tag = tag;
 
         }
 
-        public CustomButton()
+        public CustomRoundButton()
         {
 
         }
