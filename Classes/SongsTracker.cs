@@ -109,10 +109,6 @@ namespace NiceUIDesign.Classes
             }
             else if (!songIsPaused && !songIsStopped)
             {
-                Console.WriteLine(songIsPaused);
-                Console.WriteLine(songIsStopped);
-                Console.WriteLine(songWasQueued);
-
                 outputDevice.Pause();
                 getOutputInfo();
             }

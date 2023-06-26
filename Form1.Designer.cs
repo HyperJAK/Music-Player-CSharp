@@ -105,6 +105,7 @@
             this.settings_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.settings_btn.UseVisualStyleBackColor = true;
             this.settings_btn.Click += new System.EventHandler(this.settings_btn_Click);
+            this.settings_btn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.settings_keyUpListener);
             this.settings_btn.Leave += new System.EventHandler(this.settings_btn_Leave);
             // 
             // contactUs_btn
@@ -122,6 +123,7 @@
             this.contactUs_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.contactUs_btn.UseVisualStyleBackColor = true;
             this.contactUs_btn.Click += new System.EventHandler(this.contactUs_click);
+            this.contactUs_btn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.contactUs_keyUpListener);
             this.contactUs_btn.Leave += new System.EventHandler(this.contactUs_btn_Leave);
             // 
             // playlists_btn
@@ -139,6 +141,7 @@
             this.playlists_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.playlists_btn.UseVisualStyleBackColor = true;
             this.playlists_btn.Click += new System.EventHandler(this.playlist_click);
+            this.playlists_btn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.playlist_keyUpListener);
             this.playlists_btn.Leave += new System.EventHandler(this.playlist_btn_Leave);
             // 
             // addSong_btn
@@ -156,6 +159,7 @@
             this.addSong_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.addSong_btn.UseVisualStyleBackColor = true;
             this.addSong_btn.Click += new System.EventHandler(this.addSong_btn_Click);
+            this.addSong_btn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.addSong_keyUpListener);
             this.addSong_btn.Leave += new System.EventHandler(this.addSong_btn_Leave);
             // 
             // panel2

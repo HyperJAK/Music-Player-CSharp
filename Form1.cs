@@ -323,7 +323,6 @@ namespace NiceUIDesign
 
         private void settings_btn_Click(object sender, EventArgs e)
         {
-            browseSongs_btn.Focus();
             if (selectedPanel != "settings")
             {
                 if (selectedPanel != null)
@@ -366,6 +365,7 @@ namespace NiceUIDesign
                 //put these in switchpanel method (later)
                 if (selectedPanel != null)
                     DisposeOfItem(selectedPanel);
+
                 songs.add_new_songs();
                 songs.reloadSongs();
                 switchPanel("browse");
@@ -532,6 +532,47 @@ namespace NiceUIDesign
         private void keyboardSongControls(object sender, KeyEventArgs e)
         {
             SongsTracker.pauseOrPlaySong();
+        }
+
+        private void addSong_keyUpListener(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyCode == Keys.MediaPlayPause || e.KeyCode == Keys.Space) && (SongsTracker.songWasQueued))
+            {
+                SongsTracker.getOutputInfo();
+                SongsTracker.pauseOrPlaySong();
+            }
+            e.Handled = true;
+                
+        }
+
+        private void playlist_keyUpListener(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyCode == Keys.MediaPlayPause || e.KeyCode == Keys.Space) && (SongsTracker.songWasQueued))
+            {
+                SongsTracker.getOutputInfo();
+                SongsTracker.pauseOrPlaySong();
+            }
+            e.Handled = true;
+        }
+
+        private void contactUs_keyUpListener(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyCode == Keys.MediaPlayPause || e.KeyCode == Keys.Space) && (SongsTracker.songWasQueued))
+            {
+                SongsTracker.getOutputInfo();
+                SongsTracker.pauseOrPlaySong();
+            }
+            e.Handled = true;
+        }
+
+        private void settings_keyUpListener(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyCode == Keys.MediaPlayPause || e.KeyCode == Keys.Space) && (SongsTracker.songWasQueued))
+            {
+                SongsTracker.getOutputInfo();
+                SongsTracker.pauseOrPlaySong();
+            }
+            e.Handled = true;
         }
     }
 }
