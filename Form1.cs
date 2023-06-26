@@ -78,7 +78,7 @@ namespace NiceUIDesign
         private void updateControlsPosition()
         {
             //Initializing SongControl class stuff
-  
+
             songControl.pause_btn.Location = new Point((right_displayer.Width / 2) - (songControl.pause_btn.Width / 2), ((browseSongs_btn.Height * 3) / 2) + (songControl.pause_btn.Height / 10));
             songControl.prev_btn.Location = new Point((right_displayer.Width / 2) - (songControl.prev_btn.Width * 2), ((browseSongs_btn.Height * 3) / 2) + (songControl.prev_btn.Height / 10));
             songControl.next_btn.Location = new Point((right_displayer.Width / 2) + (songControl.next_btn.Width), ((browseSongs_btn.Height * 3) / 2) + (songControl.next_btn.Height / 10));
@@ -382,7 +382,7 @@ namespace NiceUIDesign
 
         private void ResizeMainWindow(object sender, EventArgs e)
         {
-            
+
         }
 
         private void ResizeEndMainWindow(object sender, EventArgs e)
@@ -509,9 +509,9 @@ namespace NiceUIDesign
                 {
                     songs.songTracker.repeatSong = false;
                 }
-                
+
             }
-            
+
         }
 
         private void label_Image_Click(object sender, EventArgs e)
@@ -536,7 +536,7 @@ namespace NiceUIDesign
                 songs.songTracker.PauseOrPlaySong();
             }
             e.Handled = true;
-                
+
         }
 
         private void playlist_keyUpListener(object sender, KeyEventArgs e)
@@ -593,7 +593,7 @@ namespace NiceUIDesign
                 songs.ReloadSongs();
                 switchPanel("browse");
             }
-            
+
         }
     }
 }

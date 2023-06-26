@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -19,7 +18,7 @@ namespace NiceUIDesign.Classes
         public SongsTracker songTracker = new SongsTracker();
 
         public int songCounter = 0;
-        
+
         private static Dictionary<int, string> songNameById = new Dictionary<int, string>();
         private static Dictionary<int, string> songPathById = new Dictionary<int, string>();
         private static Dictionary<string, int> songIdByPath = new Dictionary<string, int>();
@@ -28,7 +27,7 @@ namespace NiceUIDesign.Classes
 
         //Used to halt other functions from running before all songs have been loaded
         private ManualResetEvent songsLoadedEvent = new ManualResetEvent(false);
- 
+
         public Songs()
         {
             this.Anchor = AnchorStyles.Top | AnchorStyles.Left;
@@ -63,9 +62,9 @@ namespace NiceUIDesign.Classes
                 //Reverses list back to original
                 allSongs.Reverse();
             }
-            
 
-            
+
+
             this.ResumeLayout();
             this.PerformLayout();
 
@@ -74,7 +73,7 @@ namespace NiceUIDesign.Classes
 
         }
 
-        
+
         public void ReloadSongs()
         {
             if (latestAddedFirst)
@@ -82,7 +81,7 @@ namespace NiceUIDesign.Classes
                 this.Controls.Clear();
 
                 allSongs.Reverse();
-                foreach(Song s in allSongs)
+                foreach (Song s in allSongs)
                 {
                     AddElement(s);
                 }
@@ -103,7 +102,7 @@ namespace NiceUIDesign.Classes
         {
             List<string> tempList = new List<string>();
 
-            foreach(string s in songs)
+            foreach (string s in songs)
             {
                 Console.WriteLine(s);
                 if (!songIdByPath.ContainsKey(s))
@@ -138,7 +137,7 @@ namespace NiceUIDesign.Classes
 
                 //Adding additional info on song
                 GetSongInfo(tempSongs);
-                
+
                 foreach (Song s in tempSongs)
                 {
                     AddElement(s);
@@ -149,8 +148,8 @@ namespace NiceUIDesign.Classes
                     songPathById.Add(s.id, s.path);
                     songIdByPath.Add(s.path, s.id);
                 }
-                
-                
+
+
                 this.ResumeLayout();
                 this.PerformLayout();
 
@@ -232,7 +231,7 @@ namespace NiceUIDesign.Classes
 
         }
 
-        
+
         public static string GetName(int id)
         {
             string value;
@@ -241,7 +240,7 @@ namespace NiceUIDesign.Classes
             return value;
         }
 
-        
+
         public static string GetPath(int id)
         {
             string value;
@@ -251,7 +250,7 @@ namespace NiceUIDesign.Classes
 
         }
 
-        
+
         public void CreateDicts()
         {
             foreach (Song s in allSongs)
@@ -264,7 +263,7 @@ namespace NiceUIDesign.Classes
 
 
 
-        
+
         public void AddElement(Song song)
         {
             songCounter++;
@@ -302,14 +301,14 @@ namespace NiceUIDesign.Classes
 
         }
 
-        
+
         public void SaveInfo(List<Song> allSongs)
         {
             string json = JsonConvert.SerializeObject(allSongs, Formatting.Indented);
             File.WriteAllText("dictionary.json", json);
         }
 
-        
+
         public void GetInfo()
         {
             try

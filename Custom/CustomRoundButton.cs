@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NiceUIDesign.Custom
@@ -20,7 +15,7 @@ namespace NiceUIDesign.Custom
             base.OnPaint(pevent);
         }
 
-        public CustomRoundButton(string name,string tag)
+        public CustomRoundButton(string name, string tag)
         {
             this.Name = name;
             this.Tag = tag;

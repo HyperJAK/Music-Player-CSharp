@@ -63,7 +63,7 @@ namespace NiceUIDesign.Classes
             outputDevice = new WaveOutEvent();
             if (!playbackListenerAdded)
             {
-                
+
                 playbackListenerAdded = true;
             }
             outputDevice.PlaybackStopped += OutputDevice_finishedSong;
@@ -113,7 +113,7 @@ namespace NiceUIDesign.Classes
                 outputDevice = null;
             }
 
-            
+
         }
 
         override
@@ -139,7 +139,8 @@ namespace NiceUIDesign.Classes
 
         override
         public void GetOutputInfo()
-        {   if(outputDevice != null)
+        {
+            if (outputDevice != null)
             {
                 PlaybackState info = outputDevice.PlaybackState;
 
@@ -176,7 +177,7 @@ namespace NiceUIDesign.Classes
                 songWasQueued = true;
                 songIsPaused = false;
             }
-            
+
         }
 
         override

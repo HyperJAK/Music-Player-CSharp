@@ -1,7 +1,5 @@
 ﻿using NiceUIDesign.Custom;
-using System;
 using System.Drawing;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace NiceUIDesign.Classes
@@ -33,7 +31,7 @@ namespace NiceUIDesign.Classes
             control_label.Text = "Just testing here";
             control_label.BackColor = Color.Blue;
 
-            control_image.Size = new Size (100, 100);
+            control_image.Size = new Size(100, 100);
             control_image.BackColor = Color.Blue;
 
 
@@ -48,6 +46,6 @@ namespace NiceUIDesign.Classes
 
         }
 
-        
+
     }
 }

@@ -1,10 +1,5 @@
 ﻿using NiceUIDesign.Custom;
-using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NiceUIDesign.Classes
@@ -12,7 +7,7 @@ namespace NiceUIDesign.Classes
     public class AddSongs : Panel
     {
 
-        private CustomPictureBox allowDrop_pic = new CustomPictureBox(); 
+        private CustomPictureBox allowDrop_pic = new CustomPictureBox();
         public CustomSmoothEdgesButton browse_btn = new CustomSmoothEdgesButton("Browse");
 
         public AddSongs()
