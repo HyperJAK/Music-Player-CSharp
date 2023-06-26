@@ -216,9 +216,10 @@ namespace NiceUIDesign
 
                         //stops the panel from calculating, in order to update its elements faster
                         //right_displayer.SuspendLayout();
-
+                        right_displayer.Visible = false;
                         right_displayer.Controls.Add(songs);
                         right_displayer.Controls.Add(songControl);
+                        right_displayer.Visible = true;
 
                         //Makes panel resume calculations
                         //right_displayer.ResumeLayout();
