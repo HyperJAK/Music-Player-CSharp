@@ -221,7 +221,7 @@ namespace NiceUIDesign
                         //stops the panel from calculating, in order to update its elements faster
                         //right_displayer.SuspendLayout();
                         right_displayer.Visible = false;
-                        right_displayer.Controls.Add(addSongs);
+                        right_displayer.Controls.Add(songs);
                         right_displayer.Controls.Add(songControl);
                         right_displayer.Visible = true;
 
@@ -375,7 +375,7 @@ namespace NiceUIDesign
                 if (selectedPanel != null)
                     DisposeOfItem(selectedPanel);
 
-                switchPanel("browse");
+                switchPanel("add_song");
 
             }
         }
@@ -594,9 +594,12 @@ namespace NiceUIDesign
 
         private void browseSongsListener_Click(object sender, EventArgs e)
         {
-            songs.add_new_songs();
-            songs.reloadSongs();
-            switchPanel("browse");
+            if (songs.add_new_songs())
+            {
+                songs.reloadSongs();
+                switchPanel("browse");
+            }
+            
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -17,9 +18,11 @@ namespace NiceUIDesign.Classes
         public SongsTracker songTracker = new SongsTracker();
 
         public int songCounter = 0;
-
+        
         private static Dictionary<int, string> songNameById = new Dictionary<int, string>();
         private static Dictionary<int, string> songPathById = new Dictionary<int, string>();
+        private static Dictionary<string, int> songIdByPath = new Dictionary<string, int>();
+
         public static bool latestAddedFirst = true;                                         //From config file
 
         //Used to halt other functions from running before all songs have been loaded
@@ -94,12 +97,31 @@ namespace NiceUIDesign.Classes
 
         }
 
-        public void add_new_songs()
+        private string[] createNoDuplicateList(string[] songs)
+        {
+            List<string> tempList = new List<string>();
+
+            foreach(string s in songs)
+            {
+                Console.WriteLine(s);
+                if (!songIdByPath.ContainsKey(s))
+                {
+                    Console.WriteLine("No duplicate found");
+                    tempList.Add(s);
+                }
+            }
+
+            return tempList.ToArray();
+        }
+
+        public bool add_new_songs()
         {
             string[] songs = GetSelectedMusicFilePaths();
             List<Song> tempSongs = new List<Song>();
 
-            if (songs != null)
+            songs = createNoDuplicateList(songs);
+
+            if (songs.Length > 0)
             {
                 this.SuspendLayout();
                 int tempCounter = 1;
@@ -123,6 +145,7 @@ namespace NiceUIDesign.Classes
                     //Adding the new song to dictionaries
                     songNameById.Add(s.id, s.name);
                     songPathById.Add(s.id, s.path);
+                    songIdByPath.Add(s.path, s.id);
                 }
                 
                 
@@ -130,6 +153,13 @@ namespace NiceUIDesign.Classes
                 this.PerformLayout();
 
                 saveSongs(allSongs);
+                return true;
+            }
+            else
+            {
+                //If duplicates found then count them and create popup saying how many found
+                Console.WriteLine("Create a popup that says song duplicate found");
+                return false;
             }
         }
 
@@ -223,6 +253,7 @@ namespace NiceUIDesign.Classes
             {
                 songNameById.Add(s.id, s.name);
                 songPathById.Add(s.id, s.path);
+                songIdByPath.Add(s.path, s.id);
             }
         }
 
