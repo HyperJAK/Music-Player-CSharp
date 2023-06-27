@@ -1,7 +1,6 @@
 ﻿using NAudio.Wave;
 using NiceUIDesign.Custom;
 using System;
-using System.Windows.Forms;
 
 namespace NiceUIDesign.Classes.Abstract
 {

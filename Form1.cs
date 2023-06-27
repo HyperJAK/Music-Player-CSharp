@@ -239,7 +239,7 @@ namespace NiceUIDesign
                         //right_displayer.PerformLayout();
                         //songs.PerformLayout();
 
-                        
+
                     }
                     break;
 
@@ -395,7 +395,7 @@ namespace NiceUIDesign
 
                 case "settings":
                     {
-                        
+
                         settings_btn.BackColor = Colors.selectionBackground;
 
                         browseSongs_btn.BackColor = Colors.defaultBackground;

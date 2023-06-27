@@ -4,7 +4,6 @@ using NiceUIDesign.Custom;
 using NiceUIDesign.Resources;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 
 namespace NiceUIDesign.Classes
 {
@@ -186,7 +185,7 @@ namespace NiceUIDesign.Classes
             }
 
         }
-        
+
         override
             public void Panel_Hover(object sender, EventArgs e)
         {
@@ -217,7 +216,7 @@ namespace NiceUIDesign.Classes
                             }
 
                         }
- 
+
 
                     }
                     break;
@@ -237,7 +236,7 @@ namespace NiceUIDesign.Classes
                             }
 
                         }
-                       
+
                     }
                     break;
             }
@@ -267,7 +266,7 @@ namespace NiceUIDesign.Classes
 
                         foreach (CustomFlowLayoutPanel p in panels)
                         {
-                            if((int)p.Tag == (int)labelClicked.Tag)
+                            if ((int)p.Tag == (int)labelClicked.Tag)
                             {
                                 panelExited = p;
                                 panelExited.BackColor = Colors.defaultBackground;
@@ -275,7 +274,7 @@ namespace NiceUIDesign.Classes
                             }
 
                         }
-      
+
 
                     }
                     break;
@@ -295,11 +294,11 @@ namespace NiceUIDesign.Classes
                             }
 
                         }
-                        
+
                     }
                     break;
             }
-            }
+        }
 
 
         override
