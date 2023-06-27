@@ -1,17 +1,19 @@
 ﻿using NAudio.Wave;
 using NiceUIDesign.Classes.Abstract;
+using NiceUIDesign.Custom;
+using NiceUIDesign.Resources;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 
 namespace NiceUIDesign.Classes
 {
 
     public class SongsTracker : MusicTracker
     {
-        private List<FlowLayoutPanel> panels;
-        private List<PictureBox> pics;
-        private List<Label> labels;
+        private List<CustomFlowLayoutPanel> panels;
+        private List<CustomPictureBox> pics;
+        private List<CustomLabel> labels;
+
         public string lastSong;
         private bool playbackListenerAdded = false;
 
@@ -27,30 +29,34 @@ namespace NiceUIDesign.Classes
 
         public SongsTracker()
         {
-            panels = new List<FlowLayoutPanel>();
-            pics = new List<PictureBox>();
-            labels = new List<Label>();
+            panels = new List<CustomFlowLayoutPanel>();
+            pics = new List<CustomPictureBox>();
+            labels = new List<CustomLabel>();
         }
 
 
         override
-        public void AddPanel(FlowLayoutPanel panel)
+        public void AddPanel(CustomFlowLayoutPanel panel)
         {
             panel.Click += Panel_Click;
+            panel.MouseHover += Panel_Hover;
+            panel.MouseLeave += Panel_Hover_Exited;
             panels.Add(panel);
         }
 
         override
-        public void AddImage(PictureBox pic)
+        public void AddImage(CustomPictureBox pic)
         {
             pic.Click += Panel_Click;
+            pic.MouseHover += Panel_Hover;
             pics.Add(pic);
         }
 
         override
-        public void AddLabel(Label label)
+        public void AddLabel(CustomLabel label)
         {
             label.Click += Panel_Click;
+            label.MouseHover += Panel_Hover;
             labels.Add(label);
         }
 
@@ -181,6 +187,121 @@ namespace NiceUIDesign.Classes
         }
 
         override
+            public void Panel_Hover(object sender, EventArgs e)
+        {
+            string typeOfSender = sender.GetType().ToString();
+
+            switch (typeOfSender)
+            //All use the same listener: Panel_Click()
+            {
+                case "NiceUIDesign.Custom.CustomFlowLayoutPanel":
+                    {
+                        CustomFlowLayoutPanel panelExited = (CustomFlowLayoutPanel)sender;
+                        panelExited.BackColor = Colors.navButtonsColor;
+                    }
+                    break;
+
+                case "NiceUIDesign.Custom.CustomLabel":
+                    {
+                        CustomLabel labelClicked = (CustomLabel)sender;
+                        CustomFlowLayoutPanel panelExited;
+
+                        foreach (CustomFlowLayoutPanel p in panels)
+                        {
+                            if ((int)p.Tag == (int)labelClicked.Tag)
+                            {
+                                panelExited = p;
+                                panelExited.BackColor = Colors.navButtonsColor;
+                                break;
+                            }
+
+                        }
+
+
+                    }
+                    break;
+
+                case "NiceUIDesign.Custom.CustomPictureBox":
+                    {
+                        CustomPictureBox picClicked = (CustomPictureBox)sender;
+                        CustomFlowLayoutPanel panelExited;
+
+                        foreach (CustomFlowLayoutPanel p in panels)
+                        {
+                            if ((int)p.Tag == (int)picClicked.Tag)
+                            {
+                                panelExited = p;
+                                panelExited.BackColor = Colors.navButtonsColor;
+                                break;
+                            }
+
+                        }
+
+                    }
+                    break;
+            }
+
+        }
+
+        override
+        public void Panel_Hover_Exited(object sender, EventArgs e)
+        {
+
+            string typeOfSender = sender.GetType().ToString();
+
+            switch (typeOfSender)
+            //All use the same listener: Panel_Click()
+            {
+                case "NiceUIDesign.Custom.CustomFlowLayoutPanel":
+                    {
+                        CustomFlowLayoutPanel panelExited = (CustomFlowLayoutPanel)sender;
+                        panelExited.BackColor = Colors.elementsPanelBackground;
+                    }
+                    break;
+
+                case "NiceUIDesign.Custom.CustomLabel":
+                    {
+                        CustomLabel labelClicked = (CustomLabel)sender;
+                        CustomFlowLayoutPanel panelExited;
+
+                        foreach (CustomFlowLayoutPanel p in panels)
+                        {
+                            if ((int)p.Tag == (int)labelClicked.Tag)
+                            {
+                                panelExited = p;
+                                panelExited.BackColor = Colors.defaultBackground;
+                                break;
+                            }
+
+                        }
+
+
+                    }
+                    break;
+
+                case "NiceUIDesign.Custom.CustomPictureBox":
+                    {
+                        CustomPictureBox picClicked = (CustomPictureBox)sender;
+                        CustomFlowLayoutPanel panelExited;
+
+                        foreach (CustomFlowLayoutPanel p in panels)
+                        {
+                            if ((int)p.Tag == (int)picClicked.Tag)
+                            {
+                                panelExited = p;
+                                panelExited.BackColor = Colors.defaultBackground;
+                                break;
+                            }
+
+                        }
+
+                    }
+                    break;
+            }
+        }
+
+
+        override
         public void Panel_Click(object sender, EventArgs e)
         {
 
@@ -195,7 +316,7 @@ namespace NiceUIDesign.Classes
             {
                 case "NiceUIDesign.Custom.CustomFlowLayoutPanel":
                     {
-                        FlowLayoutPanel panelClicked = (FlowLayoutPanel)sender;
+                        CustomFlowLayoutPanel panelClicked = (CustomFlowLayoutPanel)sender;
                         Console.WriteLine($"The tag that is LinkClickedEventArgs is:{(int)panelClicked.Tag}");
                         string songName = Songs.GetName((int)panelClicked.Tag);
                         string songPath = Songs.GetPath((int)panelClicked.Tag);
@@ -222,7 +343,7 @@ namespace NiceUIDesign.Classes
 
                 case "NiceUIDesign.Custom.CustomLabel":
                     {
-                        Label labelClicked = (Label)sender;
+                        CustomLabel labelClicked = (CustomLabel)sender;
 
                         string songPath = Songs.GetPath((int)labelClicked.Tag);
 
@@ -248,7 +369,7 @@ namespace NiceUIDesign.Classes
 
                 case "NiceUIDesign.Custom.CustomPictureBox":
                     {
-                        PictureBox picClicked = (PictureBox)sender;
+                        CustomPictureBox picClicked = (CustomPictureBox)sender;
                         string songName = Songs.GetName((int)picClicked.Tag);
                         string songPath = Songs.GetPath((int)picClicked.Tag);
 

@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using NiceUIDesign.Classes.Abstract;
 using NiceUIDesign.Custom;
+using NiceUIDesign.Resources;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -32,7 +33,7 @@ namespace NiceUIDesign.Classes
         {
             this.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             this.Dock = DockStyle.Fill;
-            this.BackColor = Color.Black;
+            this.BackColor = Colors.elementsPanelBackground;
             this.TabIndex = 1;
             this.FlowDirection = FlowDirection.LeftToRight;
             this.WrapContents = true;
@@ -287,6 +288,7 @@ namespace NiceUIDesign.Classes
 
             panel.Controls.Add(pic);
             panel.Controls.Add(label);
+            panel.Capture = true;
 
 
             //Adding listeners for each of these

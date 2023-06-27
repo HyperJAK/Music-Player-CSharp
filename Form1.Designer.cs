@@ -87,7 +87,6 @@
             this.browseSongs_btn.UseVisualStyleBackColor = true;
             this.browseSongs_btn.Click += new System.EventHandler(this.browseSongs_btn_Click);
             this.browseSongs_btn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.keyboardSongControls);
-            this.browseSongs_btn.Leave += new System.EventHandler(this.browseSongs_btn_Leave);
             // 
             // settings_btn
             // 
@@ -106,7 +105,6 @@
             this.settings_btn.UseVisualStyleBackColor = true;
             this.settings_btn.Click += new System.EventHandler(this.settings_btn_Click);
             this.settings_btn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.settings_keyUpListener);
-            this.settings_btn.Leave += new System.EventHandler(this.settings_btn_Leave);
             // 
             // downloadYt_btn
             // 
@@ -124,7 +122,6 @@
             this.downloadYt_btn.UseVisualStyleBackColor = true;
             this.downloadYt_btn.Click += new System.EventHandler(this.downloadYt_click);
             this.downloadYt_btn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.downloadYt_keyUpListener);
-            this.downloadYt_btn.Leave += new System.EventHandler(this.downloadYt_btn_Leave);
             // 
             // playlists_btn
             // 
@@ -142,7 +139,6 @@
             this.playlists_btn.UseVisualStyleBackColor = true;
             this.playlists_btn.Click += new System.EventHandler(this.playlist_click);
             this.playlists_btn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.playlist_keyUpListener);
-            this.playlists_btn.Leave += new System.EventHandler(this.playlist_btn_Leave);
             // 
             // addSong_btn
             // 
@@ -160,7 +156,6 @@
             this.addSong_btn.UseVisualStyleBackColor = true;
             this.addSong_btn.Click += new System.EventHandler(this.addSong_btn_Click);
             this.addSong_btn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.addSong_keyUpListener);
-            this.addSong_btn.Leave += new System.EventHandler(this.addSong_btn_Leave);
             // 
             // panel2
             // 
