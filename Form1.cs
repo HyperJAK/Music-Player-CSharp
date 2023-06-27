@@ -28,7 +28,7 @@ namespace NiceUIDesign
         private static SongControl songControl = new SongControl();
         private AddSongs addSongs = new AddSongs();
 
-        public string selectedPanel;
+        private string selectedPanel;
 
         public static void updateControlInfo(string songName, Image image)
         {
@@ -73,6 +73,7 @@ namespace NiceUIDesign
             //pictureBox2.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pictureBox2.Width, pictureBox2.Height, 30, 30));
 
             //downloadSong(GetYouTubeAudioDownloadLink("https://youtu.be/20EWCIEnSLI","mp3"), "nothin");
+            this.Focus();
 
         }
 
@@ -223,6 +224,12 @@ namespace NiceUIDesign
                         nav_panel.Top = browseSongs_btn.Top;
                         nav_panel.Left = browseSongs_btn.Left;
 
+                        //disposing of elements if there are already some
+                        if (selectedPanel != null)
+                        {
+                            DisposeOfItem(selectedPanel);
+                        }
+
                         selectedPanel = "browse";
                         HighlightCorrectButton(selectedPanel);
 
@@ -248,6 +255,12 @@ namespace NiceUIDesign
                         nav_panel.Height = addSong_btn.Height;
                         nav_panel.Top = addSong_btn.Top;
                         nav_panel.Left = addSong_btn.Left;
+
+                        //disposing of elements if there are already some
+                        if (selectedPanel != null)
+                        {
+                            DisposeOfItem(selectedPanel);
+                        }
 
                         selectedPanel = "add_element";
                         HighlightCorrectButton(selectedPanel);
@@ -275,6 +288,12 @@ namespace NiceUIDesign
                         nav_panel.Top = playlists_btn.Top;
                         nav_panel.Left = playlists_btn.Left;
 
+                        //disposing of elements if there are already some
+                        if (selectedPanel != null)
+                        {
+                            DisposeOfItem(selectedPanel);
+                        }
+
                         selectedPanel = "playlist";
                         HighlightCorrectButton(selectedPanel);
 
@@ -297,6 +316,12 @@ namespace NiceUIDesign
                         nav_panel.Top = downloadYt_btn.Top;
                         nav_panel.Left = downloadYt_btn.Left;
 
+                        //disposing of elements if there are already some
+                        if (selectedPanel != null)
+                        {
+                            DisposeOfItem(selectedPanel);
+                        }
+
                         selectedPanel = "download";
                         HighlightCorrectButton(selectedPanel);
 
@@ -318,6 +343,12 @@ namespace NiceUIDesign
                         nav_panel.Height = settings_btn.Height;
                         nav_panel.Top = settings_btn.Top;
                         nav_panel.Left = settings_btn.Left;
+
+                        //disposing of elements if there are already some
+                        if (selectedPanel != null)
+                        {
+                            DisposeOfItem(selectedPanel);
+                        }
 
                         selectedPanel = "settings";
                         HighlightCorrectButton(selectedPanel);
@@ -417,8 +448,7 @@ namespace NiceUIDesign
         {
             if (selectedPanel != "settings")
             {
-                if (selectedPanel != null)
-                    DisposeOfItem(selectedPanel);
+
                 switchPanel("settings");
 
             }
@@ -451,9 +481,6 @@ namespace NiceUIDesign
         {
             if (selectedPanel != "add_element")
             {
-                //put these in switchpanel method (later)
-                if (selectedPanel != null)
-                    DisposeOfItem(selectedPanel);
 
                 switchPanel("add_element");
 
@@ -496,8 +523,8 @@ namespace NiceUIDesign
         {
             if (selectedPanel != "playlist")
             {
-                if (selectedPanel != null)
-                    DisposeOfItem(selectedPanel);
+ 
+
                 switchPanel("playlist");
 
             }
@@ -505,39 +532,6 @@ namespace NiceUIDesign
 
 
 
-
-
-
-
-        //This part is for SongControl class
-        private void keyboard_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (songs.songTracker.songWasQueued)
-            {
-                if (e.KeyCode == Keys.MediaPlayPause || e.KeyCode == Keys.Space)
-                {
-                    // Perform your play/pause logic here
-                    if (songs.songTracker.songIsPaused)
-                    {
-                        // Resume playback
-                        songs.songTracker.outputDevice.Play();
-                        songs.songTracker.songIsPaused = false;
-                        Console.WriteLine("Handled inside");
-                    }
-                    else
-                    {
-                        // Pause playback
-                        songs.songTracker.outputDevice.Pause();
-                        songs.songTracker.songIsPaused = true;
-                    }
-                    Console.WriteLine("Handled");
-                    // Consume the key press event
-                    e.Handled = true;
-                }
-            }
-            // Consume the key press event
-            e.Handled = true;
-        }
         private void pauseButton_Click(object sender, EventArgs e)
         {
             songs.songTracker.GetOutputInfo();
@@ -603,7 +597,7 @@ namespace NiceUIDesign
 
         private void addSong_keyUpListener(object sender, KeyEventArgs e)
         {
-            if ((e.KeyCode == Keys.MediaPlayPause || e.KeyCode == Keys.Space) && (songs.songTracker.songWasQueued))
+            if ((e.KeyCode == Keys.Space) && (songs.songTracker.songWasQueued))
             {
                 songs.songTracker.GetOutputInfo();
                 songs.songTracker.PauseOrPlaySong();
@@ -637,8 +631,8 @@ namespace NiceUIDesign
         {
             if (selectedPanel != "download")
             {
-                if (selectedPanel != null)
-                    DisposeOfItem(selectedPanel);
+
+                    
                 switchPanel("download");
 
             }
@@ -661,6 +655,7 @@ namespace NiceUIDesign
             {
                 songs.ReloadSongs();
                 switchPanel("browse");
+                Console.WriteLine("bypassed");
             }
 
         }

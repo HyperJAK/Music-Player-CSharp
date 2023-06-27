@@ -15,7 +15,6 @@ namespace NiceUIDesign.Classes
             this.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             this.Dock = DockStyle.Fill;
             this.BackColor = Color.Gray;
-            this.TabIndex = 1;
             this.AllowDrop = true;
             this.AutoScroll = false;
 

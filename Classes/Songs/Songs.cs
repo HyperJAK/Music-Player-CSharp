@@ -161,6 +161,11 @@ namespace NiceUIDesign.Classes
             {
                 //If duplicates found then count them and create popup saying how many found
                 Console.WriteLine("Create a popup that says song duplicate found");
+
+                string message = "Duplicate song(s) found.";
+                string title = "Duplicate";
+                MessageBox.Show(message, title);
+
                 return false;
             }
         }
