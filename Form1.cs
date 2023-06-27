@@ -630,6 +630,12 @@ namespace NiceUIDesign
                 songs.ReloadSongs();
                 switchPanel("browse");
             }
+            else
+            {
+                string message = "Duplicate song(s) found.";
+                string title = "Duplicate";
+                MessageBox.Show(message, title);
+            }
 
         }
     }
