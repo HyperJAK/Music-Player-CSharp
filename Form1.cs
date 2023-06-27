@@ -1,5 +1,6 @@
 ﻿using AltoHttp;
 using NiceUIDesign.Classes;
+using NiceUIDesign.Resources;
 using System;
 using System.Drawing;
 using System.Linq;
@@ -28,8 +29,6 @@ namespace NiceUIDesign
         private AddSongs addSongs = new AddSongs();
 
         public string selectedPanel;
-        public Color defaultBackground = Color.FromArgb(24, 30, 54);
-        public Color greySelection = Color.FromArgb(46, 51, 73);
 
         public static void updateControlInfo(string songName, Image image)
         {
@@ -85,7 +84,7 @@ namespace NiceUIDesign
             songControl.prev_btn.Location = new Point((right_displayer.Width / 2) - (songControl.prev_btn.Width * 2), ((browseSongs_btn.Height * 3) / 2) + (songControl.prev_btn.Height / 10));
             songControl.next_btn.Location = new Point((right_displayer.Width / 2) + (songControl.next_btn.Width), ((browseSongs_btn.Height * 3) / 2) + (songControl.next_btn.Height / 10));
             songControl.control_image.Location = new Point(10, 10);
-            songControl.control_label.Location = new Point(15 + songControl.control_image.Width, 11);
+            songControl.control_label.Location = new Point(30 + songControl.control_image.Width, 22);
             songControl.control_label.Width = right_displayer.Width - 10;
             songControl.repeat_btn.Location = new Point(((right_displayer.Width / 2) - (songControl.repeat_btn.Width * 6)), ((browseSongs_btn.Height * 3) / 2) + (songControl.repeat_btn.Height / 2));
         }
@@ -350,46 +349,46 @@ namespace NiceUIDesign
             {
                 case "browse":
                     {
-                        browseSongs_btn.BackColor = greySelection;
+                        browseSongs_btn.BackColor = Colors.selectionBackground;
 
-                        settings_btn.BackColor = defaultBackground;
-                        addSong_btn.BackColor = defaultBackground;
-                        playlists_btn.BackColor = defaultBackground;
-                        downloadYt_btn.BackColor = defaultBackground;
+                        settings_btn.BackColor = Colors.defaultBackground;
+                        addSong_btn.BackColor = Colors.defaultBackground;
+                        playlists_btn.BackColor = Colors.defaultBackground;
+                        downloadYt_btn.BackColor = Colors.defaultBackground;
                     }
                     break;
 
                 case "add_element":
                     {
-                        addSong_btn.BackColor = greySelection;
+                        addSong_btn.BackColor = Colors.selectionBackground;
 
-                        browseSongs_btn.BackColor = defaultBackground;
-                        settings_btn.BackColor = defaultBackground;
-                        playlists_btn.BackColor = defaultBackground;
-                        downloadYt_btn.BackColor = defaultBackground;
+                        browseSongs_btn.BackColor = Colors.defaultBackground;
+                        settings_btn.BackColor = Colors.defaultBackground;
+                        playlists_btn.BackColor = Colors.defaultBackground;
+                        downloadYt_btn.BackColor = Colors.defaultBackground;
 
                     }
                     break;
 
                 case "playlist":
                     {
-                        playlists_btn.BackColor = greySelection;
+                        playlists_btn.BackColor = Colors.selectionBackground;
 
-                        browseSongs_btn.BackColor = defaultBackground;
-                        settings_btn.BackColor = defaultBackground;
-                        addSong_btn.BackColor = defaultBackground;
-                        downloadYt_btn.BackColor = defaultBackground;
+                        browseSongs_btn.BackColor = Colors.defaultBackground;
+                        settings_btn.BackColor = Colors.defaultBackground;
+                        addSong_btn.BackColor = Colors.defaultBackground;
+                        downloadYt_btn.BackColor = Colors.defaultBackground;
                     }
                     break;
 
                 case "download":
                     {
-                        downloadYt_btn.BackColor = greySelection;
+                        downloadYt_btn.BackColor = Colors.selectionBackground;
 
-                        browseSongs_btn.BackColor = defaultBackground;
-                        settings_btn.BackColor = defaultBackground;
-                        addSong_btn.BackColor = defaultBackground;
-                        playlists_btn.BackColor = defaultBackground;
+                        browseSongs_btn.BackColor = Colors.defaultBackground;
+                        settings_btn.BackColor = Colors.defaultBackground;
+                        addSong_btn.BackColor = Colors.defaultBackground;
+                        playlists_btn.BackColor = Colors.defaultBackground;
 
                     }
                     break;
@@ -397,12 +396,12 @@ namespace NiceUIDesign
                 case "settings":
                     {
                         
-                        settings_btn.BackColor = greySelection;
+                        settings_btn.BackColor = Colors.selectionBackground;
 
-                        browseSongs_btn.BackColor = defaultBackground;
-                        addSong_btn.BackColor = defaultBackground;
-                        playlists_btn.BackColor = defaultBackground;
-                        downloadYt_btn.BackColor = defaultBackground;
+                        browseSongs_btn.BackColor = Colors.defaultBackground;
+                        addSong_btn.BackColor = Colors.defaultBackground;
+                        playlists_btn.BackColor = Colors.defaultBackground;
+                        downloadYt_btn.BackColor = Colors.defaultBackground;
                     }
                     break;
 

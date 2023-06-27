@@ -10,6 +10,8 @@ namespace NiceUIDesign.Custom
             this.Name = name;
             this.Text = text;
             this.Tag = tag;
+            this.ForeColor = Color.White;
+            this.BackColor = Color.Transparent;
             this.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
         }
 
