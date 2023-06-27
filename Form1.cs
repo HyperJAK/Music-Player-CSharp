@@ -506,39 +506,6 @@ namespace NiceUIDesign
 
 
 
-
-
-
-
-        //This part is for SongControl class
-        private void keyboard_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (songs.songTracker.songWasQueued)
-            {
-                if (e.KeyCode == Keys.MediaPlayPause || e.KeyCode == Keys.Space)
-                {
-                    // Perform your play/pause logic here
-                    if (songs.songTracker.songIsPaused)
-                    {
-                        // Resume playback
-                        songs.songTracker.outputDevice.Play();
-                        songs.songTracker.songIsPaused = false;
-                        Console.WriteLine("Handled inside");
-                    }
-                    else
-                    {
-                        // Pause playback
-                        songs.songTracker.outputDevice.Pause();
-                        songs.songTracker.songIsPaused = true;
-                    }
-                    Console.WriteLine("Handled");
-                    // Consume the key press event
-                    e.Handled = true;
-                }
-            }
-            // Consume the key press event
-            e.Handled = true;
-        }
         private void pauseButton_Click(object sender, EventArgs e)
         {
             songs.songTracker.GetOutputInfo();
@@ -604,7 +571,7 @@ namespace NiceUIDesign
 
         private void addSong_keyUpListener(object sender, KeyEventArgs e)
         {
-            if ((e.KeyCode == Keys.MediaPlayPause || e.KeyCode == Keys.Space) && (songs.songTracker.songWasQueued))
+            if ((e.KeyCode == Keys.Space) && (songs.songTracker.songWasQueued))
             {
                 songs.songTracker.GetOutputInfo();
                 songs.songTracker.PauseOrPlaySong();
