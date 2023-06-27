@@ -28,6 +28,8 @@ namespace NiceUIDesign
         private AddSongs addSongs = new AddSongs();
 
         public string selectedPanel;
+        public Color defaultBackground = Color.FromArgb(24, 30, 54);
+        public Color greySelection = Color.FromArgb(46, 51, 73);
 
         public static void updateControlInfo(string songName, Image image)
         {
@@ -165,7 +167,7 @@ namespace NiceUIDesign
                         right_displayer.Controls.Remove(songs);
                     }
                     break;
-                case "AddElement":
+                case "add_element":
                     {
                         right_displayer.Controls.Remove(addSongs);
                     }
@@ -185,6 +187,12 @@ namespace NiceUIDesign
                 case "settings":
                     {
                         //right_displayer.Controls.Remove(ytDownloader);
+                    }
+                    break;
+
+                default:
+                    {
+
                     }
                     break;
             }
@@ -217,6 +225,7 @@ namespace NiceUIDesign
                         nav_panel.Left = browseSongs_btn.Left;
 
                         selectedPanel = "browse";
+                        HighlightCorrectButton(selectedPanel);
 
                         //stops the panel from calculating, in order to update its elements faster
                         //right_displayer.SuspendLayout();
@@ -231,17 +240,18 @@ namespace NiceUIDesign
                         //right_displayer.PerformLayout();
                         //songs.PerformLayout();
 
-                        browseSongs_btn.BackColor = Color.FromArgb(46, 51, 73);
+                        
                     }
                     break;
 
-                case "AddElement":
+                case "add_element":
                     {
                         nav_panel.Height = addSong_btn.Height;
                         nav_panel.Top = addSong_btn.Top;
                         nav_panel.Left = addSong_btn.Left;
 
-                        selectedPanel = "AddElement";
+                        selectedPanel = "add_element";
+                        HighlightCorrectButton(selectedPanel);
 
                         right_displayer.Visible = false;
                         right_displayer.Controls.Add(addSongs);
@@ -256,7 +266,7 @@ namespace NiceUIDesign
                         right_displayer.ResumeLayout();
                         //Forces panel to update calculations
                         right_displayer.PerformLayout();*/
-                        addSong_btn.BackColor = Color.FromArgb(46, 51, 73);
+
                     }
                     break;
 
@@ -267,6 +277,7 @@ namespace NiceUIDesign
                         nav_panel.Left = playlists_btn.Left;
 
                         selectedPanel = "playlist";
+                        HighlightCorrectButton(selectedPanel);
 
                         /*//stops the panel from calculating, in order to update its elements faster
                         right_displayer.SuspendLayout();
@@ -277,7 +288,7 @@ namespace NiceUIDesign
                         right_displayer.ResumeLayout();
                         //Forces panel to update calculations
                         right_displayer.PerformLayout();*/
-                        playlists_btn.BackColor = Color.FromArgb(46, 51, 73);
+
                     }
                     break;
 
@@ -288,6 +299,7 @@ namespace NiceUIDesign
                         nav_panel.Left = downloadYt_btn.Left;
 
                         selectedPanel = "download";
+                        HighlightCorrectButton(selectedPanel);
 
                         /*//stops the panel from calculating, in order to update its elements faster
                         right_displayer.SuspendLayout();
@@ -298,7 +310,7 @@ namespace NiceUIDesign
                         right_displayer.ResumeLayout();
                         //Forces panel to update calculations
                         right_displayer.PerformLayout();*/
-                        downloadYt_btn.BackColor = Color.FromArgb(46, 51, 73);
+
                     }
                     break;
 
@@ -309,6 +321,7 @@ namespace NiceUIDesign
                         nav_panel.Left = settings_btn.Left;
 
                         selectedPanel = "settings";
+                        HighlightCorrectButton(selectedPanel);
 
                         /*//stops the panel from calculating, in order to update its elements faster
                         right_displayer.SuspendLayout();
@@ -319,15 +332,86 @@ namespace NiceUIDesign
                         right_displayer.ResumeLayout();
                         //Forces panel to update calculations
                         right_displayer.PerformLayout();*/
-                        settings_btn.BackColor = Color.FromArgb(46, 51, 73);
+
+                    }
+                    break;
+
+                default:
+                    {
+
                     }
                     break;
             }
         }
 
-        private void browseSongs_btn_Leave(object sender, EventArgs e)
+        public void HighlightCorrectButton(string btn_name)
         {
-            browseSongs_btn.BackColor = Color.FromArgb(24, 30, 54);
+            switch (btn_name)
+            {
+                case "browse":
+                    {
+                        browseSongs_btn.BackColor = greySelection;
+
+                        settings_btn.BackColor = defaultBackground;
+                        addSong_btn.BackColor = defaultBackground;
+                        playlists_btn.BackColor = defaultBackground;
+                        downloadYt_btn.BackColor = defaultBackground;
+                    }
+                    break;
+
+                case "add_element":
+                    {
+                        addSong_btn.BackColor = greySelection;
+
+                        browseSongs_btn.BackColor = defaultBackground;
+                        settings_btn.BackColor = defaultBackground;
+                        playlists_btn.BackColor = defaultBackground;
+                        downloadYt_btn.BackColor = defaultBackground;
+
+                    }
+                    break;
+
+                case "playlist":
+                    {
+                        playlists_btn.BackColor = greySelection;
+
+                        browseSongs_btn.BackColor = defaultBackground;
+                        settings_btn.BackColor = defaultBackground;
+                        addSong_btn.BackColor = defaultBackground;
+                        downloadYt_btn.BackColor = defaultBackground;
+                    }
+                    break;
+
+                case "download":
+                    {
+                        downloadYt_btn.BackColor = greySelection;
+
+                        browseSongs_btn.BackColor = defaultBackground;
+                        settings_btn.BackColor = defaultBackground;
+                        addSong_btn.BackColor = defaultBackground;
+                        playlists_btn.BackColor = defaultBackground;
+
+                    }
+                    break;
+
+                case "settings":
+                    {
+                        
+                        settings_btn.BackColor = greySelection;
+
+                        browseSongs_btn.BackColor = defaultBackground;
+                        addSong_btn.BackColor = defaultBackground;
+                        playlists_btn.BackColor = defaultBackground;
+                        downloadYt_btn.BackColor = defaultBackground;
+                    }
+                    break;
+
+                default:
+                    {
+
+                    }
+                    break;
+            }
         }
 
         private void settings_btn_Click(object sender, EventArgs e)
@@ -342,10 +426,7 @@ namespace NiceUIDesign
 
         }
 
-        private void settings_btn_Leave(object sender, EventArgs e)
-        {
-            settings_btn.BackColor = Color.FromArgb(24, 30, 54);
-        }
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -369,13 +450,13 @@ namespace NiceUIDesign
 
         private void addSong_btn_Click(object sender, EventArgs e)
         {
-            if (selectedPanel != "AddElement")
+            if (selectedPanel != "add_element")
             {
                 //put these in switchpanel method (later)
                 if (selectedPanel != null)
                     DisposeOfItem(selectedPanel);
 
-                switchPanel("AddElement");
+                switchPanel("add_element");
 
             }
         }
@@ -424,15 +505,8 @@ namespace NiceUIDesign
         }
 
 
-        private void addSong_btn_Leave(object sender, EventArgs e)
-        {
-            addSong_btn.BackColor = Color.FromArgb(24, 30, 54);
-        }
 
-        private void playlist_btn_Leave(object sender, EventArgs e)
-        {
-            playlists_btn.BackColor = Color.FromArgb(24, 30, 54);
-        }
+
 
 
 
@@ -571,10 +645,6 @@ namespace NiceUIDesign
             }
         }
 
-        private void downloadYt_btn_Leave(object sender, EventArgs e)
-        {
-            downloadYt_btn.BackColor = Color.FromArgb(24, 30, 54);
-        }
 
         private void downloadYt_keyUpListener(object sender, KeyEventArgs e)
         {
