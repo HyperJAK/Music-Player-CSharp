@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.navBar = new System.Windows.Forms.Panel();
             this.nav_panel = new System.Windows.Forms.Panel();
             this.browseSongs_btn = new System.Windows.Forms.Button();
@@ -37,9 +38,9 @@
             this.addSong_btn = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.user_name = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.right_displayer = new System.Windows.Forms.Panel();
             this.keyboardListener = new System.ComponentModel.BackgroundWorker();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.navBar.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -170,26 +171,15 @@
             // 
             // user_name
             // 
-            this.user_name.AutoSize = true;
             this.user_name.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.user_name.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(149)))));
+            this.user_name.ForeColor = System.Drawing.Color.DodgerBlue;
             this.user_name.Location = new System.Drawing.Point(61, 143);
             this.user_name.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.user_name.Name = "user_name";
-            this.user_name.Size = new System.Drawing.Size(103, 20);
+            this.user_name.Size = new System.Drawing.Size(123, 34);
             this.user_name.TabIndex = 1;
-            this.user_name.Text = "User Name";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::NiceUIDesign.Properties.Resources.Megumin;
-            this.pictureBox1.Location = new System.Drawing.Point(65, 15);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(112, 124);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
+            this.user_name.Text = "AuPlay";
+            this.user_name.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // right_displayer
             // 
@@ -206,6 +196,17 @@
             // 
             this.keyboardListener.DoWork += new System.ComponentModel.DoWorkEventHandler(this.keyboardListener_DoWork);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::NiceUIDesign.Properties.Resources.AuPlayLogo;
+            this.pictureBox1.Location = new System.Drawing.Point(61, 15);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(123, 124);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -217,6 +218,7 @@
             this.Controls.Add(this.right_displayer);
             this.Controls.Add(this.navBar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -228,7 +230,6 @@
             this.SizeChanged += new System.EventHandler(this.Form1SizeChanged);
             this.navBar.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 

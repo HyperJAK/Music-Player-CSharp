@@ -523,7 +523,7 @@ namespace NiceUIDesign
         {
             if (selectedPanel != "playlist")
             {
- 
+
 
                 switchPanel("playlist");
 
@@ -632,7 +632,7 @@ namespace NiceUIDesign
             if (selectedPanel != "download")
             {
 
-                    
+
                 switchPanel("download");
 
             }
