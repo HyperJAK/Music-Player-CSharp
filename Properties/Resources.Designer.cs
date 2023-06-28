@@ -63,6 +63,16 @@ namespace NiceUIDesign.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AuPlayLogo {
+            get {
+                object obj = ResourceManager.GetObject("AuPlayLogo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap d1qtv6q_30f0bdad_da76_4c39_b520_99c9a873990f {
             get {
                 object obj = ResourceManager.GetObject("d1qtv6q-30f0bdad-da76-4c39-b520-99c9a873990f", resourceCulture);
