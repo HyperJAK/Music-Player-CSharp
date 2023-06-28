@@ -60,7 +60,7 @@
             this.navBar.Location = new System.Drawing.Point(0, 0);
             this.navBar.Margin = new System.Windows.Forms.Padding(4);
             this.navBar.Name = "navBar";
-            this.navBar.Size = new System.Drawing.Size(248, 710);
+            this.navBar.Size = new System.Drawing.Size(248, 721);
             this.navBar.TabIndex = 0;
             // 
             // nav_panel
@@ -96,7 +96,7 @@
             this.settings_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.settings_btn.Font = new System.Drawing.Font("Nirmala UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.settings_btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.settings_btn.Location = new System.Drawing.Point(0, 658);
+            this.settings_btn.Location = new System.Drawing.Point(0, 669);
             this.settings_btn.Margin = new System.Windows.Forms.Padding(4);
             this.settings_btn.Name = "settings_btn";
             this.settings_btn.Size = new System.Drawing.Size(248, 52);
@@ -188,7 +188,7 @@
             this.right_displayer.Location = new System.Drawing.Point(248, 0);
             this.right_displayer.Margin = new System.Windows.Forms.Padding(0);
             this.right_displayer.Name = "right_displayer";
-            this.right_displayer.Size = new System.Drawing.Size(1026, 710);
+            this.right_displayer.Size = new System.Drawing.Size(1014, 721);
             this.right_displayer.TabIndex = 1;
             this.right_displayer.Paint += new System.Windows.Forms.PaintEventHandler(this.right_displayer_Paint);
             // 
@@ -214,7 +214,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            this.ClientSize = new System.Drawing.Size(1274, 710);
+            this.ClientSize = new System.Drawing.Size(1262, 721);
             this.Controls.Add(this.right_displayer);
             this.Controls.Add(this.navBar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
