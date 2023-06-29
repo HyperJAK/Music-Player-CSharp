@@ -54,9 +54,10 @@ namespace NiceUIDesign.Classes
             }
             else
             {
-                //Reverses list to get last element as first
+                
                 songTracker = new SongsTracker();
 
+                //Reverses list to get last element as first
                 allSongs.Reverse();
                 foreach (Song s in allSongs)
                 {

@@ -237,7 +237,11 @@ namespace NiceUIDesign
                         //right_displayer.SuspendLayout();
                         right_displayer.Visible = false;
                         right_displayer.Controls.Add(songs);
-                        right_displayer.Controls.Add(songControl);
+                        if (!right_displayer.Controls.Contains(songControl))
+                        {
+                            right_displayer.Controls.Add(songControl);
+                        }
+                        
                         right_displayer.Visible = true;
 
                         //Makes panel resume calculations
