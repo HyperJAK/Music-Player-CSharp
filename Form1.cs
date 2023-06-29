@@ -481,7 +481,6 @@ namespace NiceUIDesign
         {
             if (selectedPanel != "add_element")
             {
-
                 switchPanel("add_element");
 
             }

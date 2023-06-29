@@ -16,7 +16,7 @@ namespace NiceUIDesign.Classes
     {
 
         public List<Song> allSongs = new List<Song>();
-        public SongsTracker songTracker = new SongsTracker();
+        public SongsTracker songTracker;
 
         public int songCounter = 0;
 
@@ -55,6 +55,8 @@ namespace NiceUIDesign.Classes
             else
             {
                 //Reverses list to get last element as first
+                songTracker = new SongsTracker();
+
                 allSongs.Reverse();
                 foreach (Song s in allSongs)
                 {
@@ -81,6 +83,8 @@ namespace NiceUIDesign.Classes
             {
                 this.Controls.Clear();
 
+                songTracker = new SongsTracker();
+
                 allSongs.Reverse();
                 foreach (Song s in allSongs)
                 {
@@ -96,6 +100,8 @@ namespace NiceUIDesign.Classes
                     AddElement(s);
                 }
             }
+
+            CreateDicts();
 
         }
 
@@ -259,6 +265,11 @@ namespace NiceUIDesign.Classes
 
         public void CreateDicts()
         {
+            songNameById.Clear();
+            songPathById.Clear();
+            songIdByPath.Clear();
+
+
             foreach (Song s in allSongs)
             {
                 songNameById.Add(s.id, s.name);
