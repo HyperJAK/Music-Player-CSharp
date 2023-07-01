@@ -241,7 +241,7 @@ namespace NiceUIDesign
                         {
                             right_displayer.Controls.Add(songControl);
                         }
-                        
+
                         right_displayer.Visible = true;
 
                         //Makes panel resume calculations

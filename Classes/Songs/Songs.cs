@@ -54,7 +54,7 @@ namespace NiceUIDesign.Classes
             }
             else
             {
-                
+
                 songTracker = new SongsTracker();
 
                 //Reverses list to get last element as first
