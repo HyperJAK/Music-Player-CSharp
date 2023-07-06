@@ -251,6 +251,8 @@ namespace NiceUIDesign
 
                         right_displayer.Visible = true;
 
+                        Player.notPlaylist = true;
+
                         //Makes panel resume calculations
                         //right_displayer.ResumeLayout();
                         //Forces panel to update calculations
@@ -283,6 +285,8 @@ namespace NiceUIDesign
                             songControl.Visible = false;
                         }
                         right_displayer.Visible = true;
+
+                        Player.notPlaylist = true;
 
                         /*//stops the panel from calculating, in order to update its elements faster
                         right_displayer.SuspendLayout();
@@ -321,6 +325,8 @@ namespace NiceUIDesign
 
                         right_displayer.Visible = true;
 
+                        Player.notPlaylist = false;
+
                     }
                     break;
 
@@ -338,6 +344,8 @@ namespace NiceUIDesign
 
                         selectedPanel = "download";
                         HighlightCorrectButton(selectedPanel);
+
+                        Player.notPlaylist = true;
 
                         /*//stops the panel from calculating, in order to update its elements faster
                         right_displayer.SuspendLayout();
@@ -366,6 +374,8 @@ namespace NiceUIDesign
 
                         selectedPanel = "settings";
                         HighlightCorrectButton(selectedPanel);
+
+                        Player.notPlaylist = true;
 
                         /*//stops the panel from calculating, in order to update its elements faster
                         right_displayer.SuspendLayout();
