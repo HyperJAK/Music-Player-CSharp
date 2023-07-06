@@ -2,35 +2,48 @@
 using NiceUIDesign.Classes.Abstract;
 using NiceUIDesign.Custom;
 using System;
+using System.Collections.Generic;
 
 namespace NiceUIDesign.Classes.Playlists
 {
     public class PlaylistsTracker : MusicTracker
     {
+
+        private List<CustomFlowLayoutPanel> panels;
+        private List<CustomPictureBox> pics;
+        private List<CustomLabel> labels;
+
+
+
+        public PlaylistsTracker() {
+            panels = new List<CustomFlowLayoutPanel>();
+            pics = new List<CustomPictureBox>();
+            labels = new List<CustomLabel>();
+        }
+
+
         public override void AddImage(CustomPictureBox pic)
         {
-            throw new NotImplementedException();
+            pic.Click += Panel_Click;
+            pic.MouseHover += Panel_Hover;
+            pics.Add(pic);
         }
 
         public override void AddLabel(CustomLabel label)
         {
-            throw new NotImplementedException();
+            label.Click += Panel_Click;
+            label.MouseHover += Panel_Hover;
+            labels.Add(label);
         }
 
         public override void AddPanel(CustomFlowLayoutPanel panel)
         {
-            throw new NotImplementedException();
+            panel.Click += Panel_Click;
+            panel.MouseHover += Panel_Hover;
+            panel.MouseLeave += Panel_Hover_Exited;
+            panels.Add(panel);
         }
 
-        public override void GetOutputInfo()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void OutputDevice_finishedSong(object sender, StoppedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
 
         public override void Panel_Click(object sender, EventArgs e)
         {
@@ -47,19 +60,6 @@ namespace NiceUIDesign.Classes.Playlists
             throw new NotImplementedException();
         }
 
-        public override void PauseOrPlaySong()
-        {
-            throw new NotImplementedException();
-        }
 
-        public override void PlaySong(string songPath)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void StopSong()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
