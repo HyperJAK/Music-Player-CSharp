@@ -547,8 +547,8 @@ namespace NiceUIDesign
 
         private void pauseButton_Click(object sender, EventArgs e)
         {
-            songs.songTracker.GetOutputInfo();
-            songs.songTracker.PauseOrPlaySong();
+            Player.GetOutputInfo();
+            Player.PauseOrPlaySong();
 
         }
 
@@ -564,30 +564,30 @@ namespace NiceUIDesign
 
         private void repeatButton_Click(object sender, EventArgs e)
         {
-            if (!songs.songTracker.songIsStopped && !songs.songTracker.songIsPaused && songs.songTracker.songWasQueued)
+            if (!Player.songIsStopped && !Player.songIsPaused && Player.songWasQueued)
             {
-                if (!songs.songTracker.repeatSong)
+                if (!Player.repeatSong)
                 {
-                    songs.songTracker.repeatSong = true;
+                    Player.repeatSong = true;
                 }
                 else
                 {
-                    songs.songTracker.repeatSong = false;
+                    Player.repeatSong = false;
                 }
             }
             else
             {
-                if (!songs.songTracker.repeatSong)
+                if (!Player.repeatSong)
                 {
-                    songs.songTracker.repeatSong = true;
-                    songs.songTracker.GetOutputInfo();
+                    Player.repeatSong = true;
+                    Player.GetOutputInfo();
 
-                    songs.songTracker.PauseOrPlaySong();
+                    Player.PauseOrPlaySong();
 
                 }
                 else
                 {
-                    songs.songTracker.repeatSong = false;
+                    Player.repeatSong = false;
                 }
 
             }
@@ -603,17 +603,22 @@ namespace NiceUIDesign
         {
         }
 
-        private void keyboardSongControls(object sender, KeyEventArgs e)
+        private void browse_keyUpListener(object sender, KeyEventArgs e)
         {
-            songs.songTracker.PauseOrPlaySong();
+            if ((e.KeyCode == Keys.Space) && (Player.songWasQueued))
+            {
+                Player.GetOutputInfo();
+                Player.PauseOrPlaySong();
+            }
+            e.Handled = true;
         }
 
         private void addSong_keyUpListener(object sender, KeyEventArgs e)
         {
-            if ((e.KeyCode == Keys.Space) && (songs.songTracker.songWasQueued))
+            if ((e.KeyCode == Keys.Space) && (Player.songWasQueued))
             {
-                songs.songTracker.GetOutputInfo();
-                songs.songTracker.PauseOrPlaySong();
+                Player.GetOutputInfo();
+                Player.PauseOrPlaySong();
             }
             e.Handled = true;
 
@@ -621,10 +626,10 @@ namespace NiceUIDesign
 
         private void playlist_keyUpListener(object sender, KeyEventArgs e)
         {
-            if ((e.KeyCode == Keys.MediaPlayPause || e.KeyCode == Keys.Space) && (songs.songTracker.songWasQueued))
+            if (e.KeyCode == Keys.Space && Player.songWasQueued)
             {
-                songs.songTracker.GetOutputInfo();
-                songs.songTracker.PauseOrPlaySong();
+                Player.GetOutputInfo();
+                Player.PauseOrPlaySong();
             }
             e.Handled = true;
         }
@@ -632,10 +637,10 @@ namespace NiceUIDesign
 
         private void settings_keyUpListener(object sender, KeyEventArgs e)
         {
-            if ((e.KeyCode == Keys.MediaPlayPause || e.KeyCode == Keys.Space) && (songs.songTracker.songWasQueued))
+            if (e.KeyCode == Keys.Space && Player.songWasQueued)
             {
-                songs.songTracker.GetOutputInfo();
-                songs.songTracker.PauseOrPlaySong();
+                Player.GetOutputInfo();
+                Player.PauseOrPlaySong();
             }
             e.Handled = true;
         }
@@ -654,10 +659,10 @@ namespace NiceUIDesign
 
         private void downloadYt_keyUpListener(object sender, KeyEventArgs e)
         {
-            if ((e.KeyCode == Keys.MediaPlayPause || e.KeyCode == Keys.Space) && (songs.songTracker.songWasQueued))
+            if (e.KeyCode == Keys.Space && Player.songWasQueued)
             {
-                songs.songTracker.GetOutputInfo();
-                songs.songTracker.PauseOrPlaySong();
+                Player.GetOutputInfo();
+                Player.PauseOrPlaySong();
             }
             e.Handled = true;
         }
@@ -666,7 +671,7 @@ namespace NiceUIDesign
         {
             if (songs.Add_new_songs())
             {
-                songs.ReloadSongs();
+                songs.Reload();
                 switchPanel("browse");
                 Console.WriteLine("bypassed");
             }

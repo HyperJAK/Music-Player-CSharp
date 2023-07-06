@@ -87,7 +87,7 @@
             this.browseSongs_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.browseSongs_btn.UseVisualStyleBackColor = true;
             this.browseSongs_btn.Click += new System.EventHandler(this.browseSongs_btn_Click);
-            this.browseSongs_btn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.keyboardSongControls);
+            this.browseSongs_btn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.browse_keyUpListener);
             // 
             // settings_btn
             // 
