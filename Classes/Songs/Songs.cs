@@ -24,7 +24,7 @@ namespace NiceUIDesign.Classes
         private static Dictionary<int, string> songPathById = new Dictionary<int, string>();
         private static Dictionary<string, int> songIdByPath = new Dictionary<string, int>();
 
-        public static bool latestAddedFirst = true;                                         //From config file
+        public static bool latestSongAddedFirst = true;                                         //From config file
 
         //Used to halt other functions from running before all songs have been loaded
         private ManualResetEvent songsLoadedEvent = new ManualResetEvent(false);
@@ -45,7 +45,7 @@ namespace NiceUIDesign.Classes
 
 
             this.SuspendLayout();
-            if (!latestAddedFirst)
+            if (!latestSongAddedFirst)
             {
                 foreach (Song s in allSongs)
                 {
@@ -78,9 +78,9 @@ namespace NiceUIDesign.Classes
         }
 
 
-        public void ReloadSongs()
+        public void Reload()
         {
-            if (latestAddedFirst)
+            if (latestSongAddedFirst)
             {
                 this.Controls.Clear();
 
