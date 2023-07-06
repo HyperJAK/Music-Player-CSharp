@@ -246,7 +246,7 @@ namespace NiceUIDesign
                         }
                         else
                         {
-                           songControl.Visible = true;
+                            songControl.Visible = true;
                         }
 
                         right_displayer.Visible = true;

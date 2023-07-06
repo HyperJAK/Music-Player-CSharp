@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NiceUIDesign.Classes
 {
@@ -44,24 +42,24 @@ namespace NiceUIDesign.Classes
             outputDevice.PlaybackStopped += OutputDevice_finishedSong;
 
 
-                //To remember what was the last song played (global var)
+            //To remember what was the last song played (global var)
 
 
-                if(lastSong.Count == 0)
-                {
-                    lastSong = songPaths;
-                    playlistTemp = lastSong;
-                }
-                
+            if (lastSong.Count == 0)
+            {
+                lastSong = songPaths;
+                playlistTemp = lastSong;
+            }
 
-                //Create an audio file reader
-                audioFileReader = new AudioFileReader(songPaths.First());
 
-                //Set the audio file reader as the output device's audio source
-                outputDevice.Init(audioFileReader);
+            //Create an audio file reader
+            audioFileReader = new AudioFileReader(songPaths.First());
 
-                //Start playing the audio file
-                outputDevice.Play();
+            //Set the audio file reader as the output device's audio source
+            outputDevice.Init(audioFileReader);
+
+            //Start playing the audio file
+            outputDevice.Play();
 
 
 
@@ -77,7 +75,7 @@ namespace NiceUIDesign.Classes
                 GetOutputInfo();
             }
 
-            else if(lastSong.Count > 1)
+            else if (lastSong.Count > 1)
             {
                 lastSong.Remove(lastSong.First());
                 StopSong();
@@ -92,7 +90,7 @@ namespace NiceUIDesign.Classes
                 GetOutputInfo();
             }
 
-                
+
         }
 
 

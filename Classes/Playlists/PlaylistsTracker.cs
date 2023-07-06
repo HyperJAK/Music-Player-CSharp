@@ -1,5 +1,4 @@
-﻿using NAudio.Wave;
-using NiceUIDesign.Classes.Abstract;
+﻿using NiceUIDesign.Classes.Abstract;
 using NiceUIDesign.Custom;
 using System;
 using System.Collections.Generic;
@@ -15,7 +14,8 @@ namespace NiceUIDesign.Classes.Playlists
 
 
 
-        public PlaylistsTracker() {
+        public PlaylistsTracker()
+        {
             panels = new List<CustomFlowLayoutPanel>();
             pics = new List<CustomPictureBox>();
             labels = new List<CustomLabel>();

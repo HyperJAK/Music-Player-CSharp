@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace NiceUIDesign.Classes.Abstract
+﻿namespace NiceUIDesign.Classes.Abstract
 {
     public interface Music
     {

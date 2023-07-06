@@ -1,6 +1,4 @@
-﻿using NAudio.Wave;
-using NiceUIDesign.Classes.Abstract;
-using NiceUIDesign.Custom;
+﻿using NiceUIDesign.Custom;
 using NiceUIDesign.Resources;
 using System;
 using System.Collections.Generic;
@@ -26,7 +24,7 @@ namespace NiceUIDesign.Classes
         }
 
 
-        
+
         public void AddPanel(CustomFlowLayoutPanel panel)
         {
             panel.Click += Panel_Click;
@@ -35,7 +33,7 @@ namespace NiceUIDesign.Classes
             panels.Add(panel);
         }
 
-        
+
         public void AddImage(CustomPictureBox pic)
         {
             pic.Click += Panel_Click;
@@ -43,7 +41,7 @@ namespace NiceUIDesign.Classes
             pics.Add(pic);
         }
 
-        
+
         public void AddLabel(CustomLabel label)
         {
             label.Click += Panel_Click;
@@ -109,26 +107,26 @@ namespace NiceUIDesign.Classes
 
         }*/
 
-       /* override
-        public void PauseOrPlaySong()
-        {
-            if (songIsPaused && !songIsStopped)
-            {
-                outputDevice.Play();
-                GetOutputInfo();
-            }
-            else if (!songIsPaused && !songIsStopped)
-            {
-                outputDevice.Pause();
-                GetOutputInfo();
-            }
-            else if (songIsStopped && !songIsPaused)
-            {
-                PlaySong(lastSong);
-                GetOutputInfo();
-            }
+        /* override
+         public void PauseOrPlaySong()
+         {
+             if (songIsPaused && !songIsStopped)
+             {
+                 outputDevice.Play();
+                 GetOutputInfo();
+             }
+             else if (!songIsPaused && !songIsStopped)
+             {
+                 outputDevice.Pause();
+                 GetOutputInfo();
+             }
+             else if (songIsStopped && !songIsPaused)
+             {
+                 PlaySong(lastSong);
+                 GetOutputInfo();
+             }
 
-        }*/
+         }*/
 
         /*override
         public void GetOutputInfo()
@@ -173,8 +171,8 @@ namespace NiceUIDesign.Classes
 
         }*/
 
-        
-            public void Panel_Hover(object sender, EventArgs e)
+
+        public void Panel_Hover(object sender, EventArgs e)
         {
             string typeOfSender = sender.GetType().ToString();
 
@@ -230,7 +228,7 @@ namespace NiceUIDesign.Classes
 
         }
 
-        
+
         public void Panel_Hover_Exited(object sender, EventArgs e)
         {
 
@@ -288,7 +286,7 @@ namespace NiceUIDesign.Classes
         }
 
 
-        
+
         public void Panel_Click(object sender, EventArgs e)
         {
 

@@ -1,5 +1,4 @@
-﻿using NAudio.Wave;
-using NiceUIDesign.Custom;
+﻿using NiceUIDesign.Custom;
 using System;
 
 namespace NiceUIDesign.Classes.Abstract

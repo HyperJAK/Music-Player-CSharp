@@ -1,6 +1,5 @@
 ﻿using NiceUIDesign.Custom;
 using NiceUIDesign.Resources;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace NiceUIDesign.Classes
