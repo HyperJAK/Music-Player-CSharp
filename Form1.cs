@@ -1,5 +1,6 @@
 ﻿using AltoHttp;
 using NiceUIDesign.Classes;
+using NiceUIDesign.Classes.Playlists;
 using NiceUIDesign.Resources;
 using System;
 using System.Drawing;
@@ -25,6 +26,8 @@ namespace NiceUIDesign
              );
 
         public Songs songs = new Songs();
+        public Playlists playlists = new Playlists();
+
         private static SongControl songControl = new SongControl();
         private AddSongs addSongs = new AddSongs();
 
@@ -174,7 +177,7 @@ namespace NiceUIDesign
                     break;
                 case "playlist":
                     {
-                        //right_displayer.Controls.Remove(playlist);
+                        right_displayer.Controls.Remove(playlists);
                     }
                     break;
 
@@ -241,6 +244,10 @@ namespace NiceUIDesign
                         {
                             right_displayer.Controls.Add(songControl);
                         }
+                        else
+                        {
+                           songControl.Visible = true;
+                        }
 
                         right_displayer.Visible = true;
 
@@ -271,6 +278,10 @@ namespace NiceUIDesign
 
                         right_displayer.Visible = false;
                         right_displayer.Controls.Add(addSongs);
+                        if (right_displayer.Controls.Contains(songControl))
+                        {
+                            songControl.Visible = false;
+                        }
                         right_displayer.Visible = true;
 
                         /*//stops the panel from calculating, in order to update its elements faster
@@ -301,15 +312,14 @@ namespace NiceUIDesign
                         selectedPanel = "playlist";
                         HighlightCorrectButton(selectedPanel);
 
-                        /*//stops the panel from calculating, in order to update its elements faster
-                        right_displayer.SuspendLayout();
+                        right_displayer.Visible = false;
+                        right_displayer.Controls.Add(playlists);
+                        if (right_displayer.Controls.Contains(songControl))
+                        {
+                            songControl.Visible = false;
+                        }
 
-                        right_displayer.Controls.Add(songs);
-
-                        //Makes panel resume calculations
-                        right_displayer.ResumeLayout();
-                        //Forces panel to update calculations
-                        right_displayer.PerformLayout();*/
+                        right_displayer.Visible = true;
 
                     }
                     break;

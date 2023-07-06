@@ -1,4 +1,5 @@
 ﻿using NiceUIDesign.Custom;
+using NiceUIDesign.Resources;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -14,7 +15,7 @@ namespace NiceUIDesign.Classes
         {
             this.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             this.Dock = DockStyle.Fill;
-            this.BackColor = Color.Gray;
+            this.BackColor = Colors.elementsPanelBackground;
             this.AllowDrop = true;
             this.AutoScroll = false;
 

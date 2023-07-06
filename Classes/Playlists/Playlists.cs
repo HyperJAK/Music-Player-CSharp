@@ -1,4 +1,5 @@
 ﻿using NiceUIDesign.Classes.Abstract;
+using NiceUIDesign.Resources;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
@@ -12,7 +13,7 @@ namespace NiceUIDesign.Classes.Playlists
         {
             this.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             this.Dock = DockStyle.Fill;
-            this.BackColor = Color.AliceBlue;
+            this.BackColor = Colors.elementsPanelBackground;
             this.Size = new Size(451, 558);
             this.TabIndex = 1;
             this.FlowDirection = FlowDirection.LeftToRight;
