@@ -93,6 +93,7 @@ namespace NiceUIDesign.Classes
             {
                 StopSong();
                 PlaySong(lastSong);
+                GetOutputInfo();
             }
         }
 
