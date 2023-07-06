@@ -30,6 +30,7 @@ namespace NiceUIDesign.Custom
         public CustomSmoothEdgesButton(string text)
         {
             this.Text = text;
+            this.ForeColor = Color.White;
             this.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
 
         }

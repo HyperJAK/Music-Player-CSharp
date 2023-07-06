@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-
-namespace NiceUIDesign.Classes.Abstract
+﻿namespace NiceUIDesign.Classes.Abstract
 {
     public interface Music
     {
-        void ReloadSongs();
+        void Reload();
 
         //string GetName(int id);
 
@@ -12,9 +10,9 @@ namespace NiceUIDesign.Classes.Abstract
 
         void CreateDicts();
 
-        void AddElement(Song song);
+        //void AddElement();
 
-        void SaveInfo(List<Song> allSongs);
+        //void SaveInfo(List<Object> allSongs);
 
         void GetInfo();
 

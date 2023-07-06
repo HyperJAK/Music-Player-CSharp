@@ -87,7 +87,7 @@
             this.browseSongs_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.browseSongs_btn.UseVisualStyleBackColor = true;
             this.browseSongs_btn.Click += new System.EventHandler(this.browseSongs_btn_Click);
-            this.browseSongs_btn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.keyboardSongControls);
+            this.browseSongs_btn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.browse_keyUpListener);
             // 
             // settings_btn
             // 
@@ -184,11 +184,11 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::NiceUIDesign.Properties.Resources.AuPlayLogo;
-            this.pictureBox1.Location = new System.Drawing.Point(61, 15);
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(123, 124);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.Size = new System.Drawing.Size(248, 177);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 

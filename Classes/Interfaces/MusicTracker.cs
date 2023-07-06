@@ -1,5 +1,4 @@
-﻿using NAudio.Wave;
-using NiceUIDesign.Custom;
+﻿using NiceUIDesign.Custom;
 using System;
 
 namespace NiceUIDesign.Classes.Abstract
@@ -12,15 +11,6 @@ namespace NiceUIDesign.Classes.Abstract
 
         public abstract void AddLabel(CustomLabel label);
 
-        public abstract void StopSong();
-
-        public abstract void PauseOrPlaySong();
-
-        public abstract void PlaySong(string songPath);
-
-        public abstract void OutputDevice_finishedSong(object sender, StoppedEventArgs e);
-
-        public abstract void GetOutputInfo();
 
         public abstract void Panel_Click(object sender, EventArgs e);
 

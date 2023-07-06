@@ -5,6 +5,8 @@ namespace NiceUIDesign.Classes.Playlists
 {
     public class Playlist
     {
+
+        public List<Song> currentPlaylist_songs = new List<Song>();
         public Playlist() { }
 
         public Playlist(string name, string path, int id)
