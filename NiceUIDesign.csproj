@@ -143,6 +143,7 @@
   <ItemGroup>
     <Compile Include="Classes\Interfaces\Music.cs" />
     <Compile Include="Classes\Interfaces\MusicTracker.cs" />
+    <Compile Include="Classes\Player.cs" />
     <Compile Include="Classes\Songs\AddSongs.cs">
       <SubType>Component</SubType>
     </Compile>
