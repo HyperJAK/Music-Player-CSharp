@@ -8,26 +8,29 @@ namespace NiceUIDesign.Classes
 
     public class SongsTracker
     {
-        private List<CustomFlowLayoutPanel> panels;
+        private List<CustomPanel> panels;
         private List<CustomPictureBox> pics;
         private List<CustomLabel> labels;
+        private List<CustomRoundButton> buttons;
 
-        public List<CustomFlowLayoutPanel> elementsHoveredHistory = new List<CustomFlowLayoutPanel>();
+        public List<CustomPanel> elementsHoveredHistory = new List<CustomPanel>();
 
         public List<string> songPath;
 
 
         public SongsTracker()
         {
-            panels = new List<CustomFlowLayoutPanel>();
+            panels = new List<CustomPanel>();
             pics = new List<CustomPictureBox>();
             labels = new List<CustomLabel>();
+            buttons = new List<CustomRoundButton>();
+
             songPath = new List<string>();
         }
 
 
 
-        public void AddPanel(CustomFlowLayoutPanel panel)
+        public void AddPanel(CustomPanel panel)
         {
             panel.Click += Panel_Click;
             panel.MouseEnter += Panel_Hover;
@@ -49,6 +52,13 @@ namespace NiceUIDesign.Classes
             label.Click += Panel_Click;
             label.MouseEnter += Panel_Hover;
             labels.Add(label);
+        }
+
+        public void AddButton(CustomRoundButton button)
+        {
+            button.Click += Panel_Click;
+            button.MouseEnter += Panel_Hover;
+            buttons.Add(button);
         }
 
         /*override
@@ -183,7 +193,7 @@ namespace NiceUIDesign.Classes
             {
                 case "NiceUIDesign.Custom.CustomFlowLayoutPanel":
                     {
-                        CustomFlowLayoutPanel panelExited = (CustomFlowLayoutPanel)sender;
+                        CustomPanel panelExited = (CustomPanel)sender;
                         panelExited.BackColor = Colors.navButtonsColor;
 
                         if (!elementsHoveredHistory.Contains(panelExited))
@@ -196,9 +206,9 @@ namespace NiceUIDesign.Classes
                 case "NiceUIDesign.Custom.CustomLabel":
                     {
                         CustomLabel labelClicked = (CustomLabel)sender;
-                        CustomFlowLayoutPanel panelExited;
+                        CustomPanel panelExited;
 
-                        foreach (CustomFlowLayoutPanel p in panels)
+                        foreach (CustomPanel p in panels)
                         {
                             if ((int)p.Tag == (int)labelClicked.Tag)
                             {
@@ -222,11 +232,36 @@ namespace NiceUIDesign.Classes
                 case "NiceUIDesign.Custom.CustomPictureBox":
                     {
                         CustomPictureBox picClicked = (CustomPictureBox)sender;
-                        CustomFlowLayoutPanel panelExited;
+                        CustomPanel panelExited;
 
-                        foreach (CustomFlowLayoutPanel p in panels)
+                        foreach (CustomPanel p in panels)
                         {
                             if ((int)p.Tag == (int)picClicked.Tag)
+                            {
+                                panelExited = p;
+                                panelExited.BackColor = Colors.navButtonsColor;
+
+                                if (!elementsHoveredHistory.Contains(panelExited))
+                                {
+                                    elementsHoveredHistory.Add(panelExited);
+                                }
+
+                                break;
+                            }
+
+                        }
+
+                    }
+                    break;
+
+                case "NiceUIDesign.Custom.CustomRoundButton":
+                    {
+                        CustomRoundButton buttonClicked = (CustomRoundButton)sender;
+                        CustomPanel panelExited;
+
+                        foreach (CustomPanel p in panels)
+                        {
+                            if ((int)p.Tag == (int)buttonClicked.Tag)
                             {
                                 panelExited = p;
                                 panelExited.BackColor = Colors.navButtonsColor;
@@ -258,7 +293,7 @@ namespace NiceUIDesign.Classes
             {
                 case "NiceUIDesign.Custom.CustomFlowLayoutPanel":
                     {
-                        CustomFlowLayoutPanel panelExited = (CustomFlowLayoutPanel)sender;
+                        CustomPanel panelExited = (CustomPanel)sender;
                         panelExited.BackColor = Colors.elementsPanelBackground;
                     }
                     break;
@@ -266,9 +301,9 @@ namespace NiceUIDesign.Classes
                 case "NiceUIDesign.Custom.CustomLabel":
                     {
                         CustomLabel labelClicked = (CustomLabel)sender;
-                        CustomFlowLayoutPanel panelExited;
+                        CustomPanel panelExited;
 
-                        foreach (CustomFlowLayoutPanel p in panels)
+                        foreach (CustomPanel p in panels)
                         {
                             if ((int)p.Tag == (int)labelClicked.Tag)
                             {
@@ -286,9 +321,9 @@ namespace NiceUIDesign.Classes
                 case "NiceUIDesign.Custom.CustomPictureBox":
                     {
                         CustomPictureBox picClicked = (CustomPictureBox)sender;
-                        CustomFlowLayoutPanel panelExited;
+                        CustomPanel panelExited;
 
-                        foreach (CustomFlowLayoutPanel p in panels)
+                        foreach (CustomPanel p in panels)
                         {
                             if ((int)p.Tag == (int)picClicked.Tag)
                             {
@@ -322,7 +357,7 @@ namespace NiceUIDesign.Classes
             {
                 case "NiceUIDesign.Custom.CustomFlowLayoutPanel":
                     {
-                        CustomFlowLayoutPanel panelClicked = (CustomFlowLayoutPanel)sender;
+                        CustomPanel panelClicked = (CustomPanel)sender;
                         Console.WriteLine($"The tag that is LinkClickedEventArgs is:{(int)panelClicked.Tag}");
                         string songName = Songs.GetName((int)panelClicked.Tag);
                         songPath.Add(Songs.GetPath((int)panelClicked.Tag));
@@ -378,6 +413,34 @@ namespace NiceUIDesign.Classes
                         CustomPictureBox picClicked = (CustomPictureBox)sender;
                         string songName = Songs.GetName((int)picClicked.Tag);
                         songPath.Add(Songs.GetPath((int)picClicked.Tag));
+
+
+                        //updating image and text of song in the control
+                        Form1.updateControlInfo(songName, null);
+
+                        if (Player.songWasQueued)
+                        {
+                            Console.WriteLine("Danger");
+                            Player.StopSong();
+                            Player.PlaySong(songPath);
+                            Player.GetOutputInfo();
+                        }
+                        else
+                        {
+                            Console.WriteLine("not danger");
+                            Player.PlaySong(songPath);
+                            Player.GetOutputInfo();
+
+                        }
+                        Console.WriteLine($"Song: {songName} was clicked");
+                    }
+                    break;
+
+                case "NiceUIDesign.Custom.CustomRoundButton":
+                    {
+                        CustomRoundButton buttonClicked = (CustomRoundButton)sender;
+                        string songName = Songs.GetName((int)buttonClicked.Tag);
+                        songPath.Add(Songs.GetPath((int)buttonClicked.Tag));
 
 
                         //updating image and text of song in the control

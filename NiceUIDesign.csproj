@@ -166,7 +166,7 @@
     <Compile Include="Custom\CustomRoundButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Custom\CustomFlowLayoutPanel.cs">
+    <Compile Include="Custom\CustomPanel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Custom\CustomLabel.cs">

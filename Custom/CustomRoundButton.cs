@@ -15,10 +15,21 @@ namespace NiceUIDesign.Custom
             base.OnPaint(pevent);
         }
 
-        public CustomRoundButton(string name, string tag)
+        public CustomRoundButton(string name, int tag, int width, int height)
         {
             this.Name = name;
             this.Tag = tag;
+            this.Width = width;
+            this.Height = height;
+
+        }
+
+        public CustomRoundButton(string name, string tag, int width, int height)
+        {
+            this.Name = name;
+            this.Tag = tag;
+            this.Width = width;
+            this.Height = height;
 
         }
 

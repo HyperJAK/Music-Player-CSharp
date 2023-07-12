@@ -76,7 +76,7 @@ namespace NiceUIDesign.Classes.Playlists
             playlistCounter++;
 
             int tagid = playlist.id;
-            CustomFlowLayoutPanel panel = new CustomFlowLayoutPanel($"panel:{playlist.name}", 160, 180, FlowDirection.TopDown, tagid);
+            CustomPanel panel = new CustomPanel($"panel:{playlist.name}", 160, 180, tagid);
             CustomPictureBox pic = new CustomPictureBox($"pic:{playlist.name}", tagid);
             CustomLabel label = new CustomLabel($"label:{playlist.name}", playlist.name, tagid);
 

@@ -8,7 +8,7 @@ namespace NiceUIDesign.Classes.Playlists
     public class PlaylistsTracker : MusicTracker
     {
 
-        private List<CustomFlowLayoutPanel> panels;
+        private List<CustomPanel> panels;
         private List<CustomPictureBox> pics;
         private List<CustomLabel> labels;
 
@@ -16,7 +16,7 @@ namespace NiceUIDesign.Classes.Playlists
 
         public PlaylistsTracker()
         {
-            panels = new List<CustomFlowLayoutPanel>();
+            panels = new List<CustomPanel>();
             pics = new List<CustomPictureBox>();
             labels = new List<CustomLabel>();
         }
@@ -36,7 +36,7 @@ namespace NiceUIDesign.Classes.Playlists
             labels.Add(label);
         }
 
-        public override void AddPanel(CustomFlowLayoutPanel panel)
+        public override void AddPanel(CustomPanel panel)
         {
             panel.Click += Panel_Click;
             panel.MouseHover += Panel_Hover;

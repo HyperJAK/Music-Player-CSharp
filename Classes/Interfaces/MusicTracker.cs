@@ -6,7 +6,7 @@ namespace NiceUIDesign.Classes.Abstract
     public abstract class MusicTracker
     {
 
-        public abstract void AddPanel(CustomFlowLayoutPanel panel);
+        public abstract void AddPanel(CustomPanel panel);
         public abstract void AddImage(CustomPictureBox pic);
 
         public abstract void AddLabel(CustomLabel label);

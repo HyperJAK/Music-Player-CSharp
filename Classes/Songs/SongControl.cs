@@ -10,23 +10,19 @@ namespace NiceUIDesign.Classes
         public bool pauseClicked = false;
         public CustomLabel control_label = new CustomLabel();
         public CustomPictureBox control_image = new CustomPictureBox();
-        public CustomRoundButton pause_btn = new CustomRoundButton("pause_btn", "pause");
-        public CustomRoundButton next_btn = new CustomRoundButton("next_btn", "next");
-        public CustomRoundButton prev_btn = new CustomRoundButton("prev_btn", "prev");
-        public CustomRoundButton repeat_btn = new CustomRoundButton("repeat_btn", "repeat");
+        public CustomRoundButton pause_btn = new CustomRoundButton("pause_btn", "pause", 50, 50);
+        public CustomRoundButton next_btn = new CustomRoundButton("next_btn", "next", 40, 40);
+        public CustomRoundButton prev_btn = new CustomRoundButton("prev_btn", "prev", 40, 40);
+        public CustomRoundButton repeat_btn = new CustomRoundButton("repeat_btn", "repeat", 25, 25);
 
         public SongControl()
         {
-            pause_btn.Size = new Size(50, 50);
             pause_btn.BackColor = Color.Transparent;
 
-            prev_btn.Size = new Size(40, 40);
             prev_btn.BackColor = Color.Transparent;
 
-            next_btn.Size = new Size(40, 40);
             next_btn.BackColor = Color.Transparent;
 
-            repeat_btn.Size = new Size(25, 25);
             repeat_btn.BackColor = Color.Transparent;
 
             control_label.Text = "Just testing here";

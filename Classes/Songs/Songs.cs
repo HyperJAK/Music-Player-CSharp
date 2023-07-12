@@ -83,7 +83,7 @@ namespace NiceUIDesign.Classes
         public void windowMouseEnter_listener(object sender, EventArgs e)
         {
 
-            foreach (CustomFlowLayoutPanel cp in songTracker.elementsHoveredHistory)
+            foreach (CustomPanel cp in songTracker.elementsHoveredHistory)
             {
                 cp.BackColor = Colors.elementsPanelBackground;
             }
@@ -299,31 +299,39 @@ namespace NiceUIDesign.Classes
             songCounter++;
 
             int tagid = song.id;
-            CustomFlowLayoutPanel panel = new CustomFlowLayoutPanel($"panel:{song.name}", 160, 180, FlowDirection.TopDown, tagid);
-            CustomPictureBox pic = new CustomPictureBox($"pic:{song.name}", tagid);
-            CustomLabel label = new CustomLabel($"label:{song.name}", song.name, tagid);
+            CustomPanel panel = new CustomPanel($"panel:{tagid}", 160, 180, tagid);
+            CustomPictureBox pic = new CustomPictureBox($"pic:{tagid}", tagid);
+            CustomLabel label = new CustomLabel($"label:{tagid}", song.name, tagid);
+            CustomRoundButton play_btn = new CustomRoundButton($"button:{tagid}",tagid, 25, 25);
 
-            pic.BackColor = Color.Black;
+        pic.BackColor = Color.Black;
             pic.Width = panel.Width - 7;
             pic.Height = panel.Height - 60;
             label.Width = panel.Width - 6;
             label.Height = 50;
 
+            play_btn.Location = new Point(pic.Right - play_btn.Width, pic.Bottom - play_btn.Height);
+
             //To add round edges to song containers
             //pic.Region = Region.FromHrgn(Form1.CreateRoundRectRgn(0, 0, pic.Width, pic.Height, 10, 10));
-            panel.Region = Region.FromHrgn(Form1.CreateRoundRectRgn(0, 0, panel.Width, panel.Height, 10, 10));
+            panel.Region = Region.FromHrgn(Form1.CreateRoundRectRgn(0, 0, panel.Width, panel.Height, 25, 25));
 
             panel.Margin = new Padding(12);
 
+            panel.Controls.Add(play_btn);
             panel.Controls.Add(pic);
             panel.Controls.Add(label);
             panel.Capture = true;
+
+            pic.Dock = DockStyle.Fill;
+            label.Dock = DockStyle.Bottom;
 
 
             //Adding listeners for each of these
             songTracker.AddPanel(panel);
             songTracker.AddImage(pic);
             songTracker.AddLabel(label);
+            songTracker.AddButton(play_btn);
 
 
             //Adds the new song to this class (flowpanel)
