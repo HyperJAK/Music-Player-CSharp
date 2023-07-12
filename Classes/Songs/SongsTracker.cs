@@ -2,6 +2,7 @@
 using NiceUIDesign.Resources;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace NiceUIDesign.Classes
 {
@@ -11,6 +12,8 @@ namespace NiceUIDesign.Classes
         private List<CustomFlowLayoutPanel> panels;
         private List<CustomPictureBox> pics;
         private List<CustomLabel> labels;
+
+        public List<CustomFlowLayoutPanel> elementsHoveredHistory = new List<CustomFlowLayoutPanel>();
 
         public List<string> songPath;
 
@@ -28,8 +31,8 @@ namespace NiceUIDesign.Classes
         public void AddPanel(CustomFlowLayoutPanel panel)
         {
             panel.Click += Panel_Click;
-            panel.MouseHover += Panel_Hover;
-            panel.MouseLeave += Panel_Hover_Exited;
+            panel.MouseEnter += Panel_Hover;
+            //panel.MouseEnter += Panel_Hover_Exited;
             panels.Add(panel);
         }
 
@@ -37,7 +40,7 @@ namespace NiceUIDesign.Classes
         public void AddImage(CustomPictureBox pic)
         {
             pic.Click += Panel_Click;
-            pic.MouseHover += Panel_Hover;
+            pic.MouseEnter += Panel_Hover;
             pics.Add(pic);
         }
 
@@ -45,7 +48,7 @@ namespace NiceUIDesign.Classes
         public void AddLabel(CustomLabel label)
         {
             label.Click += Panel_Click;
-            label.MouseHover += Panel_Hover;
+            label.MouseEnter += Panel_Hover;
             labels.Add(label);
         }
 
@@ -183,6 +186,11 @@ namespace NiceUIDesign.Classes
                     {
                         CustomFlowLayoutPanel panelExited = (CustomFlowLayoutPanel)sender;
                         panelExited.BackColor = Colors.navButtonsColor;
+
+                        if (!elementsHoveredHistory.Contains(panelExited))
+                        {
+                            elementsHoveredHistory.Add(panelExited);
+                        }
                     }
                     break;
 
@@ -197,6 +205,12 @@ namespace NiceUIDesign.Classes
                             {
                                 panelExited = p;
                                 panelExited.BackColor = Colors.navButtonsColor;
+
+                                if (!elementsHoveredHistory.Contains(panelExited))
+                        {
+                                    elementsHoveredHistory.Add(panelExited);
+                                }
+
                                 break;
                             }
 
@@ -217,6 +231,12 @@ namespace NiceUIDesign.Classes
                             {
                                 panelExited = p;
                                 panelExited.BackColor = Colors.navButtonsColor;
+
+                                if (!elementsHoveredHistory.Contains(panelExited))
+                        {
+                                    elementsHoveredHistory.Add(panelExited);
+                                }
+
                                 break;
                             }
 

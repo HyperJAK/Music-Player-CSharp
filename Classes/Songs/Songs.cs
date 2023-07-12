@@ -40,6 +40,8 @@ namespace NiceUIDesign.Classes
             this.AllowDrop = false;
             this.AutoScroll = true;
 
+            this.MouseEnter += windowMouseEnter_listener;
+
             GetInfo();
             songsLoadedEvent.WaitOne();
 
@@ -75,6 +77,16 @@ namespace NiceUIDesign.Classes
             CreateDicts();
             SaveInfo(allSongs);
 
+        }
+
+
+        public void windowMouseEnter_listener(object sender, EventArgs e)
+        {
+
+            foreach(CustomFlowLayoutPanel cp in songTracker.elementsHoveredHistory)
+            {
+                cp.BackColor = Colors.elementsPanelBackground;
+            }
         }
 
 
