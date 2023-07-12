@@ -83,7 +83,7 @@ namespace NiceUIDesign.Classes
         public void windowMouseEnter_listener(object sender, EventArgs e)
         {
 
-            foreach(CustomFlowLayoutPanel cp in songTracker.elementsHoveredHistory)
+            foreach (CustomFlowLayoutPanel cp in songTracker.elementsHoveredHistory)
             {
                 cp.BackColor = Colors.elementsPanelBackground;
             }

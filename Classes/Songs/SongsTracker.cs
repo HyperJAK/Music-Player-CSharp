@@ -2,7 +2,6 @@
 using NiceUIDesign.Resources;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace NiceUIDesign.Classes
 {
@@ -207,7 +206,7 @@ namespace NiceUIDesign.Classes
                                 panelExited.BackColor = Colors.navButtonsColor;
 
                                 if (!elementsHoveredHistory.Contains(panelExited))
-                        {
+                                {
                                     elementsHoveredHistory.Add(panelExited);
                                 }
 
@@ -233,7 +232,7 @@ namespace NiceUIDesign.Classes
                                 panelExited.BackColor = Colors.navButtonsColor;
 
                                 if (!elementsHoveredHistory.Contains(panelExited))
-                        {
+                                {
                                     elementsHoveredHistory.Add(panelExited);
                                 }
 
