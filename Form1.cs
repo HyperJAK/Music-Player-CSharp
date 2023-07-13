@@ -42,6 +42,7 @@ namespace NiceUIDesign
         public Form1()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
 
             /*            nav_panel.Height = dashboard_btn.Height;
                         nav_panel.Top = dashboard_btn.Top;

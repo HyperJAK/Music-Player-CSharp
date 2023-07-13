@@ -39,6 +39,7 @@ namespace NiceUIDesign.Classes
             this.WrapContents = true;
             this.AllowDrop = false;
             this.AutoScroll = true;
+            this.DoubleBuffered = true;
 
             this.MouseEnter += windowMouseEnter_listener;
 
@@ -302,9 +303,9 @@ namespace NiceUIDesign.Classes
             CustomPanel panel = new CustomPanel($"panel:{tagid}", 160, 180, tagid);
             CustomPictureBox pic = new CustomPictureBox($"pic:{tagid}", tagid);
             CustomLabel label = new CustomLabel($"label:{tagid}", song.name, tagid);
-            CustomRoundButton play_btn = new CustomRoundButton($"button:{tagid}",tagid, 25, 25);
+            CustomRoundButton play_btn = new CustomRoundButton($"button:{tagid}", tagid, 25, 25);
 
-        pic.BackColor = Color.Black;
+            pic.BackColor = Color.Black;
             pic.Width = panel.Width - 7;
             pic.Height = panel.Height - 60;
             label.Width = panel.Width - 6;

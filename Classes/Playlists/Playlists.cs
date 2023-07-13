@@ -35,6 +35,7 @@ namespace NiceUIDesign.Classes.Playlists
             this.FlowDirection = FlowDirection.LeftToRight;
             this.WrapContents = true;
             this.AllowDrop = false;
+            this.DoubleBuffered = true;
 
             GetInfo();
             playlistsLoadedEvent.WaitOne();
