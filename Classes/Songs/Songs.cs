@@ -305,7 +305,7 @@ namespace NiceUIDesign.Classes
             CustomLabel label = new CustomLabel($"label:{tagid}", song.name, tagid);
             CustomRoundButton play_btn = new CustomRoundButton($"button:{tagid}", tagid, 30, 30);
             CustomRoundButton edit_btn = new CustomRoundButton($"button:{tagid}", tagid, 25, 25);
-            CustomCheckbox selectElement_checkBox = new CustomCheckbox($"checkbox:{tagid}", tagid, 25, 25);
+            CustomCheckbox selectElement_checkBox = new CustomCheckbox($"checkbox:{tagid}", tagid, 13, 13);
 
 
             pic.BackColor = Color.Black;
@@ -317,12 +317,13 @@ namespace NiceUIDesign.Classes
             //pic.BackgroundImage = NiceUIDesign.Properties.Resources.AuPlayLogo;
 
             play_btn.Location = new Point(pic.Right - (play_btn.Width + 5), pic.Bottom - play_btn.Height);
-            edit_btn.Location = new Point(pic.Right - (play_btn.Width + 2), pic.Top + edit_btn.Height / 2);
+            edit_btn.Location = new Point(pic.Right - (play_btn.Width + 3), pic.Top + edit_btn.Height / 2);
             pic.Location = new Point(panel.Left + 4, panel.Top + 5);
-            selectElement_checkBox.Location = new Point(pic.Left + 12, pic.Top + edit_btn.Height / 3);
+            selectElement_checkBox.Location = new Point(pic.Left + 12, pic.Top + edit_btn.Height / 2);
 
             //To add round edges to song containers
             pic.Region = Region.FromHrgn(Form1.CreateRoundRectRgn(0, 0, pic.Width, pic.Height, 40, 40));
+            //selectElement_checkBox.Region = Region.FromHrgn(Form1.CreateRoundRectRgn(0, 0, (selectElement_checkBox.Width/2 + 3), selectElement_checkBox.Height - 5, 10, 10));
 
             panel.Margin = new Padding(12);
 
