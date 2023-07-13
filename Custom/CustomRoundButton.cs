@@ -9,7 +9,7 @@ namespace NiceUIDesign.Custom
 
         protected override void OnPaint(PaintEventArgs pevent)
         {
-            
+
             Graphics g = pevent.Graphics;
             g.SmoothingMode = SmoothingMode.AntiAlias;
 

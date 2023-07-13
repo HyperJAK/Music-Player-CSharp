@@ -80,7 +80,7 @@ namespace NiceUIDesign.Custom
                 base.OnPaintBackground(e);
             }
         }
-    
+
 
 
     }
