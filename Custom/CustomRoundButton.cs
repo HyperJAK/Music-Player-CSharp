@@ -9,16 +9,26 @@ namespace NiceUIDesign.Custom
 
         protected override void OnPaint(PaintEventArgs pevent)
         {
+            
+            Graphics g = pevent.Graphics;
+            g.SmoothingMode = SmoothingMode.AntiAlias;
+
+            int radius = 100;
+            int diameter = radius * 2;
+            int x = (ClientSize.Width - diameter) / 2;
+            int y = (ClientSize.Height - diameter) / 2;
+
             GraphicsPath graphicsPath = new GraphicsPath();
-            pevent.Graphics.Clear(this.Parent.BackColor);
-            pevent.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+            graphicsPath.AddArc(x, y, diameter, diameter, 0, 180);
+            graphicsPath.AddArc(x, y, diameter, diameter, 180, -180);
 
-            graphicsPath.StartFigure();
-            graphicsPath.AddEllipse(0, 0, ClientSize.Width, ClientSize.Height);
-            graphicsPath.CloseFigure();
+            g.DrawPath(Pens.Black, graphicsPath);
 
-            //this.Region = new Region(graphicsPath);
-            pevent.Graphics.FillRegion(new SolidBrush(this.BackColor), new Region(graphicsPath));
+            using (SolidBrush backgroundBrush = new SolidBrush(BackColor))
+            {
+                pevent.Graphics.FillPath(backgroundBrush, graphicsPath);
+            }
+
             base.OnPaint(pevent);
         }
 
@@ -31,16 +41,21 @@ namespace NiceUIDesign.Custom
         public CustomRoundButton(string name, int tag, int width, int height)
         {
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            DoubleBuffered = true;
             this.Name = name;
             this.Tag = tag;
             this.Width = width;
             this.Height = height;
+
+            this.Image = Properties.Resources.AuPlayLogo;
+            this.ImageAlign = ContentAlignment.MiddleCenter;
 
         }
 
         public CustomRoundButton(string name, string tag, int width, int height)
         {
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            DoubleBuffered = true;
             this.Name = name;
             this.Tag = tag;
             this.Width = width;
@@ -53,6 +68,7 @@ namespace NiceUIDesign.Custom
         public CustomRoundButton()
         {
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            DoubleBuffered = true;
         }
     }
 }
