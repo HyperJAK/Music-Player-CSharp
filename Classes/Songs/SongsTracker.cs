@@ -2,7 +2,6 @@
 using NiceUIDesign.Resources;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 
 namespace NiceUIDesign.Classes
 {
@@ -107,14 +106,14 @@ namespace NiceUIDesign.Classes
                 }
 
             }
-            else if(!temp.Checked)
+            else if (!temp.Checked)
             {
                 //remove element from list of all checked elements
                 listOfCheckedElements.Remove((int)temp.Tag);
 
             }
 
-            if(listOfCheckedElements.Count == 0)
+            if (listOfCheckedElements.Count == 0)
             {
                 startedCheckingBoxes = false;
 
@@ -123,8 +122,8 @@ namespace NiceUIDesign.Classes
                     box.Visible = false;
                     panels[0].Focus();
                 }
-                
-                
+
+
             }
         }
 

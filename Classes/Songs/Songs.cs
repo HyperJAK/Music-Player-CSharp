@@ -9,7 +9,6 @@ using System.Drawing;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace NiceUIDesign.Classes
 {
@@ -88,7 +87,7 @@ namespace NiceUIDesign.Classes
             CustomRoundButton playBtn;
             CustomRoundButton editBtn;
 
-            
+
 
             foreach (CustomPanel cp in songTracker.elementsHoveredHistory)
             {
@@ -98,7 +97,7 @@ namespace NiceUIDesign.Classes
                 playBtn = songTracker.playButtons.Find(btn => (int)btn.Tag == (int)cp.Tag);
                 editBtn = songTracker.editButtons.Find(btn => (int)btn.Tag == (int)cp.Tag);
 
-                if(!songTracker.startedCheckingBoxes)
+                if (!songTracker.startedCheckingBoxes)
                 {
                     checkBox.Visible = false;
                 }
