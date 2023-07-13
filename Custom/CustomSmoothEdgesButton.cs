@@ -27,8 +27,15 @@ namespace NiceUIDesign.Custom
             base.OnPaint(pevent);
         }
 
+        protected override void OnPaintBackground(PaintEventArgs pevent)
+        {
+            // Do nothing to prevent background painting
+        }
+
+
         public CustomSmoothEdgesButton(string text)
         {
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             this.Text = text;
             this.ForeColor = Color.White;
             this.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
@@ -37,7 +44,7 @@ namespace NiceUIDesign.Custom
 
         public CustomSmoothEdgesButton()
         {
-
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
         }
     }
 }

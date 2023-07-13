@@ -54,11 +54,24 @@ namespace NiceUIDesign.Classes
             labels.Add(label);
         }
 
-        public void AddButton(CustomRoundButton button)
+        public void AddPlayButton(CustomRoundButton button)
         {
             button.Click += Panel_Click;
             button.MouseEnter += Panel_Hover;
             buttons.Add(button);
+        }
+
+        public void AddEditButton(CustomRoundButton button)
+        {
+            button.Click += EditElementPanel_listener;
+            button.MouseEnter += Panel_Hover;
+            buttons.Add(button);
+        }
+
+
+        public void EditElementPanel_listener(object sender, EventArgs e)
+        {
+
         }
 
         /*override

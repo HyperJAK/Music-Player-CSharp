@@ -160,6 +160,9 @@
     <Compile Include="Classes\Songs\Songs.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Custom\CustomCheckbox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Custom\CustomSmoothEdgesButton.cs">
       <SubType>Component</SubType>
     </Compile>

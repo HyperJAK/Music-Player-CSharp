@@ -36,7 +36,7 @@ namespace NiceUIDesign
         public static void updateControlInfo(string songName, Image image)
         {
             songControl.control_label.Text = songName;
-            songControl.control_image.Image = image;
+            songControl.control_image.BackgroundImage = image;
         }
 
         public Form1()

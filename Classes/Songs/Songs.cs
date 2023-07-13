@@ -303,7 +303,10 @@ namespace NiceUIDesign.Classes
             CustomPanel panel = new CustomPanel($"panel:{tagid}", 160, 180, tagid);
             CustomPictureBox pic = new CustomPictureBox($"pic:{tagid}", tagid);
             CustomLabel label = new CustomLabel($"label:{tagid}", song.name, tagid);
-            CustomRoundButton play_btn = new CustomRoundButton($"button:{tagid}", tagid, 25, 25);
+            CustomRoundButton play_btn = new CustomRoundButton($"button:{tagid}", tagid, 30, 30);
+            CustomRoundButton edit_btn = new CustomRoundButton($"button:{tagid}", tagid, 25, 25);
+            CustomCheckbox selectElement_checkBox = new CustomCheckbox($"checkbox:{tagid}", tagid, 25, 25);
+
 
             pic.BackColor = Color.Black;
             pic.Width = panel.Width - 7;
@@ -311,20 +314,26 @@ namespace NiceUIDesign.Classes
             label.Width = panel.Width - 6;
             label.Height = 50;
 
-            play_btn.Location = new Point(pic.Right - play_btn.Width, pic.Bottom - play_btn.Height);
+            //pic.BackgroundImage = NiceUIDesign.Properties.Resources.AuPlayLogo;
+
+            play_btn.Location = new Point(pic.Right - (play_btn.Width + 5), pic.Bottom - play_btn.Height);
+            edit_btn.Location = new Point(pic.Right - (play_btn.Width + 2), pic.Top + edit_btn.Height / 2);
+            pic.Location = new Point(panel.Left + 4, panel.Top + 5);
+            selectElement_checkBox.Location = new Point(pic.Left + 12, pic.Top + edit_btn.Height / 3);
 
             //To add round edges to song containers
-            //pic.Region = Region.FromHrgn(Form1.CreateRoundRectRgn(0, 0, pic.Width, pic.Height, 10, 10));
-            panel.Region = Region.FromHrgn(Form1.CreateRoundRectRgn(0, 0, panel.Width, panel.Height, 25, 25));
+            pic.Region = Region.FromHrgn(Form1.CreateRoundRectRgn(0, 0, pic.Width, pic.Height, 40, 40));
 
             panel.Margin = new Padding(12);
 
             panel.Controls.Add(play_btn);
+            panel.Controls.Add(edit_btn);
+            panel.Controls.Add(selectElement_checkBox);
             panel.Controls.Add(pic);
             panel.Controls.Add(label);
             panel.Capture = true;
 
-            pic.Dock = DockStyle.Fill;
+            //pic.Dock = DockStyle.Fill;
             label.Dock = DockStyle.Bottom;
 
 
@@ -332,7 +341,9 @@ namespace NiceUIDesign.Classes
             songTracker.AddPanel(panel);
             songTracker.AddImage(pic);
             songTracker.AddLabel(label);
-            songTracker.AddButton(play_btn);
+            songTracker.AddPlayButton(play_btn);
+            songTracker.AddEditButton(edit_btn);
+            //songTracker.AddCheckedElement(selectElement_checkBox);
 
 
             //Adds the new song to this class (flowpanel)
