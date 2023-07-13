@@ -2,6 +2,7 @@
 using NiceUIDesign.Resources;
 using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace NiceUIDesign.Classes
 {
@@ -11,7 +12,13 @@ namespace NiceUIDesign.Classes
         private List<CustomPanel> panels;
         private List<CustomPictureBox> pics;
         private List<CustomLabel> labels;
-        private List<CustomRoundButton> buttons;
+        public List<CustomRoundButton> playButtons;
+        public List<CustomRoundButton> editButtons;
+        public List<CustomCheckbox> checkBoxes;
+
+        public List<int> listOfCheckedElements;
+
+        public bool startedCheckingBoxes = false;
 
         public List<CustomPanel> elementsHoveredHistory = new List<CustomPanel>();
 
@@ -23,7 +30,11 @@ namespace NiceUIDesign.Classes
             panels = new List<CustomPanel>();
             pics = new List<CustomPictureBox>();
             labels = new List<CustomLabel>();
-            buttons = new List<CustomRoundButton>();
+            playButtons = new List<CustomRoundButton>();
+            editButtons = new List<CustomRoundButton>();
+            checkBoxes = new List<CustomCheckbox>();
+
+            listOfCheckedElements = new List<int>();
 
             songPath = new List<string>();
         }
@@ -58,20 +69,63 @@ namespace NiceUIDesign.Classes
         {
             button.Click += Panel_Click;
             button.MouseEnter += Panel_Hover;
-            buttons.Add(button);
+            playButtons.Add(button);
         }
 
         public void AddEditButton(CustomRoundButton button)
         {
             button.Click += EditElementPanel_listener;
             button.MouseEnter += Panel_Hover;
-            buttons.Add(button);
+            editButtons.Add(button);
+        }
+
+        public void AddCheckBox(CustomCheckbox box)
+        {
+            box.Click += CheckElementPanel_listener;
+            box.MouseEnter += Panel_Hover;
+            checkBoxes.Add(box);
         }
 
 
         public void EditElementPanel_listener(object sender, EventArgs e)
         {
 
+        }
+
+        public void CheckElementPanel_listener(object sender, EventArgs e)
+        {
+            CustomCheckbox temp = (CustomCheckbox)sender;
+            if (temp.Checked && !startedCheckingBoxes)
+            {
+                startedCheckingBoxes = true;
+
+                listOfCheckedElements.Add((int)temp.Tag);
+
+                foreach (CustomCheckbox box in checkBoxes)
+                {
+                    box.Visible = true;
+                }
+
+            }
+            else if(!temp.Checked)
+            {
+                //remove element from list of all checked elements
+                listOfCheckedElements.Remove((int)temp.Tag);
+
+            }
+
+            if(listOfCheckedElements.Count == 0)
+            {
+                startedCheckingBoxes = false;
+
+                foreach (CustomCheckbox box in checkBoxes)
+                {
+                    box.Visible = false;
+                    panels[0].Focus();
+                }
+                
+                
+            }
         }
 
         /*override
@@ -207,6 +261,19 @@ namespace NiceUIDesign.Classes
                 case "NiceUIDesign.Custom.CustomFlowLayoutPanel":
                     {
                         CustomPanel panelExited = (CustomPanel)sender;
+
+                        CustomCheckbox checkBox;
+                        CustomRoundButton playBtn;
+                        CustomRoundButton editBtn;
+
+                        checkBox = checkBoxes.Find(box => (int)box.Tag == (int)panelExited.Tag);
+                        playBtn = playButtons.Find(btn => (int)btn.Tag == (int)panelExited.Tag);
+                        editBtn = editButtons.Find(btn => (int)btn.Tag == (int)panelExited.Tag);
+
+                        checkBox.Visible = true;
+                        playBtn.Visible = true;
+                        editBtn.Visible = true;
+
                         panelExited.BackColor = Colors.navButtonsColor;
 
                         if (!elementsHoveredHistory.Contains(panelExited))
@@ -220,24 +287,26 @@ namespace NiceUIDesign.Classes
                     {
                         CustomLabel labelClicked = (CustomLabel)sender;
                         CustomPanel panelExited;
+                        CustomCheckbox checkBox;
+                        CustomRoundButton playBtn;
+                        CustomRoundButton editBtn;
 
-                        foreach (CustomPanel p in panels)
+                        panelExited = panels.Find(panel => (int)panel.Tag == (int)labelClicked.Tag);
+
+                        checkBox = checkBoxes.Find(box => (int)box.Tag == (int)labelClicked.Tag);
+                        playBtn = playButtons.Find(btn => (int)btn.Tag == (int)labelClicked.Tag);
+                        editBtn = editButtons.Find(btn => (int)btn.Tag == (int)labelClicked.Tag);
+
+                        checkBox.Visible = true;
+                        playBtn.Visible = true;
+                        editBtn.Visible = true;
+
+                        panelExited.BackColor = Colors.navButtonsColor;
+
+                        if (!elementsHoveredHistory.Contains(panelExited))
                         {
-                            if ((int)p.Tag == (int)labelClicked.Tag)
-                            {
-                                panelExited = p;
-                                panelExited.BackColor = Colors.navButtonsColor;
-
-                                if (!elementsHoveredHistory.Contains(panelExited))
-                                {
-                                    elementsHoveredHistory.Add(panelExited);
-                                }
-
-                                break;
-                            }
-
+                            elementsHoveredHistory.Add(panelExited);
                         }
-
 
                     }
                     break;
@@ -247,21 +316,26 @@ namespace NiceUIDesign.Classes
                         CustomPictureBox picClicked = (CustomPictureBox)sender;
                         CustomPanel panelExited;
 
-                        foreach (CustomPanel p in panels)
+
+                        CustomCheckbox checkBox;
+                        CustomRoundButton playBtn;
+                        CustomRoundButton editBtn;
+
+                        panelExited = panels.Find(panel => (int)panel.Tag == (int)picClicked.Tag);
+
+                        checkBox = checkBoxes.Find(box => (int)box.Tag == (int)picClicked.Tag);
+                        playBtn = playButtons.Find(btn => (int)btn.Tag == (int)picClicked.Tag);
+                        editBtn = editButtons.Find(btn => (int)btn.Tag == (int)picClicked.Tag);
+
+                        checkBox.Visible = true;
+                        playBtn.Visible = true;
+                        editBtn.Visible = true;
+
+                        panelExited.BackColor = Colors.navButtonsColor;
+
+                        if (!elementsHoveredHistory.Contains(panelExited))
                         {
-                            if ((int)p.Tag == (int)picClicked.Tag)
-                            {
-                                panelExited = p;
-                                panelExited.BackColor = Colors.navButtonsColor;
-
-                                if (!elementsHoveredHistory.Contains(panelExited))
-                                {
-                                    elementsHoveredHistory.Add(panelExited);
-                                }
-
-                                break;
-                            }
-
+                            elementsHoveredHistory.Add(panelExited);
                         }
 
                     }
@@ -272,21 +346,13 @@ namespace NiceUIDesign.Classes
                         CustomRoundButton buttonClicked = (CustomRoundButton)sender;
                         CustomPanel panelExited;
 
-                        foreach (CustomPanel p in panels)
+                        panelExited = panels.Find(panel => (int)panel.Tag == (int)buttonClicked.Tag);
+
+                        panelExited.BackColor = Colors.navButtonsColor;
+
+                        if (!elementsHoveredHistory.Contains(panelExited))
                         {
-                            if ((int)p.Tag == (int)buttonClicked.Tag)
-                            {
-                                panelExited = p;
-                                panelExited.BackColor = Colors.navButtonsColor;
-
-                                if (!elementsHoveredHistory.Contains(panelExited))
-                                {
-                                    elementsHoveredHistory.Add(panelExited);
-                                }
-
-                                break;
-                            }
-
+                            elementsHoveredHistory.Add(panelExited);
                         }
 
                     }
@@ -316,16 +382,9 @@ namespace NiceUIDesign.Classes
                         CustomLabel labelClicked = (CustomLabel)sender;
                         CustomPanel panelExited;
 
-                        foreach (CustomPanel p in panels)
-                        {
-                            if ((int)p.Tag == (int)labelClicked.Tag)
-                            {
-                                panelExited = p;
-                                panelExited.BackColor = Colors.defaultBackground;
-                                break;
-                            }
+                        panelExited = panels.Find(panel => (int)panel.Tag == (int)labelClicked.Tag);
 
-                        }
+                        panelExited.BackColor = Colors.defaultBackground;
 
 
                     }
@@ -336,16 +395,11 @@ namespace NiceUIDesign.Classes
                         CustomPictureBox picClicked = (CustomPictureBox)sender;
                         CustomPanel panelExited;
 
-                        foreach (CustomPanel p in panels)
-                        {
-                            if ((int)p.Tag == (int)picClicked.Tag)
-                            {
-                                panelExited = p;
-                                panelExited.BackColor = Colors.defaultBackground;
-                                break;
-                            }
+                        panelExited = panels.Find(panel => (int)panel.Tag == (int)picClicked.Tag);
 
-                        }
+                        panelExited.BackColor = Colors.defaultBackground;
+
+
 
                     }
                     break;

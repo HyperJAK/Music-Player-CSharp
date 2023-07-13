@@ -9,6 +9,7 @@ using System.Drawing;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace NiceUIDesign.Classes
 {
@@ -83,10 +84,26 @@ namespace NiceUIDesign.Classes
 
         public void windowMouseEnter_listener(object sender, EventArgs e)
         {
+            CustomCheckbox checkBox;
+            CustomRoundButton playBtn;
+            CustomRoundButton editBtn;
+
+            
 
             foreach (CustomPanel cp in songTracker.elementsHoveredHistory)
             {
                 cp.BackColor = Colors.elementsPanelBackground;
+
+                checkBox = songTracker.checkBoxes.Find(box => (int)box.Tag == (int)cp.Tag);
+                playBtn = songTracker.playButtons.Find(btn => (int)btn.Tag == (int)cp.Tag);
+                editBtn = songTracker.editButtons.Find(btn => (int)btn.Tag == (int)cp.Tag);
+
+                if(!songTracker.startedCheckingBoxes)
+                {
+                    checkBox.Visible = false;
+                }
+                playBtn.Visible = false;
+                editBtn.Visible = false;
             }
         }
 
@@ -317,9 +334,15 @@ namespace NiceUIDesign.Classes
             //pic.BackgroundImage = NiceUIDesign.Properties.Resources.AuPlayLogo;
 
             play_btn.Location = new Point(pic.Right - (play_btn.Width + 5), pic.Bottom - play_btn.Height);
+            play_btn.Visible = false;
+
             edit_btn.Location = new Point(pic.Right - (play_btn.Width + 3), pic.Top + edit_btn.Height / 2);
+            edit_btn.Visible = false;
+
             pic.Location = new Point(panel.Left + 4, panel.Top + 5);
+
             selectElement_checkBox.Location = new Point(pic.Left + 12, pic.Top + edit_btn.Height / 2);
+            selectElement_checkBox.Visible = false;
 
             //To add round edges to song containers
             pic.Region = Region.FromHrgn(Form1.CreateRoundRectRgn(0, 0, pic.Width, pic.Height, 40, 40));
@@ -344,7 +367,7 @@ namespace NiceUIDesign.Classes
             songTracker.AddLabel(label);
             songTracker.AddPlayButton(play_btn);
             songTracker.AddEditButton(edit_btn);
-            //songTracker.AddCheckedElement(selectElement_checkBox);
+            songTracker.AddCheckBox(selectElement_checkBox);
 
 
             //Adds the new song to this class (flowpanel)
