@@ -133,7 +133,7 @@ namespace NiceUIDesign.Classes
 
         public static void PauseOrPlaySong()
         {
-            
+
 
 
             if (songIsPaused && !songIsStopped)

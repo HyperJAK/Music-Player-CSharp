@@ -130,7 +130,7 @@ namespace NiceUIDesign.Classes
                 listOfCheckedElements.Remove((int)temp.Tag);
 
             }
-            else if(temp.Checked && startedCheckingBoxes)
+            else if (temp.Checked && startedCheckingBoxes)
             {
                 listOfCheckedElements.Add((int)temp.Tag);
 
@@ -149,7 +149,7 @@ namespace NiceUIDesign.Classes
                 {
                     Form1.songControl.Visible = false;
                 }
-                
+
 
                 foreach (CustomCheckbox box in checkBoxes)
                 {
