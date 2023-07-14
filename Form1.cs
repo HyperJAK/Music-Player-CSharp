@@ -126,6 +126,8 @@ namespace NiceUIDesign
             }
         }
 
+
+
         private void updateControlsPosition()
         {
             //Initializing SongControl class stuff
@@ -214,18 +216,21 @@ namespace NiceUIDesign
                 case "browse":
                     {
                         right_displayer.Controls.Remove(songs);
+                        right_displayer.Controls.Remove(songControl);
                         editSongPanel.Visible = false;
                     }
                     break;
                 case "add_element":
                     {
                         right_displayer.Controls.Remove(addSongs);
+                        right_displayer.Controls.Remove(songControl);
                         editSongPanel.Visible = false;
                     }
                     break;
                 case "playlist":
                     {
                         right_displayer.Controls.Remove(playlists);
+                        right_displayer.Controls.Remove(songControl);
                         editSongPanel.Visible = false;
                     }
                     break;
@@ -233,6 +238,7 @@ namespace NiceUIDesign
                 case "download":
                     {
                         //right_displayer.Controls.Remove(playlist);
+                        right_displayer.Controls.Remove(songControl);
                         editSongPanel.Visible = false;
                     }
                     break;
@@ -240,6 +246,7 @@ namespace NiceUIDesign
                 case "settings":
                     {
                         //right_displayer.Controls.Remove(ytDownloader);
+                        right_displayer.Controls.Remove(songControl);
                         editSongPanel.Visible = false;
                     }
                     break;
@@ -291,11 +298,10 @@ namespace NiceUIDesign
                         //right_displayer.SuspendLayout();
                         right_displayer.Visible = false;
                         right_displayer.Controls.Add(songs);
-                        if (!right_displayer.Controls.Contains(songControl))
-                        {
-                            right_displayer.Controls.Add(songControl);
-                        }
-                        else if(right_displayer.Controls.Contains(songControl) && Player.songWasQueued)
+
+                        right_displayer.Controls.Add(songControl);
+
+                        if(right_displayer.Controls.Contains(songControl) && Player.songWasQueued)
                         {
                             songControl.Visible = true;
                         }

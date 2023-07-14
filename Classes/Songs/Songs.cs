@@ -167,7 +167,6 @@ namespace NiceUIDesign.Classes
 
             if (songs.Length > 0)
             {
-                this.SuspendLayout();
                 int tempCounter = 1;
                 foreach (string s in songs)
                 {
@@ -192,9 +191,7 @@ namespace NiceUIDesign.Classes
                     songIdByPath.Add(s.path, s.id);
                 }
 
-
-                this.ResumeLayout();
-                this.PerformLayout();
+                this.Invalidate();
 
                 SaveInfo(allSongs);
                 return true;
