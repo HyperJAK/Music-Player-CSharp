@@ -20,9 +20,9 @@ namespace NiceUIDesign.Classes
 
         public int songCounter = 0;
 
-        private static Dictionary<int, string> songNameById = new Dictionary<int, string>();
-        private static Dictionary<int, string> songPathById = new Dictionary<int, string>();
-        private static Dictionary<string, int> songIdByPath = new Dictionary<string, int>();
+        public static Dictionary<int, string> songNameById = new Dictionary<int, string>();
+        public static Dictionary<int, string> songPathById = new Dictionary<int, string>();
+        public static Dictionary<string, int> songIdByPath = new Dictionary<string, int>();
 
         public static bool latestSongAddedFirst = true;                                         //From config file
 
@@ -83,26 +83,31 @@ namespace NiceUIDesign.Classes
 
         public void windowMouseEnter_listener(object sender, EventArgs e)
         {
-            CustomCheckbox checkBox;
-            CustomRoundButton playBtn;
-            CustomRoundButton editBtn;
-
-
-
-            foreach (CustomPanel cp in songTracker.elementsHoveredHistory)
+            if (songTracker.listOfCheckedElements.Count == 0)
             {
-                cp.BackColor = Colors.elementsPanelBackground;
 
-                checkBox = songTracker.checkBoxes.Find(box => (int)box.Tag == (int)cp.Tag);
-                playBtn = songTracker.playButtons.Find(btn => (int)btn.Tag == (int)cp.Tag);
-                editBtn = songTracker.editButtons.Find(btn => (int)btn.Tag == (int)cp.Tag);
 
-                if (!songTracker.startedCheckingBoxes)
+                CustomCheckbox checkBox;
+                CustomRoundButton playBtn;
+                CustomRoundButton editBtn;
+
+
+
+                foreach (CustomPanel cp in songTracker.elementsHoveredHistory)
                 {
-                    checkBox.Visible = false;
+                    cp.BackColor = Colors.elementsPanelBackground;
+
+                    checkBox = songTracker.checkBoxes.Find(box => (int)box.Tag == (int)cp.Tag);
+                    playBtn = songTracker.playButtons.Find(btn => (int)btn.Tag == (int)cp.Tag);
+                    editBtn = songTracker.editButtons.Find(btn => (int)btn.Tag == (int)cp.Tag);
+
+                    if (!songTracker.startedCheckingBoxes)
+                    {
+                        checkBox.Visible = false;
+                    }
+                    playBtn.Visible = false;
+                    editBtn.Visible = false;
                 }
-                playBtn.Visible = false;
-                editBtn.Visible = false;
             }
         }
 
@@ -287,6 +292,15 @@ namespace NiceUIDesign.Classes
         {
             string value;
             songPathById.TryGetValue(id, out value);
+
+            return value;
+
+        }
+
+        public static int GetId(string path)
+        {
+            int value;
+            songIdByPath.TryGetValue(path, out value);
 
             return value;
 

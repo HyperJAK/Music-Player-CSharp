@@ -33,7 +33,7 @@ namespace NiceUIDesign.Classes
             control_image.BackColor = Color.Black;
 
             repeat_btn.BackgroundImage = Properties.Resources.repeatBtn;
-            pause_btn.BackgroundImage = Properties.Resources.pauseBtn;
+            pause_btn.BackgroundImage = Properties.Resources.playBtn;
             next_btn.BackgroundImage = Properties.Resources.nextBtn;
             prev_btn.BackgroundImage = Properties.Resources.prevBtn;
 
