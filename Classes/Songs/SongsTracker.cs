@@ -2,6 +2,8 @@
 using NiceUIDesign.Resources;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace NiceUIDesign.Classes
 {
@@ -92,8 +94,9 @@ namespace NiceUIDesign.Classes
             var idOfSelectedElement = (int)button.Tag;
 
             //putting panel near the clicked button
-            Form1.editSongPanel.Top = button.Top;
-            Form1.editSongPanel.Left = button.Right;
+            Point cursorPosition = Cursor.Position;
+            //setting position of box to cursor position
+            Form1.editSongPanel.Location = Form1.editSongPanel.Parent.PointToClient(cursorPosition);
             Form1.editSongPanel.Visible = true;
 
             //Setting the current selected element id and type to be able to operate on it in Form1 functions

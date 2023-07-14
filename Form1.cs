@@ -55,30 +55,18 @@ namespace NiceUIDesign
                         CustomPanel panelToDel = songs.songTracker.panels.Find(panel => (int)panel.Tag == selectedItemId);
                         songs.Controls.Remove(panelToDel);
                         editSongPanel.Visible = false;
-                        right_displayer.Invalidate();
                         songs.Invalidate();
                     }
                     break;
 
                 case true:
                     {
-
+                        //Add here to remove playlists later
                     }
                     break;
 
             }
             
-        }
-
-        private void editPanel_ClickedOutside(object sender, MouseEventArgs e)
-        {
-            var tempObject = (EditPanel)sender;
-
-            //checking if clicked outside container
-            if (!tempObject.ContainsFocus)
-            {
-                editSongPanel.Visible = false;
-            }
         }
 
         public Form1()
@@ -111,8 +99,8 @@ namespace NiceUIDesign
             songControl.control_image.Click += label_Image_Click;
             songControl.control_label.Click += label_Image_Click;
 
-            editSongPanel.MouseClick += editPanel_ClickedOutside;
             EditPanel.deleteItem.Click += removeItem;
+            songs.MouseDown += Container_MouseDown;
 
             songControl.Visible = false;
             editSongPanel.Visible = false;
@@ -120,12 +108,22 @@ namespace NiceUIDesign
             addSongs.browse_btn.Click += browseSongsListener_Click;
 
             right_displayer.Controls.Add(editSongPanel);
+            editSongPanel.BringToFront();
 
             //pictureBox2.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pictureBox2.Width, pictureBox2.Height, 30, 30));
 
             //downloadSong(GetYouTubeAudioDownloadLink("https://youtu.be/20EWCIEnSLI","mp3"), "nothin");
-           // this.Focus();
+            // this.Focus();
 
+        }
+
+        //Makes editOptions not visible when user clicks away
+        private void Container_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (!editSongPanel.ClientRectangle.Contains(editSongPanel.PointToClient(e.Location)))
+            {
+                editSongPanel.Visible = false;
+            }
         }
 
         private void updateControlsPosition()
