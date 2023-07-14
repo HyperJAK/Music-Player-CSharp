@@ -93,12 +93,30 @@ namespace NiceUIDesign.Classes
 
         public void CheckElementPanel_listener(object sender, EventArgs e)
         {
+
+            /*foreach (int id in listOfCheckedElements)
+            {
+                var pathFromId = Songs.GetPath(id);
+
+                songPath.Add(pathFromId);
+                Form1.songControl.pause_btn.BackgroundImage = Properties.Resources.pauseBtn;
+
+                Player.PlaySong(songPath);
+            }*/
+
+
+
             CustomCheckbox temp = (CustomCheckbox)sender;
             if (temp.Checked && !startedCheckingBoxes)
             {
+                Console.WriteLine($"Checked state of this control is : {temp.Checked}");
                 startedCheckingBoxes = true;
+                Form1.songControl.Visible = true;
 
                 listOfCheckedElements.Add((int)temp.Tag);
+
+                //Adding the correct song to songpaths list to play it
+                songPath.Add(Songs.GetPath((int)temp.Tag));
 
                 foreach (CustomCheckbox box in checkBoxes)
                 {
@@ -112,10 +130,26 @@ namespace NiceUIDesign.Classes
                 listOfCheckedElements.Remove((int)temp.Tag);
 
             }
+            else if(temp.Checked && startedCheckingBoxes)
+            {
+                listOfCheckedElements.Add((int)temp.Tag);
+
+                //Adding the correct song to songpaths list to play it
+                songPath.Add(Songs.GetPath((int)temp.Tag));
+
+                Player.PlaySong(songPath);
+                Player.GetOutputInfo();
+
+            }
 
             if (listOfCheckedElements.Count == 0)
             {
                 startedCheckingBoxes = false;
+                if (Player.songIsStopped)
+                {
+                    Form1.songControl.Visible = false;
+                }
+                
 
                 foreach (CustomCheckbox box in checkBoxes)
                 {
@@ -252,110 +286,113 @@ namespace NiceUIDesign.Classes
 
         public void Panel_Hover(object sender, EventArgs e)
         {
-            string typeOfSender = sender.GetType().ToString();
-
-            switch (typeOfSender)
-            //All use the same listener: Panel_Click()
+            if (listOfCheckedElements.Count == 0)
             {
-                case "NiceUIDesign.Custom.CustomFlowLayoutPanel":
-                    {
-                        CustomPanel panelExited = (CustomPanel)sender;
+                string typeOfSender = sender.GetType().ToString();
 
-                        CustomCheckbox checkBox;
-                        CustomRoundButton playBtn;
-                        CustomRoundButton editBtn;
-
-                        checkBox = checkBoxes.Find(box => (int)box.Tag == (int)panelExited.Tag);
-                        playBtn = playButtons.Find(btn => (int)btn.Tag == (int)panelExited.Tag);
-                        editBtn = editButtons.Find(btn => (int)btn.Tag == (int)panelExited.Tag);
-
-                        checkBox.Visible = true;
-                        playBtn.Visible = true;
-                        editBtn.Visible = true;
-
-                        panelExited.BackColor = Colors.navButtonsColor;
-
-                        if (!elementsHoveredHistory.Contains(panelExited))
+                switch (typeOfSender)
+                //All use the same listener: Panel_Click()
+                {
+                    case "NiceUIDesign.Custom.CustomFlowLayoutPanel":
                         {
-                            elementsHoveredHistory.Add(panelExited);
+                            CustomPanel panelExited = (CustomPanel)sender;
+
+                            CustomCheckbox checkBox;
+                            CustomRoundButton playBtn;
+                            CustomRoundButton editBtn;
+
+                            checkBox = checkBoxes.Find(box => (int)box.Tag == (int)panelExited.Tag);
+                            playBtn = playButtons.Find(btn => (int)btn.Tag == (int)panelExited.Tag);
+                            editBtn = editButtons.Find(btn => (int)btn.Tag == (int)panelExited.Tag);
+
+                            checkBox.Visible = true;
+                            playBtn.Visible = true;
+                            editBtn.Visible = true;
+
+                            panelExited.BackColor = Colors.navButtonsColor;
+
+                            if (!elementsHoveredHistory.Contains(panelExited))
+                            {
+                                elementsHoveredHistory.Add(panelExited);
+                            }
                         }
-                    }
-                    break;
+                        break;
 
-                case "NiceUIDesign.Custom.CustomLabel":
-                    {
-                        CustomLabel labelClicked = (CustomLabel)sender;
-                        CustomPanel panelExited;
-                        CustomCheckbox checkBox;
-                        CustomRoundButton playBtn;
-                        CustomRoundButton editBtn;
-
-                        panelExited = panels.Find(panel => (int)panel.Tag == (int)labelClicked.Tag);
-
-                        checkBox = checkBoxes.Find(box => (int)box.Tag == (int)labelClicked.Tag);
-                        playBtn = playButtons.Find(btn => (int)btn.Tag == (int)labelClicked.Tag);
-                        editBtn = editButtons.Find(btn => (int)btn.Tag == (int)labelClicked.Tag);
-
-                        checkBox.Visible = true;
-                        playBtn.Visible = true;
-                        editBtn.Visible = true;
-
-                        panelExited.BackColor = Colors.navButtonsColor;
-
-                        if (!elementsHoveredHistory.Contains(panelExited))
+                    case "NiceUIDesign.Custom.CustomLabel":
                         {
-                            elementsHoveredHistory.Add(panelExited);
+                            CustomLabel labelClicked = (CustomLabel)sender;
+                            CustomPanel panelExited;
+                            CustomCheckbox checkBox;
+                            CustomRoundButton playBtn;
+                            CustomRoundButton editBtn;
+
+                            panelExited = panels.Find(panel => (int)panel.Tag == (int)labelClicked.Tag);
+
+                            checkBox = checkBoxes.Find(box => (int)box.Tag == (int)labelClicked.Tag);
+                            playBtn = playButtons.Find(btn => (int)btn.Tag == (int)labelClicked.Tag);
+                            editBtn = editButtons.Find(btn => (int)btn.Tag == (int)labelClicked.Tag);
+
+                            checkBox.Visible = true;
+                            playBtn.Visible = true;
+                            editBtn.Visible = true;
+
+                            panelExited.BackColor = Colors.navButtonsColor;
+
+                            if (!elementsHoveredHistory.Contains(panelExited))
+                            {
+                                elementsHoveredHistory.Add(panelExited);
+                            }
+
                         }
+                        break;
 
-                    }
-                    break;
-
-                case "NiceUIDesign.Custom.CustomPictureBox":
-                    {
-                        CustomPictureBox picClicked = (CustomPictureBox)sender;
-                        CustomPanel panelExited;
-
-
-                        CustomCheckbox checkBox;
-                        CustomRoundButton playBtn;
-                        CustomRoundButton editBtn;
-
-                        panelExited = panels.Find(panel => (int)panel.Tag == (int)picClicked.Tag);
-
-                        checkBox = checkBoxes.Find(box => (int)box.Tag == (int)picClicked.Tag);
-                        playBtn = playButtons.Find(btn => (int)btn.Tag == (int)picClicked.Tag);
-                        editBtn = editButtons.Find(btn => (int)btn.Tag == (int)picClicked.Tag);
-
-                        checkBox.Visible = true;
-                        playBtn.Visible = true;
-                        editBtn.Visible = true;
-
-                        panelExited.BackColor = Colors.navButtonsColor;
-
-                        if (!elementsHoveredHistory.Contains(panelExited))
+                    case "NiceUIDesign.Custom.CustomPictureBox":
                         {
-                            elementsHoveredHistory.Add(panelExited);
+                            CustomPictureBox picClicked = (CustomPictureBox)sender;
+                            CustomPanel panelExited;
+
+
+                            CustomCheckbox checkBox;
+                            CustomRoundButton playBtn;
+                            CustomRoundButton editBtn;
+
+                            panelExited = panels.Find(panel => (int)panel.Tag == (int)picClicked.Tag);
+
+                            checkBox = checkBoxes.Find(box => (int)box.Tag == (int)picClicked.Tag);
+                            playBtn = playButtons.Find(btn => (int)btn.Tag == (int)picClicked.Tag);
+                            editBtn = editButtons.Find(btn => (int)btn.Tag == (int)picClicked.Tag);
+
+                            checkBox.Visible = true;
+                            playBtn.Visible = true;
+                            editBtn.Visible = true;
+
+                            panelExited.BackColor = Colors.navButtonsColor;
+
+                            if (!elementsHoveredHistory.Contains(panelExited))
+                            {
+                                elementsHoveredHistory.Add(panelExited);
+                            }
+
                         }
+                        break;
 
-                    }
-                    break;
-
-                case "NiceUIDesign.Custom.CustomRoundButton":
-                    {
-                        CustomRoundButton buttonClicked = (CustomRoundButton)sender;
-                        CustomPanel panelExited;
-
-                        panelExited = panels.Find(panel => (int)panel.Tag == (int)buttonClicked.Tag);
-
-                        panelExited.BackColor = Colors.navButtonsColor;
-
-                        if (!elementsHoveredHistory.Contains(panelExited))
+                    case "NiceUIDesign.Custom.CustomRoundButton":
                         {
-                            elementsHoveredHistory.Add(panelExited);
-                        }
+                            CustomRoundButton buttonClicked = (CustomRoundButton)sender;
+                            CustomPanel panelExited;
 
-                    }
-                    break;
+                            panelExited = panels.Find(panel => (int)panel.Tag == (int)buttonClicked.Tag);
+
+                            panelExited.BackColor = Colors.navButtonsColor;
+
+                            if (!elementsHoveredHistory.Contains(panelExited))
+                            {
+                                elementsHoveredHistory.Add(panelExited);
+                            }
+
+                        }
+                        break;
+                }
             }
 
         }
@@ -363,45 +400,49 @@ namespace NiceUIDesign.Classes
 
         public void Panel_Hover_Exited(object sender, EventArgs e)
         {
-
-            string typeOfSender = sender.GetType().ToString();
-
-            switch (typeOfSender)
-            //All use the same listener: Panel_Click()
+            if (listOfCheckedElements.Count == 0)
             {
-                case "NiceUIDesign.Custom.CustomFlowLayoutPanel":
-                    {
-                        CustomPanel panelExited = (CustomPanel)sender;
-                        panelExited.BackColor = Colors.elementsPanelBackground;
-                    }
-                    break;
-
-                case "NiceUIDesign.Custom.CustomLabel":
-                    {
-                        CustomLabel labelClicked = (CustomLabel)sender;
-                        CustomPanel panelExited;
-
-                        panelExited = panels.Find(panel => (int)panel.Tag == (int)labelClicked.Tag);
-
-                        panelExited.BackColor = Colors.defaultBackground;
 
 
-                    }
-                    break;
+                string typeOfSender = sender.GetType().ToString();
 
-                case "NiceUIDesign.Custom.CustomPictureBox":
-                    {
-                        CustomPictureBox picClicked = (CustomPictureBox)sender;
-                        CustomPanel panelExited;
+                switch (typeOfSender)
+                //All use the same listener: Panel_Click()
+                {
+                    case "NiceUIDesign.Custom.CustomFlowLayoutPanel":
+                        {
+                            CustomPanel panelExited = (CustomPanel)sender;
+                            panelExited.BackColor = Colors.elementsPanelBackground;
+                        }
+                        break;
 
-                        panelExited = panels.Find(panel => (int)panel.Tag == (int)picClicked.Tag);
+                    case "NiceUIDesign.Custom.CustomLabel":
+                        {
+                            CustomLabel labelClicked = (CustomLabel)sender;
+                            CustomPanel panelExited;
 
-                        panelExited.BackColor = Colors.defaultBackground;
+                            panelExited = panels.Find(panel => (int)panel.Tag == (int)labelClicked.Tag);
+
+                            panelExited.BackColor = Colors.defaultBackground;
+
+
+                        }
+                        break;
+
+                    case "NiceUIDesign.Custom.CustomPictureBox":
+                        {
+                            CustomPictureBox picClicked = (CustomPictureBox)sender;
+                            CustomPanel panelExited;
+
+                            panelExited = panels.Find(panel => (int)panel.Tag == (int)picClicked.Tag);
+
+                            panelExited.BackColor = Colors.defaultBackground;
 
 
 
-                    }
-                    break;
+                        }
+                        break;
+                }
             }
         }
 
@@ -409,137 +450,140 @@ namespace NiceUIDesign.Classes
 
         public void Panel_Click(object sender, EventArgs e)
         {
-
-            //Retrieves the type of the sender, meaning if user clicked on image or texet or box itself to access song
-            string typeOfSender = sender.GetType().ToString();
-
-            //Making the songControl visible
-            Form1.changeSongControl_visibility(true);
-
-            songPath.Clear();
-
-            switch (typeOfSender)
-            //All use the same listener: Panel_Click()
+            if (listOfCheckedElements.Count == 0)
             {
-                case "NiceUIDesign.Custom.CustomFlowLayoutPanel":
-                    {
-                        CustomPanel panelClicked = (CustomPanel)sender;
-                        Console.WriteLine($"The tag that is LinkClickedEventArgs is:{(int)panelClicked.Tag}");
-                        string songName = Songs.GetName((int)panelClicked.Tag);
-                        songPath.Add(Songs.GetPath((int)panelClicked.Tag));
 
-                        CustomRoundButton buttonClicked = playButtons.Find(button => (int)button.Tag == (int)panelClicked.Tag);
-                        //displaying pause image to indicate audio playing
-                        buttonClicked.BackgroundImage = Properties.Resources.pauseBtn;
+                //Retrieves the type of the sender, meaning if user clicked on image or texet or box itself to access song
+                string typeOfSender = sender.GetType().ToString();
 
-                        //updating image and text of song in the control
-                        Form1.updateControlInfo(songName, null);
+                //Making the songControl visible
+                Form1.changeSongControl_visibility(true);
 
-                        if (Player.songWasQueued)
+                songPath.Clear();
+
+                switch (typeOfSender)
+                //All use the same listener: Panel_Click()
+                {
+                    case "NiceUIDesign.Custom.CustomFlowLayoutPanel":
                         {
-                            Player.StopSong();
-                            Player.PlaySong(songPath);
-                            Player.GetOutputInfo();
+                            CustomPanel panelClicked = (CustomPanel)sender;
+                            Console.WriteLine($"The tag that is LinkClickedEventArgs is:{(int)panelClicked.Tag}");
+                            string songName = Songs.GetName((int)panelClicked.Tag);
+                            songPath.Add(Songs.GetPath((int)panelClicked.Tag));
+
+                            CustomRoundButton buttonClicked = playButtons.Find(button => (int)button.Tag == (int)panelClicked.Tag);
+                            //displaying pause image to indicate audio playing
+                            buttonClicked.BackgroundImage = Properties.Resources.pauseBtn;
+
+                            //updating image and text of song in the control
+                            Form1.updateControlInfo(songName, null);
+
+                            if (Player.songWasQueued)
+                            {
+                                Player.StopSong();
+                                Player.PlaySong(songPath);
+                                Player.GetOutputInfo();
+                            }
+                            else
+                            {
+                                Player.PlaySong(songPath);
+                                Player.GetOutputInfo();
+
+                            }
+                            Console.WriteLine($"Song: {songName} was clicked");
                         }
-                        else
+                        break;
+
+                    case "NiceUIDesign.Custom.CustomLabel":
                         {
-                            Player.PlaySong(songPath);
-                            Player.GetOutputInfo();
+                            CustomLabel labelClicked = (CustomLabel)sender;
 
+                            songPath.Add(Songs.GetPath((int)labelClicked.Tag));
+
+                            CustomRoundButton buttonClicked = playButtons.Find(button => (int)button.Tag == (int)labelClicked.Tag);
+                            //displaying pause image to indicate audio playing
+                            buttonClicked.BackgroundImage = Properties.Resources.pauseBtn;
+
+                            //updating image and text of song in the control
+                            Form1.updateControlInfo(labelClicked.Text, null);
+
+                            if (Player.songWasQueued)
+                            {
+                                Player.StopSong();
+                                Player.PlaySong(songPath);
+                                Player.GetOutputInfo();
+                            }
+                            else
+                            {
+                                Player.PlaySong(songPath);
+                                Player.GetOutputInfo();
+
+                            }
+                            Console.WriteLine($"Song: {labelClicked.Text} was clicked");
                         }
-                        Console.WriteLine($"Song: {songName} was clicked");
-                    }
-                    break;
+                        break;
 
-                case "NiceUIDesign.Custom.CustomLabel":
-                    {
-                        CustomLabel labelClicked = (CustomLabel)sender;
-
-                        songPath.Add(Songs.GetPath((int)labelClicked.Tag));
-
-                        CustomRoundButton buttonClicked = playButtons.Find(button => (int)button.Tag == (int)labelClicked.Tag);
-                        //displaying pause image to indicate audio playing
-                        buttonClicked.BackgroundImage = Properties.Resources.pauseBtn;
-
-                        //updating image and text of song in the control
-                        Form1.updateControlInfo(labelClicked.Text, null);
-
-                        if (Player.songWasQueued)
+                    case "NiceUIDesign.Custom.CustomPictureBox":
                         {
-                            Player.StopSong();
-                            Player.PlaySong(songPath);
-                            Player.GetOutputInfo();
+                            CustomPictureBox picClicked = (CustomPictureBox)sender;
+                            string songName = Songs.GetName((int)picClicked.Tag);
+                            songPath.Add(Songs.GetPath((int)picClicked.Tag));
+
+                            CustomRoundButton buttonClicked = playButtons.Find(button => (int)button.Tag == (int)picClicked.Tag);
+                            //displaying pause image to indicate audio playing
+                            buttonClicked.BackgroundImage = Properties.Resources.pauseBtn;
+
+                            //updating image and text of song in the control
+                            Form1.updateControlInfo(songName, null);
+
+                            if (Player.songWasQueued)
+                            {
+                                Console.WriteLine("Danger");
+                                Player.StopSong();
+                                Player.PlaySong(songPath);
+                                Player.GetOutputInfo();
+                            }
+                            else
+                            {
+                                Console.WriteLine("not danger");
+                                Player.PlaySong(songPath);
+                                Player.GetOutputInfo();
+
+                            }
+                            Console.WriteLine($"Song: {songName} was clicked");
                         }
-                        else
+                        break;
+
+                    case "NiceUIDesign.Custom.CustomRoundButton":
                         {
-                            Player.PlaySong(songPath);
-                            Player.GetOutputInfo();
+                            CustomRoundButton buttonClicked = (CustomRoundButton)sender;
+                            string songName = Songs.GetName((int)buttonClicked.Tag);
+                            songPath.Add(Songs.GetPath((int)buttonClicked.Tag));
 
+                            //displaying pause image to indicate audio playing
+                            buttonClicked.BackgroundImage = Properties.Resources.pauseBtn;
+
+                            //updating image and text of song in the control
+                            Form1.updateControlInfo(songName, null);
+
+                            if (Player.songWasQueued)
+                            {
+                                Console.WriteLine("Danger");
+                                Player.StopSong();
+                                Player.PlaySong(songPath);
+                                Player.GetOutputInfo();
+                            }
+                            else
+                            {
+                                Console.WriteLine("not danger");
+                                Player.PlaySong(songPath);
+                                Player.GetOutputInfo();
+
+                            }
+                            Console.WriteLine($"Song: {songName} was clicked");
                         }
-                        Console.WriteLine($"Song: {labelClicked.Text} was clicked");
-                    }
-                    break;
-
-                case "NiceUIDesign.Custom.CustomPictureBox":
-                    {
-                        CustomPictureBox picClicked = (CustomPictureBox)sender;
-                        string songName = Songs.GetName((int)picClicked.Tag);
-                        songPath.Add(Songs.GetPath((int)picClicked.Tag));
-
-                        CustomRoundButton buttonClicked = playButtons.Find(button => (int)button.Tag == (int)picClicked.Tag);
-                        //displaying pause image to indicate audio playing
-                        buttonClicked.BackgroundImage = Properties.Resources.pauseBtn;
-
-                        //updating image and text of song in the control
-                        Form1.updateControlInfo(songName, null);
-
-                        if (Player.songWasQueued)
-                        {
-                            Console.WriteLine("Danger");
-                            Player.StopSong();
-                            Player.PlaySong(songPath);
-                            Player.GetOutputInfo();
-                        }
-                        else
-                        {
-                            Console.WriteLine("not danger");
-                            Player.PlaySong(songPath);
-                            Player.GetOutputInfo();
-
-                        }
-                        Console.WriteLine($"Song: {songName} was clicked");
-                    }
-                    break;
-
-                case "NiceUIDesign.Custom.CustomRoundButton":
-                    {
-                        CustomRoundButton buttonClicked = (CustomRoundButton)sender;
-                        string songName = Songs.GetName((int)buttonClicked.Tag);
-                        songPath.Add(Songs.GetPath((int)buttonClicked.Tag));
-
-                        //displaying pause image to indicate audio playing
-                        buttonClicked.BackgroundImage = Properties.Resources.pauseBtn;
-
-                        //updating image and text of song in the control
-                        Form1.updateControlInfo(songName, null);
-
-                        if (Player.songWasQueued)
-                        {
-                            Console.WriteLine("Danger");
-                            Player.StopSong();
-                            Player.PlaySong(songPath);
-                            Player.GetOutputInfo();
-                        }
-                        else
-                        {
-                            Console.WriteLine("not danger");
-                            Player.PlaySong(songPath);
-                            Player.GetOutputInfo();
-
-                        }
-                        Console.WriteLine($"Song: {songName} was clicked");
-                    }
-                    break;
+                        break;
+                }
             }
 
         }

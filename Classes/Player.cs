@@ -11,6 +11,7 @@ namespace NiceUIDesign.Classes
         public static WaveOutEvent outputDevice;
         public static AudioFileReader audioFileReader;
 
+        //makes a backup of given song path(s)
         public static List<string> lastSong = new List<string>();
         private static List<string> playlistTemp = new List<string>();
 
@@ -38,6 +39,9 @@ namespace NiceUIDesign.Classes
         }
         public static void PlaySong(List<string> songPaths)
         {
+            //sets the button icon to be pause since now song is playing
+            Form1.songControl.pause_btn.BackgroundImage = Properties.Resources.pauseBtn;
+
             outputDevice = new WaveOutEvent();
             outputDevice.PlaybackStopped += OutputDevice_finishedSong;
 
@@ -51,6 +55,11 @@ namespace NiceUIDesign.Classes
                 playlistTemp = lastSong;
             }
 
+            //Updates the control text and image to match the current song playing
+            var tempId = Songs.GetId(songPaths[0]);
+            var tempName = Songs.GetName(tempId);
+
+            Form1.updateControlInfo(tempName, null);
 
             //Create an audio file reader
             audioFileReader = new AudioFileReader(songPaths.First());
@@ -67,6 +76,7 @@ namespace NiceUIDesign.Classes
 
         public static void OutputDevice_finishedSong(object sender, StoppedEventArgs e)
         {
+
             Console.WriteLine("Here");
             if (repeatSong)
             {
@@ -123,6 +133,9 @@ namespace NiceUIDesign.Classes
 
         public static void PauseOrPlaySong()
         {
+            
+
+
             if (songIsPaused && !songIsStopped)
             {
                 Form1.songControl.pause_btn.BackgroundImage = Properties.Resources.pauseBtn;
