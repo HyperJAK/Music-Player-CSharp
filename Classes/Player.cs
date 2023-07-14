@@ -1,4 +1,6 @@
 ﻿using NAudio.Wave;
+using NiceUIDesign.Custom;
+using NiceUIDesign.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,8 +41,6 @@ namespace NiceUIDesign.Classes
         }
         public static void PlaySong(List<string> songPaths)
         {
-            //sets the button icon to be pause since now song is playing
-            Form1.songControl.pause_btn.BackgroundImage = Properties.Resources.pauseBtn;
 
             outputDevice = new WaveOutEvent();
             outputDevice.PlaybackStopped += OutputDevice_finishedSong;
@@ -49,11 +49,17 @@ namespace NiceUIDesign.Classes
             //To remember what was the last song played (global var)
 
 
-            if (lastSong.Count == 0)
+            if (lastSong.Count == 0 || (lastSong.Count == 1 && !repeatSong && !repeatPlaylist))
             {
                 lastSong = songPaths;
                 playlistTemp = lastSong;
             }
+
+            var panelToHighlight = SongsTracker.panels.Find(panel => (int)panel.Tag == (int)Songs.GetId(lastSong.First()));
+            panelToHighlight.BackColor = Colors.navButtonsColor;
+
+            //sets the button icon to be pause since now song is playing
+            Form1.songControl.pause_btn.BackgroundImage = Properties.Resources.pauseBtn;
 
             //Updates the control text and image to match the current song playing
             var tempId = Songs.GetId(songPaths[0]);
@@ -84,18 +90,28 @@ namespace NiceUIDesign.Classes
                 PlaySong(lastSong);
                 GetOutputInfo();
             }
+            else if (!repeatSong)
+            {
+                var buttonClicked = SongsTracker.playButtons.Find(button => (int)button.Tag == (int)Songs.GetId(lastSong.First()));
+                buttonClicked.BackgroundImage = Properties.Resources.playBtn;
+            }
 
             else if (lastSong.Count > 1)
             {
-                lastSong.Remove(lastSong.First());
                 StopSong();
+                lastSong.Remove(lastSong.First());
+
+                //Making the next song have playbutton set to display pause option
+                var buttonClicked = SongsTracker.playButtons.Find(button => (int)button.Tag == (int)Songs.GetId(lastSong.First()));
+                buttonClicked.BackgroundImage = Properties.Resources.pauseBtn;
+
                 PlaySong(lastSong);
                 GetOutputInfo();
             }
             else if (repeatPlaylist && lastSong.Count == 1 && !repeatSong)
             {
-                lastSong = playlistTemp;
                 StopSong();
+                lastSong = playlistTemp;
                 PlaySong(lastSong);
                 GetOutputInfo();
             }
@@ -123,6 +139,8 @@ namespace NiceUIDesign.Classes
                     audioFileReader = null;
                     Console.WriteLine("Stopped code 1");
                 }
+
+
                 Console.WriteLine("Stopped code 2");
                 outputDevice.Dispose();
                 outputDevice = null;
@@ -138,6 +156,11 @@ namespace NiceUIDesign.Classes
 
             if (songIsPaused && !songIsStopped)
             {
+                //changing icon for small play button
+                var buttonClicked = SongsTracker.playButtons.Find(button => (int)button.Tag == (int)Songs.GetId(lastSong.First()));
+                buttonClicked.BackgroundImage = Properties.Resources.pauseBtn;
+
+                //changing icon for big play button
                 Form1.songControl.pause_btn.BackgroundImage = Properties.Resources.pauseBtn;
 
                 outputDevice.Play();
@@ -145,12 +168,18 @@ namespace NiceUIDesign.Classes
             }
             else if (!songIsPaused && !songIsStopped)
             {
+                var buttonClicked = SongsTracker.playButtons.Find(button => (int)button.Tag == (int)Songs.GetId(lastSong.First()));
+                buttonClicked.BackgroundImage = Properties.Resources.playBtn;
+
                 Form1.songControl.pause_btn.BackgroundImage = Properties.Resources.playBtn;
                 outputDevice.Pause();
                 GetOutputInfo();
             }
             else if (songIsStopped && !songIsPaused)
             {
+                var buttonClicked = SongsTracker.playButtons.Find(button => (int)button.Tag == (int)Songs.GetId(lastSong.First()));
+                buttonClicked.BackgroundImage = Properties.Resources.pauseBtn;
+
                 Form1.songControl.pause_btn.BackgroundImage = Properties.Resources.pauseBtn;
                 PlaySong(lastSong);
                 GetOutputInfo();

@@ -52,7 +52,7 @@ namespace NiceUIDesign
                         Console.WriteLine("deleting...");
                         //gets the id of the selected item that is passed to the lastSelectedElement from songTracker class in edit button listener
                         var selectedItemId = EditPanel.lastSelectedElement;
-                        CustomPanel panelToDel = songs.songTracker.panels.Find(panel => (int)panel.Tag == selectedItemId);
+                        CustomPanel panelToDel = SongsTracker.panels.Find(panel => (int)panel.Tag == selectedItemId);
                         songs.Controls.Remove(panelToDel);
                         editSongPanel.Visible = false;
                         songs.Invalidate();

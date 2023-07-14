@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -93,21 +94,41 @@ namespace NiceUIDesign.Classes
                 CustomRoundButton editBtn;
 
 
-
-                foreach (CustomPanel cp in songTracker.elementsHoveredHistory)
+                if (songTracker.elementsHoveredHistory.Count != 0)
                 {
-                    cp.BackColor = Colors.elementsPanelBackground;
-
-                    checkBox = songTracker.checkBoxes.Find(box => (int)box.Tag == (int)cp.Tag);
-                    playBtn = songTracker.playButtons.Find(btn => (int)btn.Tag == (int)cp.Tag);
-                    editBtn = songTracker.editButtons.Find(btn => (int)btn.Tag == (int)cp.Tag);
-
-                    if (!songTracker.startedCheckingBoxes)
+                    foreach (CustomPanel cp in songTracker.elementsHoveredHistory)
                     {
-                        checkBox.Visible = false;
+                        //Checking if the current song is playing the same as the one we want to modify then we cancel the modification
+                        if (Player.songWasQueued || !Player.songIsStopped || !Player.songIsPaused)
+                        {
+                            try
+                            {
+                                var currentPlayingPanel = SongsTracker.panels.Find(panel => (int)panel.Tag == (int)Songs.GetId(Player.lastSong.First()));
+                                if ((int)cp.Tag == (int)currentPlayingPanel.Tag)
+                                {
+                                    continue;
+                                }
+                            }catch
+                            {
+
+                            }
+                            
+                        }
+
+
+                        cp.BackColor = Colors.elementsPanelBackground;
+
+                        checkBox = songTracker.checkBoxes.Find(box => (int)box.Tag == (int)cp.Tag);
+                        playBtn = SongsTracker.playButtons.Find(btn => (int)btn.Tag == (int)cp.Tag);
+                        editBtn = songTracker.editButtons.Find(btn => (int)btn.Tag == (int)cp.Tag);
+
+                        if (!songTracker.startedCheckingBoxes)
+                        {
+                            checkBox.Visible = false;
+                        }
+                        playBtn.Visible = false;
+                        editBtn.Visible = false;
                     }
-                    playBtn.Visible = false;
-                    editBtn.Visible = false;
                 }
             }
         }

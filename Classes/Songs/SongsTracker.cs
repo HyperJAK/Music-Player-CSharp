@@ -10,10 +10,10 @@ namespace NiceUIDesign.Classes
 
     public class SongsTracker
     {
-        public List<CustomPanel> panels;
+        public static List<CustomPanel> panels;
         private List<CustomPictureBox> pics;
         private List<CustomLabel> labels;
-        public List<CustomRoundButton> playButtons;
+        public static List<CustomRoundButton> playButtons;
         public List<CustomRoundButton> editButtons;
         public List<CustomCheckbox> checkBoxes;
 
@@ -112,7 +112,7 @@ namespace NiceUIDesign.Classes
             {
                 Console.WriteLine($"Checked state of this control is : {temp.Checked}");
                 startedCheckingBoxes = true;
-                Form1.songControl.Visible = true;
+                Form1.songControl.Visible = false;
 
                 listOfCheckedElements.Add((int)temp.Tag);
 
@@ -127,8 +127,9 @@ namespace NiceUIDesign.Classes
             }
             else if (!temp.Checked)
             {
-                //remove element from list of all checked elements
+                //remove element from lists of all checked elements
                 listOfCheckedElements.Remove((int)temp.Tag);
+                songPath.Remove(Songs.GetPath((int)temp.Tag));
 
             }
             else if (temp.Checked && startedCheckingBoxes)
@@ -138,8 +139,9 @@ namespace NiceUIDesign.Classes
                 //Adding the correct song to songpaths list to play it
                 songPath.Add(Songs.GetPath((int)temp.Tag));
 
-                Player.PlaySong(songPath);
-                Player.GetOutputInfo();
+                //===================================This is to be linked to a specific play button
+                //Player.PlaySong(songPath);
+                //Player.GetOutputInfo();
 
             }
 
