@@ -46,10 +46,8 @@ namespace NiceUIDesign.Custom
             this.Tag = tag;
             this.Width = width;
             this.Height = height;
-
-            this.Image = Properties.Resources.AuPlayLogo;
             this.ImageAlign = ContentAlignment.MiddleCenter;
-
+            this.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         public CustomRoundButton(string name, string tag, int width, int height)
@@ -60,9 +58,8 @@ namespace NiceUIDesign.Custom
             this.Tag = tag;
             this.Width = width;
             this.Height = height;
-            this.Image = Properties.Resources.AuPlayLogo;
             this.ImageAlign = ContentAlignment.MiddleCenter;
-
+            this.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         public CustomRoundButton()

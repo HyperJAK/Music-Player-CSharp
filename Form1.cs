@@ -28,7 +28,7 @@ namespace NiceUIDesign
         public Songs songs = new Songs();
         public Playlists playlists = new Playlists();
 
-        private static SongControl songControl = new SongControl();
+        public static SongControl songControl = new SongControl();
         private AddSongs addSongs = new AddSongs();
 
         private string selectedPanel;

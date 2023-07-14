@@ -428,6 +428,9 @@ namespace NiceUIDesign.Classes
                         string songName = Songs.GetName((int)panelClicked.Tag);
                         songPath.Add(Songs.GetPath((int)panelClicked.Tag));
 
+                        CustomRoundButton buttonClicked = playButtons.Find(button => (int)button.Tag == (int)panelClicked.Tag);
+                        //displaying pause image to indicate audio playing
+                        buttonClicked.BackgroundImage = Properties.Resources.pauseBtn;
 
                         //updating image and text of song in the control
                         Form1.updateControlInfo(songName, null);
@@ -454,6 +457,9 @@ namespace NiceUIDesign.Classes
 
                         songPath.Add(Songs.GetPath((int)labelClicked.Tag));
 
+                        CustomRoundButton buttonClicked = playButtons.Find(button => (int)button.Tag == (int)labelClicked.Tag);
+                        //displaying pause image to indicate audio playing
+                        buttonClicked.BackgroundImage = Properties.Resources.pauseBtn;
 
                         //updating image and text of song in the control
                         Form1.updateControlInfo(labelClicked.Text, null);
@@ -480,6 +486,9 @@ namespace NiceUIDesign.Classes
                         string songName = Songs.GetName((int)picClicked.Tag);
                         songPath.Add(Songs.GetPath((int)picClicked.Tag));
 
+                        CustomRoundButton buttonClicked = playButtons.Find(button => (int)button.Tag == (int)picClicked.Tag);
+                        //displaying pause image to indicate audio playing
+                        buttonClicked.BackgroundImage = Properties.Resources.pauseBtn;
 
                         //updating image and text of song in the control
                         Form1.updateControlInfo(songName, null);
@@ -508,6 +517,8 @@ namespace NiceUIDesign.Classes
                         string songName = Songs.GetName((int)buttonClicked.Tag);
                         songPath.Add(Songs.GetPath((int)buttonClicked.Tag));
 
+                        //displaying pause image to indicate audio playing
+                        buttonClicked.BackgroundImage = Properties.Resources.pauseBtn;
 
                         //updating image and text of song in the control
                         Form1.updateControlInfo(songName, null);

@@ -32,6 +32,23 @@ namespace NiceUIDesign.Classes
             control_image.Size = new Size(100, 100);
             control_image.BackColor = Color.Black;
 
+            repeat_btn.BackgroundImage = Properties.Resources.repeatBtn;
+            pause_btn.BackgroundImage = Properties.Resources.pauseBtn;
+            next_btn.BackgroundImage = Properties.Resources.nextBtn;
+            prev_btn.BackgroundImage = Properties.Resources.prevBtn;
+
+            repeat_btn.BackgroundImageLayout = ImageLayout.Stretch;
+            repeat_btn.ImageAlign = ContentAlignment.MiddleCenter;
+
+            pause_btn.BackgroundImageLayout = ImageLayout.Stretch;
+            pause_btn.ImageAlign = ContentAlignment.MiddleCenter;
+
+            next_btn.BackgroundImageLayout = ImageLayout.Stretch;
+            next_btn.ImageAlign = ContentAlignment.MiddleCenter;
+
+            prev_btn.BackgroundImageLayout = ImageLayout.Stretch;
+            prev_btn.ImageAlign = ContentAlignment.MiddleCenter;
+
 
             this.BackColor = Colors.defaultBackground;
             this.Controls.Add(control_label);

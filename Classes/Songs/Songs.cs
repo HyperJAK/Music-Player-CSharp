@@ -330,7 +330,11 @@ namespace NiceUIDesign.Classes
             label.Width = panel.Width - 6;
             label.Height = 50;
 
+            //Adding Images to buttons and other fields
             //pic.BackgroundImage = NiceUIDesign.Properties.Resources.AuPlayLogo;
+
+            play_btn.BackgroundImage = Properties.Resources.playBtn;
+            edit_btn.BackgroundImage = Properties.Resources.editBtn;
 
             play_btn.Location = new Point(pic.Right - (play_btn.Width + 5), pic.Bottom - play_btn.Height);
             play_btn.Visible = false;

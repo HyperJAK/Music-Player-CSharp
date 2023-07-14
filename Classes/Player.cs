@@ -125,16 +125,20 @@ namespace NiceUIDesign.Classes
         {
             if (songIsPaused && !songIsStopped)
             {
+                Form1.songControl.pause_btn.BackgroundImage = Properties.Resources.pauseBtn;
+
                 outputDevice.Play();
                 GetOutputInfo();
             }
             else if (!songIsPaused && !songIsStopped)
             {
+                Form1.songControl.pause_btn.BackgroundImage = Properties.Resources.playBtn;
                 outputDevice.Pause();
                 GetOutputInfo();
             }
             else if (songIsStopped && !songIsPaused)
             {
+                Form1.songControl.pause_btn.BackgroundImage = Properties.Resources.pauseBtn;
                 PlaySong(lastSong);
                 GetOutputInfo();
             }

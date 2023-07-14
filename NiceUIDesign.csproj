@@ -222,6 +222,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <Content Include="Resources\editBtn.png" />
+    <Content Include="Resources\nextBtn.png" />
+    <Content Include="Resources\pauseBtn.png" />
+    <None Include="Resources\PauseButton.bmp" />
+    <None Include="Resources\PauseButton.png" />
+    <Content Include="Resources\playBtn.png" />
+    <Content Include="Resources\prevBtn.png" />
+    <Content Include="Resources\repeatBtn.png" />
+    <Content Include="Resources\stopBtn.png" />
     <None Include="Resources\AuPlayLogo.png" />
   </ItemGroup>
   <ItemGroup />
