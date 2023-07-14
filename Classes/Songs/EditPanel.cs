@@ -1,10 +1,4 @@
 ﻿using NiceUIDesign.Custom;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace NiceUIDesign.Classes
 {
@@ -19,7 +13,8 @@ namespace NiceUIDesign.Classes
 
         //===================================Change this when adding more stuff in panel
         public static int nbOfElementsInPanel = 4;
-        public EditPanel(int width, int height) { 
+        public EditPanel(int width, int height)
+        {
             this.Width = width;
             this.Height = height;
 
@@ -31,6 +26,6 @@ namespace NiceUIDesign.Classes
             this.Controls.Add(deleteItem);
         }
 
-        
+
     }
 }

@@ -108,11 +108,12 @@ namespace NiceUIDesign.Classes
                                 {
                                     continue;
                                 }
-                            }catch
+                            }
+                            catch
                             {
 
                             }
-                            
+
                         }
 
 

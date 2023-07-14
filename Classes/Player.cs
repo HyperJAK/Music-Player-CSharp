@@ -1,5 +1,4 @@
 ﻿using NAudio.Wave;
-using NiceUIDesign.Custom;
 using NiceUIDesign.Resources;
 using System;
 using System.Collections.Generic;

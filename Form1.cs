@@ -8,7 +8,6 @@ using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using System.Xml.Linq;
 using VideoLibrary;
 
 namespace NiceUIDesign
@@ -66,7 +65,7 @@ namespace NiceUIDesign
                     break;
 
             }
-            
+
         }
 
         public Form1()
@@ -301,7 +300,7 @@ namespace NiceUIDesign
 
                         right_displayer.Controls.Add(songControl);
 
-                        if(right_displayer.Controls.Contains(songControl) && Player.songWasQueued)
+                        if (right_displayer.Controls.Contains(songControl) && Player.songWasQueued)
                         {
                             songControl.Visible = true;
                         }
