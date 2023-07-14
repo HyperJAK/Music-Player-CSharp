@@ -214,28 +214,33 @@ namespace NiceUIDesign
                 case "browse":
                     {
                         right_displayer.Controls.Remove(songs);
+                        editSongPanel.Visible = false;
                     }
                     break;
                 case "add_element":
                     {
                         right_displayer.Controls.Remove(addSongs);
+                        editSongPanel.Visible = false;
                     }
                     break;
                 case "playlist":
                     {
                         right_displayer.Controls.Remove(playlists);
+                        editSongPanel.Visible = false;
                     }
                     break;
 
                 case "download":
                     {
                         //right_displayer.Controls.Remove(playlist);
+                        editSongPanel.Visible = false;
                     }
                     break;
 
                 case "settings":
                     {
                         //right_displayer.Controls.Remove(ytDownloader);
+                        editSongPanel.Visible = false;
                     }
                     break;
 
@@ -290,7 +295,7 @@ namespace NiceUIDesign
                         {
                             right_displayer.Controls.Add(songControl);
                         }
-                        else
+                        else if(right_displayer.Controls.Contains(songControl) && Player.songWasQueued)
                         {
                             songControl.Visible = true;
                         }
