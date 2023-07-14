@@ -53,6 +53,14 @@ namespace NiceUIDesign.Custom
             this.Tag = tag;
         }
 
+        public CustomPanel(int width, int height)
+        {
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            this.BackColor = Colors.elementsPanelBackground;
+            this.Size = new Size(width, height);
+            this.TabIndex = 1;
+        }
+
         public CustomPanel()
         {
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);

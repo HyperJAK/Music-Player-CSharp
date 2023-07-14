@@ -8,7 +8,7 @@ namespace NiceUIDesign.Classes
 
     public class SongsTracker
     {
-        private List<CustomPanel> panels;
+        public List<CustomPanel> panels;
         private List<CustomPictureBox> pics;
         private List<CustomLabel> labels;
         public List<CustomRoundButton> playButtons;
@@ -88,23 +88,21 @@ namespace NiceUIDesign.Classes
 
         public void EditElementPanel_listener(object sender, EventArgs e)
         {
+            CustomRoundButton button = (CustomRoundButton)sender;
+            var idOfSelectedElement = (int)button.Tag;
 
+            //putting panel near the clicked button
+            Form1.editSongPanel.Top = button.Top;
+            Form1.editSongPanel.Left = button.Right;
+            Form1.editSongPanel.Visible = true;
+
+            //Setting the current selected element id and type to be able to operate on it in Form1 functions
+            EditPanel.lastSelectedElement = idOfSelectedElement;
+            EditPanel.isPlaylist = false;
         }
 
         public void CheckElementPanel_listener(object sender, EventArgs e)
         {
-
-            /*foreach (int id in listOfCheckedElements)
-            {
-                var pathFromId = Songs.GetPath(id);
-
-                songPath.Add(pathFromId);
-                Form1.songControl.pause_btn.BackgroundImage = Properties.Resources.pauseBtn;
-
-                Player.PlaySong(songPath);
-            }*/
-
-
 
             CustomCheckbox temp = (CustomCheckbox)sender;
             if (temp.Checked && !startedCheckingBoxes)

@@ -149,6 +149,9 @@
     </Compile>
     <Compile Include="Classes\Playlists\Playlist.cs" />
     <Compile Include="Classes\Playlists\PlaylistsTracker.cs" />
+    <Compile Include="Classes\Songs\EditPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Classes\Songs\Song.cs" />
     <Compile Include="Classes\Songs\SongControl.cs">
       <SubType>Component</SubType>
@@ -158,6 +161,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Classes\Songs\Songs.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Custom\CustomButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Custom\CustomCheckbox.cs">

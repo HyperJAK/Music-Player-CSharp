@@ -29,6 +29,7 @@ namespace NiceUIDesign.Classes
         //Used to halt other functions from running before all songs have been loaded
         private ManualResetEvent songsLoadedEvent = new ManualResetEvent(false);
 
+
         public Songs()
         {
             this.Anchor = AnchorStyles.Top | AnchorStyles.Left;

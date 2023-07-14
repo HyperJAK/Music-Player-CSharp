@@ -1,12 +1,14 @@
 ﻿using AltoHttp;
 using NiceUIDesign.Classes;
 using NiceUIDesign.Classes.Playlists;
+using NiceUIDesign.Custom;
 using NiceUIDesign.Resources;
 using System;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using VideoLibrary;
 
 namespace NiceUIDesign
@@ -30,6 +32,7 @@ namespace NiceUIDesign
 
         public static SongControl songControl = new SongControl();
         private AddSongs addSongs = new AddSongs();
+        public static EditPanel editSongPanel = new EditPanel(200, 200);
 
         private string selectedPanel;
 
@@ -37,6 +40,45 @@ namespace NiceUIDesign
         {
             songControl.control_label.Text = songName;
             songControl.control_image.BackgroundImage = image;
+        }
+
+        public void removeItem(object sender, EventArgs e)
+        {
+
+            switch (EditPanel.isPlaylist)
+            {
+                case false:
+                    {
+                        Console.WriteLine("deleting...");
+                        //gets the id of the selected item that is passed to the lastSelectedElement from songTracker class in edit button listener
+                        var selectedItemId = EditPanel.lastSelectedElement;
+                        CustomPanel panelToDel = songs.songTracker.panels.Find(panel => (int)panel.Tag == selectedItemId);
+                        songs.Controls.Remove(panelToDel);
+                        editSongPanel.Visible = false;
+                        right_displayer.Invalidate();
+                        songs.Invalidate();
+                    }
+                    break;
+
+                case true:
+                    {
+
+                    }
+                    break;
+
+            }
+            
+        }
+
+        private void editPanel_ClickedOutside(object sender, MouseEventArgs e)
+        {
+            var tempObject = (EditPanel)sender;
+
+            //checking if clicked outside container
+            if (!tempObject.ContainsFocus)
+            {
+                editSongPanel.Visible = false;
+            }
         }
 
         public Form1()
@@ -69,15 +111,20 @@ namespace NiceUIDesign
             songControl.control_image.Click += label_Image_Click;
             songControl.control_label.Click += label_Image_Click;
 
+            editSongPanel.MouseClick += editPanel_ClickedOutside;
+            EditPanel.deleteItem.Click += removeItem;
+
             songControl.Visible = false;
+            editSongPanel.Visible = false;
 
             addSongs.browse_btn.Click += browseSongsListener_Click;
 
+            right_displayer.Controls.Add(editSongPanel);
 
             //pictureBox2.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pictureBox2.Width, pictureBox2.Height, 30, 30));
 
             //downloadSong(GetYouTubeAudioDownloadLink("https://youtu.be/20EWCIEnSLI","mp3"), "nothin");
-            this.Focus();
+           // this.Focus();
 
         }
 
