@@ -1,7 +1,7 @@
-﻿using NiceUIDesign.Custom;
+﻿using Auplay.Custom;
 using System;
 
-namespace NiceUIDesign.Classes.Abstract
+namespace Auplay.Classes.Abstract
 {
     public abstract class MusicTracker
     {

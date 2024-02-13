@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
-using NiceUIDesign.Classes.Abstract;
-using NiceUIDesign.Custom;
-using NiceUIDesign.Resources;
+using Auplay.Classes.Abstract;
+using Auplay.Custom;
+using Auplay.Resources;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -9,7 +9,7 @@ using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace NiceUIDesign.Classes.Playlists
+namespace Auplay.Classes.Playlists
 {
     public class Playlists : FlowLayoutPanel, Music
     {

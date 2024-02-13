@@ -1,10 +1,10 @@
 ﻿using NAudio.Wave;
-using NiceUIDesign.Resources;
+using Auplay.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace NiceUIDesign.Classes
+namespace Auplay.Classes
 {
     public class Player
     {

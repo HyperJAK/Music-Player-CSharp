@@ -1,9 +1,9 @@
-﻿using NiceUIDesign.Classes.Abstract;
-using NiceUIDesign.Custom;
+﻿using Auplay.Classes.Abstract;
+using Auplay.Custom;
 using System;
 using System.Collections.Generic;
 
-namespace NiceUIDesign.Classes.Playlists
+namespace Auplay.Classes.Playlists
 {
     public class PlaylistsTracker : MusicTracker
     {

@@ -1,8 +1,8 @@
-﻿using NiceUIDesign.Resources;
+﻿using Auplay.Resources;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace NiceUIDesign.Custom
+namespace Auplay.Custom
 {
     public class CustomCheckbox : CheckBox
     {

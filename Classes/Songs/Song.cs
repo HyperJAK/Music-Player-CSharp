@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace NiceUIDesign.Classes
+namespace Auplay.Classes
 {
     public class Song
     {

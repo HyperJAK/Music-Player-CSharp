@@ -1,9 +1,9 @@
-﻿using NiceUIDesign.Custom;
-using NiceUIDesign.Resources;
+﻿using Auplay.Custom;
+using Auplay.Resources;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace NiceUIDesign.Classes
+namespace Auplay.Classes
 {
     public class SongControl : Panel
     {

@@ -1,9 +1,9 @@
-﻿using NiceUIDesign.Resources;
+﻿using Auplay.Resources;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
-namespace NiceUIDesign.Custom
+namespace Auplay.Custom
 {
     public class CustomPanel : Panel
     {
