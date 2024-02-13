@@ -1,8 +1,8 @@
-﻿using NiceUIDesign.Custom;
-using NiceUIDesign.Resources;
+﻿using Auplay.Custom;
+using Auplay.Resources;
 using System.Windows.Forms;
 
-namespace NiceUIDesign.Classes
+namespace Auplay.Classes
 {
     public class AddSongs : Panel
     {

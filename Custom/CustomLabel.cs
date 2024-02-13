@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 
-namespace NiceUIDesign.Custom
+namespace Auplay.Custom
 {
     public class CustomLabel : Label
     {

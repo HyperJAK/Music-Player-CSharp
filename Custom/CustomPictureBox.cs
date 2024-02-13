@@ -2,7 +2,7 @@
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
-namespace NiceUIDesign.Custom
+namespace Auplay.Custom
 {
     public class CustomPictureBox : Panel
     {
@@ -93,7 +93,7 @@ namespace NiceUIDesign.Custom
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
-namespace NiceUIDesign.Custom
+namespace Auplay.Custom
 {
     public class CustomPictureBox : PictureBox
     {

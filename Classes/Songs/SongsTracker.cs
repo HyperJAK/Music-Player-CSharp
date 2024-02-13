@@ -1,11 +1,11 @@
-﻿using NiceUIDesign.Custom;
-using NiceUIDesign.Resources;
+﻿using Auplay.Custom;
+using Auplay.Resources;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace NiceUIDesign.Classes
+namespace Auplay.Classes
 {
 
     public class SongsTracker
@@ -296,7 +296,7 @@ namespace NiceUIDesign.Classes
                 switch (typeOfSender)
                 //All use the same listener: Panel_Click()
                 {
-                    case "NiceUIDesign.Custom.CustomFlowLayoutPanel":
+                    case "Auplay.Custom.CustomFlowLayoutPanel":
                         {
                             CustomPanel panelExited = (CustomPanel)sender;
 
@@ -321,7 +321,7 @@ namespace NiceUIDesign.Classes
                         }
                         break;
 
-                    case "NiceUIDesign.Custom.CustomLabel":
+                    case "Auplay.Custom.CustomLabel":
                         {
                             CustomLabel labelClicked = (CustomLabel)sender;
                             CustomPanel panelExited;
@@ -349,7 +349,7 @@ namespace NiceUIDesign.Classes
                         }
                         break;
 
-                    case "NiceUIDesign.Custom.CustomPictureBox":
+                    case "Auplay.Custom.CustomPictureBox":
                         {
                             CustomPictureBox picClicked = (CustomPictureBox)sender;
                             CustomPanel panelExited;
@@ -379,7 +379,7 @@ namespace NiceUIDesign.Classes
                         }
                         break;
 
-                    case "NiceUIDesign.Custom.CustomRoundButton":
+                    case "Auplay.Custom.CustomRoundButton":
                         {
                             CustomRoundButton buttonClicked = (CustomRoundButton)sender;
                             CustomPanel panelExited;
@@ -412,14 +412,14 @@ namespace NiceUIDesign.Classes
                 switch (typeOfSender)
                 //All use the same listener: Panel_Click()
                 {
-                    case "NiceUIDesign.Custom.CustomFlowLayoutPanel":
+                    case "Auplay.Custom.CustomFlowLayoutPanel":
                         {
                             CustomPanel panelExited = (CustomPanel)sender;
                             panelExited.BackColor = Colors.elementsPanelBackground;
                         }
                         break;
 
-                    case "NiceUIDesign.Custom.CustomLabel":
+                    case "Auplay.Custom.CustomLabel":
                         {
                             CustomLabel labelClicked = (CustomLabel)sender;
                             CustomPanel panelExited;
@@ -432,7 +432,7 @@ namespace NiceUIDesign.Classes
                         }
                         break;
 
-                    case "NiceUIDesign.Custom.CustomPictureBox":
+                    case "Auplay.Custom.CustomPictureBox":
                         {
                             CustomPictureBox picClicked = (CustomPictureBox)sender;
                             CustomPanel panelExited;
@@ -467,7 +467,7 @@ namespace NiceUIDesign.Classes
                 switch (typeOfSender)
                 //All use the same listener: Panel_Click()
                 {
-                    case "NiceUIDesign.Custom.CustomFlowLayoutPanel":
+                    case "Auplay.Custom.CustomFlowLayoutPanel":
                         {
                             CustomPanel panelClicked = (CustomPanel)sender;
                             Console.WriteLine($"The tag that is LinkClickedEventArgs is:{(int)panelClicked.Tag}");
@@ -497,7 +497,7 @@ namespace NiceUIDesign.Classes
                         }
                         break;
 
-                    case "NiceUIDesign.Custom.CustomLabel":
+                    case "Auplay.Custom.CustomLabel":
                         {
                             CustomLabel labelClicked = (CustomLabel)sender;
 
@@ -526,7 +526,7 @@ namespace NiceUIDesign.Classes
                         }
                         break;
 
-                    case "NiceUIDesign.Custom.CustomPictureBox":
+                    case "Auplay.Custom.CustomPictureBox":
                         {
                             CustomPictureBox picClicked = (CustomPictureBox)sender;
                             string songName = Songs.GetName((int)picClicked.Tag);
@@ -557,7 +557,7 @@ namespace NiceUIDesign.Classes
                         }
                         break;
 
-                    case "NiceUIDesign.Custom.CustomRoundButton":
+                    case "Auplay.Custom.CustomRoundButton":
                         {
                             CustomRoundButton buttonClicked = (CustomRoundButton)sender;
                             string songName = Songs.GetName((int)buttonClicked.Tag);

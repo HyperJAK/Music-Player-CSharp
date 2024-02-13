@@ -1,4 +1,4 @@
-﻿namespace NiceUIDesign.Classes.Abstract
+﻿namespace Auplay.Classes.Abstract
 {
     public interface Music
     {

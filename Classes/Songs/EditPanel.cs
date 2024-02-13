@@ -1,6 +1,6 @@
-﻿using NiceUIDesign.Custom;
+﻿using Auplay.Custom;
 
-namespace NiceUIDesign.Classes
+namespace Auplay.Classes
 {
     public class EditPanel : CustomPanel
     {
