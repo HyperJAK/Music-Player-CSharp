@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace NiceUIDesign.Resources
+namespace Auplay.Resources
 {
     public static class Colors
     {

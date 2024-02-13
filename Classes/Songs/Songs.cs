@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
-using NiceUIDesign.Classes.Abstract;
-using NiceUIDesign.Custom;
-using NiceUIDesign.Resources;
+using Auplay.Classes.Abstract;
+using Auplay.Custom;
+using Auplay.Resources;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -11,7 +11,7 @@ using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace NiceUIDesign.Classes
+namespace Auplay.Classes
 {
     public class Songs : FlowLayoutPanel, Music
     {
@@ -365,7 +365,7 @@ namespace NiceUIDesign.Classes
             label.Height = 50;
 
             //Adding Images to buttons and other fields
-            //pic.BackgroundImage = NiceUIDesign.Properties.Resources.AuPlayLogo;
+            //pic.BackgroundImage = Auplay.Properties.Resources.AuPlayLogo;
 
             play_btn.BackgroundImage = Properties.Resources.playBtn;
             edit_btn.BackgroundImage = Properties.Resources.editBtn;

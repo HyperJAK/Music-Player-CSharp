@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Windows.Forms;
 
-namespace NiceUIDesign
+namespace Auplay
 {
     internal static class Program
     {

@@ -1,8 +1,8 @@
 ﻿using AltoHttp;
-using NiceUIDesign.Classes;
-using NiceUIDesign.Classes.Playlists;
-using NiceUIDesign.Custom;
-using NiceUIDesign.Resources;
+using Auplay.Classes;
+using Auplay.Classes.Playlists;
+using Auplay.Custom;
+using Auplay.Resources;
 using System;
 using System.Drawing;
 using System.Linq;
@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using VideoLibrary;
 
-namespace NiceUIDesign
+namespace Auplay
 {
     public partial class Form1 : Form
     {
